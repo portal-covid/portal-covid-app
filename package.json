@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@iconscout/unicons": "^2.0.0",
-    "RWD-Table-Patterns": "^5.3.3",
     "air-datepicker": "^2.2.3",
     "alertifyjs": "^1.12.0",
     "apexcharts": "^3.10.1",
