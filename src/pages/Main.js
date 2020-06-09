@@ -14,7 +14,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import EditIcon from '@material-ui/icons/Edit';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -24,7 +24,6 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom';
 import MainRoutes from './MainRoutes';
-import Auth from '../shared/auth';
 import LogoIMG from '../assets/simbolo_inss.svg';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
@@ -60,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      width: 'calc(100% - 240px)'
     },
     closeMenuButton: {
       marginRight: 'auto',
@@ -99,12 +99,22 @@ export default function Main() {
         <div>
             <List>
                 <Link
-                    to="/historico"
-                    onClick={() => console.log('menu historico')}
+                    to="/"
+                    onClick={() => console.log('alterar dados')}
                     style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Histórico">
-                        <ListItemIcon><EqualizerIcon /></ListItemIcon>
-                        <ListItemText primary="Histórico" />
+                    <ListItem button key="Home">
+                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/form"
+                    onClick={() => console.log('alterar dados')}
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Formulário">
+                        <ListItemIcon><EditIcon /></ListItemIcon>
+                        <ListItemText primary="Formulário" />
                     </ListItem>
                 </Link>
 
@@ -205,6 +215,10 @@ export default function Main() {
             </nav>
             <div className={classes.content}>
                 <div className={classes.toolbar} />
+                <main>
+                    <MainRoutes />
+                </main>
+
             </div>
         </div>
     );
