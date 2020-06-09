@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useSnackbar } from 'notistack';
 import api from '../../services/api';
-import ImageLogin from '../../assets/bg.jpg';
+import ImageLogin from '../../assets/portal.png';
 import LogoIMG from '../../assets/logo_INSS.svg';
 
 const useStyles = makeStyles((theme) => ({
