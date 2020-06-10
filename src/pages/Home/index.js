@@ -1,278 +1,144 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-
-function preventDefault(event) {
-	event.preventDefault();
-}
+import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import api from '../../services/api';
+import { useSnackbar } from 'notistack';
   
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 		width: '100%',
 	},
-	card: {
-		backgroundColor: theme.palette.background.paper,
+	title: {
+		marginTop: 30,
+		marginBottom: 30
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+		width: '100%',
+		marginTop: 30
+	},
+	select: {
+		backgroundColor: '#fff'
+	},
+	divButton: {
+		width: '100%',
+		textAlign: 'center'
+	},
+	button: {
+		marginTop: 10,
 	}
 }));
 
 export default function VerticalLinearStepper() {
-    const classes = useStyles();
+	const { enqueueSnackbar } = useSnackbar();
+	const classes = useStyles();
+	const history = useHistory();
+	const [unidade, setUnidade] = useState('');
+	const [unidades, setUnidades] = useState([]);
+	
+	useEffect(() => {
+		setUnidades([
+			{
+				ol: 11022020,
+				nome: 'Agência da Previdência Social Contagem'
+			},
+			{
+				ol: 11022030,
+				nome: 'Agência da Previdência Social Ibirité'
+			},
+			{
+				ol: 11022040,
+				nome: 'Agência da Previdência Social Pedro Leopoldo'
+			},
+			{
+				ol: 11022050,
+				nome: 'Agência da Previdência Social Betim'
+			},
+			{
+				ol: 11022060,
+				nome: 'Agência da Previdência Social Vespasiano'
+			}
+		]);
+	}, [setUnidades]);
+	
+	const handleChange = (event) => {
+		setUnidade(event.target.value);
+	};
+
+	async function handleSubmit(event) {
+		event.preventDefault();
+
+		try {
+            await api.get('info/' + unidade).then(response => {
+                if(response.data.length) {
+                    history.push('/info', { detail: response.data});
+                } else {
+                    enqueueSnackbar('Não foi encontrado dados para esta unidade!', { 
+                        variant: 'info',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }
+                    });
+                }
+            });
+        } catch(error) {
+            enqueueSnackbar('Erro ao retornar os dados!', { 
+                variant: 'error',
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                }
+            });
+        }
+	}
 
     return (
 		<React.Fragment>
-			<Grid container className={classes.root} spacing={1}>
-				<Grid item xs={12}>
-					<Typography variant="h6">
-						Administrativo
-					</Typography>
-				</Grid>
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
-							</Typography>
-							<Typography component="p" variant="h4">
-								60
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
-							</Typography>
-							<Typography component="p" variant="h4">
-								3
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
-							</Typography>
-							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								CEAP
-							</Typography>
-							<Typography component="p" variant="h4">
-								14
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								CEAB
-							</Typography>
-							<Typography component="p" variant="h4">
-								8
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} style={{marginTop: 30}}>
-					<Typography variant="h6">
-						Peritos
-					</Typography>
-				</Grid>
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
-							</Typography>
-							<Typography component="p" variant="h4">
-								60
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
-							</Typography>
-							<Typography component="p" variant="h4">
-								3
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
-							</Typography>
-							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} style={{marginTop: 30}}>
-					<Typography variant="h6">
-						Assistente Social
-					</Typography>
-				</Grid>
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
-							</Typography>
-							<Typography component="p" variant="h4">
-								60
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
-							</Typography>
-							<Typography component="p" variant="h4">
-								3
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
-							</Typography>
-							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} style={{marginTop: 30}}>
-					<Typography variant="h6">
-						Estagiários
-					</Typography>
-				</Grid>
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
-							</Typography>
-							<Typography component="p" variant="h4">
-								60
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
-							</Typography>
-							<Typography component="p" variant="h4">
-								3
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
-							</Typography>
-							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} style={{marginTop: 30}}>
-					<Typography variant="h6">
-						Temporários
-					</Typography>
-				</Grid>
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
-							</Typography>
-							<Typography component="p" variant="h4">
-								60
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
-							</Typography>
-							<Typography component="p" variant="h4">
-								3
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
-							</Typography>
-							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-			</Grid>
-			
+			<Container className={classes.root} maxWidth="sm">
+				<Typography component="h2" variant="h4" align="center" color="textPrimary" className={classes.title}>
+					Bem-vindo ao Portal COVID-19
+				</Typography>
+				<Typography variant="h6" align="center" color="textSecondary" paragraph>
+					Portal do INSS para divulgar dados e informações relacionados ao Coronavírus (COVID-19) na Instituição. Para informações mais detalhadas, selecione a unidade abaixo e clique em pesquisar.
+				</Typography>
+				<FormControl variant="outlined" className={classes.formControl}>
+					<InputLabel id="demo-simple-select-label">Unidade</InputLabel>
+					<Select
+						className={classes.select}
+						labelId="demo-simple-select-label"
+						id="demo-simple-select"
+						value={unidade}
+						onChange={handleChange}
+						label="Unidade"
+					>
+						{unidades.map((unidade) => (
+							<MenuItem key={unidade.ol} value={unidade.ol}>
+							{unidade.ol} - {unidade.nome}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
+				<div className={classes.divButton}>
+					<Button 
+						size="large" 
+						variant="contained" 
+						color="primary" 
+						className={classes.button}
+						onClick={handleSubmit}>
+						Pesquisar
+					</Button>
+				</div>
+          	</Container>
 		</React.Fragment>
     );
 }
