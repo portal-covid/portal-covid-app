@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function VerticalLinearStepper() {
+export default function Home() {
 	const { enqueueSnackbar } = useSnackbar();
 	const classes = useStyles();
 	const history = useHistory();
