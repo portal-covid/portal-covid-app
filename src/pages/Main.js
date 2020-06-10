@@ -108,16 +108,6 @@ export default function Main() {
                     </ListItem>
                 </Link>
 
-                <Link
-                    to="/form"
-                    onClick={() => console.log('alterar dados')}
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Formulário">
-                        <ListItemIcon><EditIcon /></ListItemIcon>
-                        <ListItemText primary="Formulário" />
-                    </ListItem>
-                </Link>
-
                 <List>
                     <Link
                         to="#"
