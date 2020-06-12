@@ -27,7 +27,8 @@ export default function Info() {
     const location = useLocation();
 	const classes = useStyles();
     const history = useHistory();
-    //const [dados, setDados] = useState(location.state.detail);
+	const [dados, setDados] = useState(location.state.detail);
+	console.log(dados);
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -58,7 +59,7 @@ export default function Info() {
 								Total
 							</Typography>
 							<Typography component="p" variant="h4">
-								60
+								{dados['servidores_total']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -71,7 +72,7 @@ export default function Info() {
 								Afast. Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
-								3
+								{dados['servidores_afastamentos_legais']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -84,33 +85,7 @@ export default function Info() {
 								Afast. Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
-								9
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								CEAP
-							</Typography>
-							<Typography component="p" variant="h4">
-								14
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-
-				<Grid item xs={2}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								CEAB
-							</Typography>
-							<Typography component="p" variant="h4">
-								8
+								{dados['servidores_grupo_de_risco']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -172,7 +147,7 @@ export default function Info() {
 								Total
 							</Typography>
 							<Typography component="p" variant="h4">
-								60
+								{dados['assistentes_total']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -185,7 +160,7 @@ export default function Info() {
 								Afast. Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
-								3
+								{dados['assistentes_afastado_motivo_legal']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -198,7 +173,7 @@ export default function Info() {
 								Afast. Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
-								9
+								{dados['assistentes_grupo_de_risco']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -216,7 +191,7 @@ export default function Info() {
 								Total
 							</Typography>
 							<Typography component="p" variant="h4">
-								60
+								{dados['estagiarios_total']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -229,7 +204,7 @@ export default function Info() {
 								Afast. Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
-								3
+								{dados['estagiarios_afastado_motivo_legal']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -242,7 +217,7 @@ export default function Info() {
 								Afast. Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
-								9
+								{dados['estagiarios_grupo_de_risco']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -260,7 +235,7 @@ export default function Info() {
 								Total
 							</Typography>
 							<Typography component="p" variant="h4">
-								60
+								{dados['temporarios_total']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -273,7 +248,7 @@ export default function Info() {
 								Afast. Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
-								3
+								{dados['temporarios_afastado_motivo_legal']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -286,7 +261,7 @@ export default function Info() {
 								Afast. Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
-								9
+								{dados['temporarios_grupo_de_risco']}
 							</Typography>
 						</CardContent>
 					</Card>
