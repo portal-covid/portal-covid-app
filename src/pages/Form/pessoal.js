@@ -21,8 +21,6 @@ const formData = {
     admTotal: '',
     admMotivoLegal: '',
     admGrupoRisco: '',
-    admCEAP: '',
-    admCEAB: '',
     peritosTotal: '',
     peritosMotivoLegal: '',
     peritosGrupoRisco: '',
@@ -115,30 +113,6 @@ export default function Pessoal() {
                             <TextField id="grupo-risco-adm" 
                                 value={form.admGrupoRisco}
                                 name="admGrupoRisco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                CEAP
-                            </Typography>
-                            <TextField id="ceap-adm" 
-                                value={form.admCEAP}
-                                name="admCEAP"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                CEAB
-                            </Typography>
-                            <TextField id="ceab-adm" 
-                                value={form.admCEAB}
-                                name="admCEAB"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
