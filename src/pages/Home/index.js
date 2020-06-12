@@ -48,23 +48,23 @@ export default function Home() {
 	useEffect(() => {
 		setUnidades([
 			{
-				ol: 11022020,
-				nome: 'Agência da Previdência Social Contagem'
+				ol: "21004090",
+				nome: 'Agência da Previdência Social Pinheiros'
 			},
 			{
-				ol: 11022030,
+				ol: "11022030",
 				nome: 'Agência da Previdência Social Ibirité'
 			},
 			{
-				ol: 11022040,
+				ol: "11022040",
 				nome: 'Agência da Previdência Social Pedro Leopoldo'
 			},
 			{
-				ol: 11022050,
+				ol: "11022050",
 				nome: 'Agência da Previdência Social Betim'
 			},
 			{
-				ol: 11022060,
+				ol: "11022060",
 				nome: 'Agência da Previdência Social Vespasiano'
 			}
 		]);
@@ -77,10 +77,15 @@ export default function Home() {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
+		let data = {
+			"unidades" : [unidade],
+			"tipoRelatorio": "RecursosUnidades"
+		};
+
 		try {
-            await api.get('info/' + unidade).then(response => {
-                if(response.data.length) {
-                    history.push('/info', { detail: response.data});
+            await api.post('unidades', data).then(response => {
+                if(response.data.dados.length) {
+                    history.push('/info', { detail: response.data.dados[0]});
                 } else {
                     enqueueSnackbar('Não foi encontrado dados para esta unidade!', { 
                         variant: 'info',
