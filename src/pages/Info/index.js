@@ -7,6 +7,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useSnackbar } from 'notistack';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
   
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -262,6 +265,166 @@ export default function Info() {
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['temporarios_grupo_de_risco']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={12} style={{marginTop: 30}}>
+					<Typography variant="h6">
+						Infraestrutura
+					</Typography>
+				</Grid>
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+								Metragem Administrativo
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_total']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+								Metragem Perícia Médica
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_afastado_motivo_legal']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Qtd. Guichês
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_grupo_de_risco']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Qtd. Salas Assis. Social
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_grupo_de_risco']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Qtd. Salas Perícia
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_grupo_de_risco']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Qtd. Scanner
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['temporarios_grupo_de_risco']}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi máscara
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_mascara'] ? 'Sim' : 'Não'}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi luvas
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_luvas'] ? 'Sim' : 'Não'}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi álcool
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_alcool'] ? 'Sim' : 'Não'}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi Barreira de proteção
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_barreira_de_protecao'] ? 'Sim' : 'Não'}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi capote
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_capote'] ? 'Sim' : 'Não'}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
+
+				<Grid item xs={2}>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+								Epi protetor facial
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['epis_protetor_facial'] ? 'Sim' : 'Não'}
 							</Typography>
 						</CardContent>
 					</Card>
