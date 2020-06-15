@@ -83,7 +83,7 @@ export default function Home() {
 		};
 
 		try {
-            await api.post('unidades', data).then(response => {
+            await api.post('relatorio', data).then(response => {
                 if(response.data.dados.length) {
                     history.push('/info', { detail: response.data.dados[0]});
                 } else {
