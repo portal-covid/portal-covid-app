@@ -9,6 +9,7 @@ class Auth {
         localStorage.removeItem('email');
         localStorage.removeItem('nome');
         localStorage.removeItem('cpf');
+        localStorage.removeItem('ols');
     }
 
     getToken = () => {
@@ -26,6 +27,10 @@ class Auth {
 
     getCPF = () => {
         return localStorage.getItem('cpf');
+    }
+
+    getOls = () => {
+        return localStorage.getItem('ols');
     }
 }
 
