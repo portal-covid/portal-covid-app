@@ -44,10 +44,12 @@ export default function Home() {
 	const classes = useStyles();
 	const history = useHistory();
 	const [unidade, setUnidade] = useState('');
-	const [unidades, setUnidades] = useState([]);
+	const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
 	const token = Auth.getToken();
+
 	
 	useEffect(() => {
+		/*
 		setUnidades([
 			{
 				ol: "21004090",
@@ -70,6 +72,7 @@ export default function Home() {
 				nome: 'Agência da Previdência Social Vespasiano'
 			}
 		]);
+		*/
 	}, [setUnidades]);
 	
 	const handleChange = (event) => {
