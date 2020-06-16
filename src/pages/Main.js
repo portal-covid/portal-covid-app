@@ -90,9 +90,15 @@ export default function Main() {
         setMobileOpen(!mobileOpen)
     }
 
-    const logout = () => {
+    const logout = (event) => {
+        event.preventDefault();
         handleClose();
         Auth.logout();
+        history.push('/');
+    }
+
+    const home = (event) => {
+        event.preventDefault();
         history.push('/');
     }
 
@@ -101,7 +107,7 @@ export default function Main() {
             <List>
                 <Link
                     to="/"
-                    onClick={() => console.log('alterar dados')}
+                    onClick={home}
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><HomeIcon /></ListItemIcon>
@@ -112,7 +118,7 @@ export default function Main() {
                 <List>
                     <Link
                         to="#"
-                        onClick={() => console.log('logout')}
+                        onClick={logout}
                         style={{ textDecoration: 'none', color: '#757575' }}>
                         <ListItem button key="Sair">
                             <ListItemIcon><ExitToAppIcon /></ListItemIcon>
@@ -163,7 +169,7 @@ export default function Main() {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Perfil</MenuItem>
+                        {/*<MenuItem onClick={handleClose}>Perfil</MenuItem>*/}
                         <MenuItem onClick={logout}>Sair</MenuItem>
                     </Menu>
                 </Toolbar>
