@@ -54,13 +54,16 @@ export default function Login() {
 		event.preventDefault();
 
 		let data = {
-			username: email,
-			password: password
+			email: email,
+			senha: password
 		}
 
 		try {
-			await api.post('login', data).then(response => {
-				localStorage.setItem('authToken', response.data.id);
+			await api.post('auth', data).then(response => {
+				localStorage.setItem('token', response.data.dados.token);
+				localStorage.setItem('email', response.data.dados.mail);
+				localStorage.setItem('nome', response.data.dados.nome);
+				localStorage.setItem('cpf', response.data.dados.cpf);
 
 				enqueueSnackbar('Bem-vindo ao Portal de COVID-19!', {
 					variant: 'success',

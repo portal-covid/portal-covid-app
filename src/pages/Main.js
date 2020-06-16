@@ -1,26 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { useHistory } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import EditIcon from '@material-ui/icons/Edit';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom';
 import MainRoutes from './MainRoutes';
@@ -28,7 +22,7 @@ import LogoIMG from '../assets/simbolo_inss.svg';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
+import Auth from '../shared/auth';
 
 const drawerWidth = 240;
 
@@ -80,6 +74,7 @@ const useStyles = makeStyles(theme => ({
 export default function Main() {
     const classes = useStyles();
     const theme = useTheme();
+    const history = useHistory();
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -93,6 +88,12 @@ export default function Main() {
 
     function handleDrawerToggle() {
         setMobileOpen(!mobileOpen)
+    }
+
+    const logout = () => {
+        handleClose();
+        Auth.logout();
+        history.push('/');
     }
 
     const drawer = (
@@ -163,7 +164,7 @@ export default function Main() {
                         onClose={handleClose}
                     >
                         <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                        <MenuItem onClick={handleClose}>Sair</MenuItem>
+                        <MenuItem onClick={logout}>Sair</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

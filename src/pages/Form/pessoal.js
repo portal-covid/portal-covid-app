@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import { useSnackbar } from 'notistack';
+import Auth from '../../shared/auth';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,29 +18,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const formData = {
-    admTotal: '',
-    admMotivoLegal: '',
-    admGrupoRisco: '',
-    peritosTotal: '',
-    peritosMotivoLegal: '',
-    peritosGrupoRisco: '',
-    assistenteTotal: '',
-    assistenteMotivoLegal: '',
-    assistenteGrupoRisco: '',
-    estagiariosTotal: '',
-    estagiariosMotivoLegal: '',
-    estagiariosGrupoRisco: '',
-    temporariosTotal: '',
-    temporariosMotivoLegal: '',
-    temporariosGrupoRisco: '',
-}
 
-export default function Pessoal() {
+
+export default function Pessoal(data) {
     const classes = useStyles();
     const { enqueueSnackbar } = useSnackbar();
     const history = useHistory();
+    const formData = {
+        servidores_total: data['servidores_total'],
+        servidores_afastamentos_legais: data['servidores_afastamentos_legais'],
+        servidores_grupo_de_risco: data['servidores_grupo_de_risco'],
+        pericia_medica_total: data['pericia_medica_total'],
+        pericia_medica_afastado_motivo_legal: data['pericia_medica_afastado_motivo_legal'],
+        pericia_grupo_de_risco: data['pericia_grupo_de_risco'],
+        assistentes_total: data['assistentes_total'],
+        assistentes_afastado_motivo_legal: data['assistentes_afastado_motivo_legal'],
+        assistentes_grupo_de_risco: data['assistentes_grupo_de_risco'],
+        estagiarios_total: data['estagiarios_total'],
+        estagiarios_afastado_motivo_legal: data['estagiarios_afastado_motivo_legal'],
+        estagiarios_grupo_de_risco: data['estagiarios_grupo_de_risco'],
+        temporarios_total: data['temporarios_total'],
+        temporarios_afastado_motivo_legal: data['temporarios_afastado_motivo_legal'],
+        temporarios_grupo_de_risco: data['temporarios_grupo_de_risco'],
+    }
     const [form, setForm] = useState(formData);
+    const token = Auth.getToken();
 
     const handleInputChange = (event) => {
         setForm({...form,
@@ -50,8 +53,16 @@ export default function Pessoal() {
     async function handleSubmit(event) {
         event.preventDefault();
 
+        let resp = {
+            _id: data['_id'],
+			tipoOperacao: "AtualizarDadosDePessoal",
+        };
+        resp['dados'] = form;
+
         try {
-            await api.post('dados', JSON.stringify(form)).then(response => {
+            await api.post('unidades', resp, { 
+				headers: {"Authorization" : "Bearer " + token }
+			}).then(response => {
                 enqueueSnackbar('Dados salvos com sucesso!', { 
                     variant: 'success',
                     anchorOrigin: {
@@ -59,7 +70,6 @@ export default function Pessoal() {
                         horizontal: 'center',
                     },
                 });
-                history.push('/home');
             });
         } catch(error) {
             enqueueSnackbar('Erro ao salvar os dados!', { 
@@ -87,8 +97,8 @@ export default function Pessoal() {
                                 Total
                             </Typography>
                             <TextField id="total-adm" 
-                                value={form.admTotal}
-                                name="admTotal"
+                                value={form.servidores_total}
+                                name="servidores_total"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -99,8 +109,8 @@ export default function Pessoal() {
                                 Afast. Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-adm" 
-                                value={form.admMotivoLegal} 
-                                name="admMotivoLegal"
+                                value={form.servidores_afastamentos_legais} 
+                                name="servidores_afastamentos_legais"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -111,8 +121,8 @@ export default function Pessoal() {
                                 Afast. Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-adm" 
-                                value={form.admGrupoRisco}
-                                name="admGrupoRisco"
+                                value={form.servidores_grupo_de_risco}
+                                name="servidores_grupo_de_risco"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -131,8 +141,8 @@ export default function Pessoal() {
                                 Total
                             </Typography>
                             <TextField id="total-perito" 
-                                value={form.peritosTotal}
-                                name="peritosTotal"
+                                value={form.pericia_medica_total}
+                                name="pericia_medica_total"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -143,8 +153,8 @@ export default function Pessoal() {
                                 Afast. Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-perito"
-                                value={form.peritosMotivoLegal}
-                                name="peritosMotivoLegal"
+                                value={form.pericia_medica_afastado_motivo_legal}
+                                name="pericia_medica_afastado_motivo_legal"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -155,8 +165,8 @@ export default function Pessoal() {
                                 Afast. Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-perito"
-                                value={form.peritosGrupoRisco}
-                                name="peritosGrupoRisco"
+                                value={form.pericia_grupo_de_risco}
+                                name="pericia_grupo_de_risco"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -175,8 +185,8 @@ export default function Pessoal() {
                                 Total
                             </Typography>
                             <TextField id="total-social"
-                                value={form.assistenteTotal}
-                                name="assistenteTotal"
+                                value={form.assistentes_total}
+                                name="assistentes_total"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -187,8 +197,8 @@ export default function Pessoal() {
                                 Afast. Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-social"
-                                value={form.assistenteMotivoLegal}
-                                name="assistenteMotivoLegal"
+                                value={form.assistentes_afastado_motivo_legal}
+                                name="assistentes_afastado_motivo_legal"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -199,8 +209,8 @@ export default function Pessoal() {
                                 Afast. Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-social"
-                                value={form.assistenteGrupoRisco}
-                                name="assistenteGrupoRisco"
+                                value={form.assistentes_grupo_de_risco}
+                                name="assistentes_grupo_de_risco"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -219,8 +229,8 @@ export default function Pessoal() {
                                 Total
                             </Typography>
                             <TextField id="total-estagiario"
-                                value={form.estagiariosTotal}
-                                name="estagiariosTotal"
+                                value={form.estagiarios_total}
+                                name="estagiarios_total"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -231,8 +241,8 @@ export default function Pessoal() {
                                 Afast. Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-estagiario"
-                                value={form.estagiariosMotivoLegal}
-                                name="estagiariosMotivoLegal"
+                                value={form.estagiarios_afastado_motivo_legal}
+                                name="estagiarios_afastado_motivo_legal"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -243,8 +253,8 @@ export default function Pessoal() {
                                 Afast. Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-estagiario"
-                                value={form.estagiariosGrupoRisco}
-                                name="estagiariosGrupoRisco"
+                                value={form.estagiarios_grupo_de_risco}
+                                name="estagiarios_grupo_de_risco"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -263,8 +273,8 @@ export default function Pessoal() {
                                 Total
                             </Typography>
                             <TextField id="total-temporario"
-                                value={form.temporariosTotal}
-                                name="temporariosTotal"
+                                value={form.temporarios_total}
+                                name="temporarios_total"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -275,8 +285,8 @@ export default function Pessoal() {
                                 Afast. Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-temporario"
-                                value={form.temporariosMotivoLegal}
-                                name="temporariosMotivoLegal"
+                                value={form.temporarios_afastado_motivo_legal}
+                                name="temporarios_afastado_motivo_legal"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -287,8 +297,8 @@ export default function Pessoal() {
                                 Afast. Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-temporario"
-                                value={form.temporariosGrupoRisco}
-                                name="temporariosGrupoRisco"
+                                value={form.temporarios_grupo_de_risco}
+                                name="temporarios_grupo_de_risco"
                                 onChange={handleInputChange}
                             />
                         </FormControl>

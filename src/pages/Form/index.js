@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -31,60 +32,58 @@ function TabPanel(props) {
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+	children: PropTypes.node,
+	index: PropTypes.any.isRequired,
+	value: PropTypes.any.isRequired,
 };
 
 function a11yProps(index) {
-  return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
-  };
+	return {
+		id: `scrollable-auto-tab-${index}`,
+		'aria-controls': `scrollable-auto-tabpanel-${index}`,
+	};
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
+	root: {
+		flexGrow: 1,
+		width: '100%',
+		backgroundColor: theme.palette.background.paper,
+	},
 }));
 
 export default function Home() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+	const classes = useStyles();
+	const [value, setValue] = useState(0);
+	const location = useLocation();
+	const props = location.state.detail;
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
 
-  return (
-    <div className={classes.root}>
-		<AppBar position="static" color="default">
-			<Tabs
-			value={value}
-			onChange={handleChange}
-			indicatorColor="primary"
-			textColor="primary"
-			variant="scrollable"
-			scrollButtons="auto"
-			aria-label="scrollable auto tabs example"
-			>
-			<Tab label="Dados de Pessoal" {...a11yProps(0)} />
-			<Tab label="Infraestrutura" {...a11yProps(1)} />
-			<Tab label="Equipamentos" {...a11yProps(2)} />
-			</Tabs>
-		</AppBar>
-		<TabPanel value={value} index={0}>
-			<Pessoal />
-		</TabPanel>
-		<TabPanel value={value} index={1}>
-			<Infra />
-		</TabPanel>
-		<TabPanel value={value} index={2}>
-			<Equipamentos />
-		</TabPanel>
-    </div>
-  );
+	return (
+		<div className={classes.root}>
+			<AppBar position="static" color="default">
+				<Tabs
+				value={value}
+					onChange={handleChange}
+					indicatorColor="primary"
+					textColor="primary"
+					variant="scrollable"
+					scrollButtons="auto"
+					aria-label="scrollable auto tabs example"
+				>
+				<Tab label="Dados de Pessoal" {...a11yProps(0)} />
+				<Tab label="Infraestrutura" {...a11yProps(1)} />
+				</Tabs>
+			</AppBar>
+			<TabPanel value={value} index={0}>
+				<Pessoal {...props} />
+			</TabPanel>
+			<TabPanel value={value} index={1}>
+				<Infra {...props} />
+			</TabPanel>
+		</div>
+	);
 }

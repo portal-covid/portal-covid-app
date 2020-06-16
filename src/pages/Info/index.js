@@ -31,11 +31,10 @@ export default function Info() {
 	const classes = useStyles();
     const history = useHistory();
 	const [dados, setDados] = useState(location.state.detail);
-	console.log(dados);
 
     const handleChange = (event) => {
         event.preventDefault();
-        history.push('/form');
+        history.push('/form', { detail: dados});
     }
 
     return (
@@ -106,7 +105,7 @@ export default function Info() {
 								Total
 							</Typography>
 							<Typography component="p" variant="h4">
-								60
+								{dados['pericia_medica_total']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -119,7 +118,7 @@ export default function Info() {
 								Afast. Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
-								3
+								{dados['pericia_medica_afastado_motivo_legal']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -132,7 +131,7 @@ export default function Info() {
 								Afast. Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
-								9
+								{dados['pericia_grupo_de_risco']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -281,7 +280,7 @@ export default function Info() {
 								Metragem Administrativo
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_total']}
+								{dados['metragem_administrativo']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -294,7 +293,7 @@ export default function Info() {
 								Metragem Perícia Médica
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_afastado_motivo_legal']}
+								{dados['metragem_pericia_medica']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -307,7 +306,7 @@ export default function Info() {
 								Qtd. Guichês
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_grupo_de_risco']}
+								{dados['qtd_guiches']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -320,7 +319,7 @@ export default function Info() {
 								Qtd. Salas Assis. Social
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_grupo_de_risco']}
+								{dados['qtd_salas_ass']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -333,7 +332,7 @@ export default function Info() {
 								Qtd. Salas Perícia
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_grupo_de_risco']}
+								{dados['salas_pericia']}
 							</Typography>
 						</CardContent>
 					</Card>
@@ -346,7 +345,7 @@ export default function Info() {
 								Qtd. Scanner
 							</Typography>
 							<Typography component="p" variant="h4">
-								{dados['temporarios_grupo_de_risco']}
+								{dados['qtd_scanner']}
 							</Typography>
 						</CardContent>
 					</Card>

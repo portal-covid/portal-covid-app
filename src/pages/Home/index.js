@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
+import Auth from '../../shared/auth';
 import { useSnackbar } from 'notistack';
   
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,7 @@ export default function Home() {
 	const history = useHistory();
 	const [unidade, setUnidade] = useState('');
 	const [unidades, setUnidades] = useState([]);
+	const token = Auth.getToken();
 	
 	useEffect(() => {
 		setUnidades([
@@ -83,7 +85,9 @@ export default function Home() {
 		};
 
 		try {
-            await api.post('relatorio', data).then(response => {
+            await api.post('relatorio', data, { 
+				headers: {"Authorization" : "Bearer " + token }
+			}).then(response => {
                 if(response.data.dados.length) {
                     history.push('/info', { detail: response.data.dados[0]});
                 } else {

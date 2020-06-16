@@ -1,35 +1,31 @@
 class Auth {
 
     isLoggedIn() {
-        return !!localStorage.getItem('authToken');
+        return !!localStorage.getItem('token');
     }
 
     logout = () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
         localStorage.removeItem('nome');
-        localStorage.removeItem('role');
-        localStorage.removeItem('roleId');
+        localStorage.removeItem('cpf');
     }
 
     getToken = () => {
-        return localStorage.getItem('authToken');
+        return localStorage.getItem('token');
     }
 
-    getUserId = () => {
-        return localStorage.getItem('userId');
-    }
 
     getNome = () => {
         return localStorage.getItem('nome');
     }
 
-    getRole = () => {
-        return localStorage.getItem('role');
+    getEmail = () => {
+        return localStorage.getItem('email');
     }
 
-    getRoleId = () => {
-        return localStorage.getItem('roleId');
+    getCPF = () => {
+        return localStorage.getItem('cpf');
     }
 }
 

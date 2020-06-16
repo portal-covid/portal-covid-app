@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom';
+import Auth from '../../shared/auth';
+import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,32 +23,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const formData = {
-    admTotal: '',
-    admMotivoLegal: '',
-    admGrupoRisco: '',
-    admCEAP: '',
-    admCEAB: '',
-    peritosTotal: '',
-    peritosMotivoLegal: '',
-    peritosGrupoRisco: '',
-    assistenteTotal: '',
-    assistenteMotivoLegal: '',
-    assistenteGrupoRisco: '',
-    estagiariosTotal: '',
-    estagiariosMotivoLegal: '',
-    estagiariosGrupoRisco: '',
-    temporariosTotal: '',
-    temporariosMotivoLegal: '',
-    temporariosGrupoRisco: '',
-}
-
-export default function Infra() {
+export default function Infra(data) {
 	const classes = useStyles();
 	const { enqueueSnackbar } = useSnackbar();
-	const history = useHistory();
+    const history = useHistory();
+    const formData = {
+        area_compartilhada: data['area_compartilhada'],
+        metragem_administrativo: data['metragem_administrativo'],
+        metragem_pericia_medica: data['metragem_pericia_medica'],
+        qtd_guiches: data['qtd_guiches'],
+        qtd_salas_ass: data['qtd_salas_ass'],
+        salas_pericia: data['salas_pericia'],
+        qtd_scanner: data['qtd_scanner'],
+        epis_mascara: data['epis_mascara'],
+        epis_luvas: data['epis_luvas'],
+        epis_alcool: data['epis_alcool'],
+        epis_barreira_de_protecao: data['epis_barreira_de_protecao'],
+        epis_capote: data['epis_capote'],
+        epis_protetor_facial: data['epis_protetor_facial'],
+    }
 	const [form, setForm] = useState(formData);
-	const [value, setValue] = useState();
+    const [value, setValue] = useState();
+    const token = Auth.getToken();
 
 	const handleInputChange = (event) => {
 		setForm({...form,
@@ -59,6 +57,35 @@ export default function Infra() {
 	};
 
     async function handleSubmit(event) {
+        event.preventDefault();
+
+        let resp = {
+            _id: data['_id'],
+			tipoOperacao: "AtualizarDadosDeInfraestrutura",
+        };
+        resp['dados'] = form;
+
+        try {
+            await api.post('unidades', resp, { 
+				headers: {"Authorization" : "Bearer " + token }
+			}).then(response => {
+                enqueueSnackbar('Dados salvos com sucesso!', { 
+                    variant: 'success',
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center',
+                    },
+                });
+            });
+        } catch(error) {
+            enqueueSnackbar('Erro ao salvar os dados!', { 
+                variant: 'error',
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                },
+            });
+        }
 	}
 
     return (
@@ -73,7 +100,7 @@ export default function Infra() {
                     <Grid item xs={12} style={{marginBottom: 30}}>
 						<FormControl component="fieldset">
 							<FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
-							<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+							<RadioGroup aria-label="gender" name="area_compartilhada" value={value} onChange={handleInputChange}>
 								<FormControlLabel value="1" control={<Radio />} label="Sim" />
 								<FormControlLabel value="0" control={<Radio />} label="Não" />
 							</RadioGroup>
@@ -82,11 +109,23 @@ export default function Infra() {
                     <Grid item xs={12} sm={4}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
+								Metragem área de espera do Administrativo
+                            </Typography>
+                            <TextField id="metragem_administrativo" 
+                                value={form.metragem_administrativo}
+                                name="metragem_administrativo"
+                                onChange={handleInputChange}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <FormControl>
+                            <Typography variant="subtitle2" gutterBottom>
                                 Metragem área de espera da Perícia Médica
                             </Typography>
-                            <TextField id="motivo-legal-adm" 
-                                value={form.admMotivoLegal} 
-                                name="admMotivoLegal"
+                            <TextField id="metragem_pericia_medica" 
+                                value={form.metragem_pericia_medica} 
+                                name="metragem_pericia_medica"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -96,21 +135,9 @@ export default function Infra() {
                             <Typography variant="subtitle2" gutterBottom>
 								Quantidade de salas de assistente social
                             </Typography>
-                            <TextField id="ceab-adm" 
-                                value={form.admCEAB}
-                                name="admCEAB"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-								Metragem área de espera do Administrativo
-                            </Typography>
-                            <TextField id="ceap-adm" 
-                                value={form.admCEAP}
-                                name="admCEAP"
+                            <TextField id="qtd_salas_ass" 
+                                value={form.qtd_salas_ass}
+                                name="qtd_salas_ass"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -120,9 +147,9 @@ export default function Infra() {
                             <Typography variant="subtitle2" gutterBottom>
                                 Quantidade de consultórios
                             </Typography>
-                            <TextField id="grupo-risco-adm" 
-                                value={form.admGrupoRisco}
-                                name="admGrupoRisco"
+                            <TextField id="salas_pericia" 
+                                value={form.salas_pericia}
+                                name="salas_pericia"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
@@ -132,12 +159,61 @@ export default function Infra() {
                             <Typography variant="subtitle2" gutterBottom>
 								Quantidade de guichês
                             </Typography>
-                            <TextField id="ceab-adm" 
-                                value={form.admCEAB}
-                                name="admCEAB"
+                            <TextField id="qtd_guiches" 
+                                value={form.qtd_guiches}
+                                name="qtd_guiches"
                                 onChange={handleInputChange}
                             />
                         </FormControl>
+                    </Grid>
+                    <Grid item xs={12} style={{marginTop: 30}}>
+                        <Switch
+                            checked={form.epis_mascara}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_mascara"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Máscara
+                        <br />
+                        <Switch
+                            checked={form.epis_luvas}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_luvas"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Luvas
+                        <br />
+                        <Switch
+                            checked={form.epis_alcool}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_alcool"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Álcool
+                        <br />
+                        <Switch
+                            checked={form.epis_barreira_de_protecao}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_barreira_de_protecao"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Barreira de proteção
+                        <br />
+                        <Switch
+                            checked={form.epis_capote}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_capote"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Capote
+                        <br />
+                        <Switch
+                            checked={form.epis_protetor_facial}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="epis_protetor_facial"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        /> Epi Protetor Facial
                     </Grid>
                 </Grid>
 				<Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
