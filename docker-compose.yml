@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  portal-app:
+    container_name: portal-covid-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    external_links:
+      - portal-covid-backend:portal-covid-backend
+    ports:
+      - 8080:80
+    networks:
+      - portal-covid-backend_portal-backend-network
+
+networks:
+  portal-covid-backend_portal-backend-network:
+    external: true
+
