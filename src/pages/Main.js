@@ -13,6 +13,9 @@ import List from '@material-ui/core/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -110,7 +113,7 @@ export default function Main() {
                     onClick={home}
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemIcon><PeopleAltIcon /></ListItemIcon>
                         <ListItemText primary="Validação de dados de Pessoal e Infraestrutura" />
                     </ListItem>
                 </Link>
@@ -120,7 +123,7 @@ export default function Main() {
                     onClick={home}
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemIcon><LibraryAddIcon /></ListItemIcon>
                         <ListItemText primary="Validação de EPI/EPC" />
                     </ListItem>
                 </Link>
@@ -130,7 +133,7 @@ export default function Main() {
                     onClick={home}
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemIcon><AssignmentIcon /></ListItemIcon>
                         <ListItemText primary="Validação de Contratos Essenciais" />
                     </ListItem>
                 </Link>

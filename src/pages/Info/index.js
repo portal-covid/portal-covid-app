@@ -324,13 +324,16 @@ export default function Info() {
 					</Typography>
 				</Grid>
                 <Grid item xs={12} style={{marginBottom: 30}}>
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
-                        <RadioGroup aria-label="gender" name="area_compartilhada" value={value} onChange={handleInputChange}>
-                            <FormControlLabel value="1" control={<Radio />} label="Sim" />
-                            <FormControlLabel value="0" control={<Radio />} label="Não" />
-                        </RadioGroup>
-                    </FormControl>
+					<Card className={classes.card}>
+						<CardContent>
+							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+								Área de espera compartilhada entre perícia médica e administrativo?
+							</Typography>
+							<Typography component="p" variant="h4">
+								{dados['area_compartilhada']}
+							</Typography>
+						</CardContent>
+					</Card>
                 </Grid>
 				<Grid item xs={2}>
 					<Card className={classes.card}>
