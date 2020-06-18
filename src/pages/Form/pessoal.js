@@ -28,6 +28,11 @@ export default function Pessoal(data) {
         servidores_total: data['servidores_total'],
         servidores_afastamentos_legais: data['servidores_afastamentos_legais'],
         servidores_grupo_de_risco: data['servidores_grupo_de_risco'],
+        servidores_ceab: data['servidores_ceab'],
+        servidores_programa_gestao: data['servidores_programa_gestao'],
+        servidores_gestores: data['servidores_gestores'],
+
+
         pericia_medica_total: data['pericia_medica_total'],
         pericia_medica_afastado_motivo_legal: data['pericia_medica_afastado_motivo_legal'],
         pericia_grupo_de_risco: data['pericia_grupo_de_risco'],
@@ -84,6 +89,13 @@ export default function Pessoal(data) {
 
     return (
         <React.Fragment>
+
+            <Alert severity="info">
+                <AlertTitle>Gestores</AlertTitle>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de pessoal da sua unidade, além das informações de infraestrutura. É possível clicar em alterar dados, para validarmos a situação real das unidades de atendimento.</p>
+
+            </Alert>
+
             <form onSubmit={handleSubmit} className={classes.root}>
                 <Grid container className={classes.root} spacing={1}>
                     <Grid item xs={12}>
@@ -94,7 +106,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Total
+                                Total de Servidores da unidade
                             </Typography>
                             <TextField id="total-adm" 
                                 value={form.servidores_total}
@@ -106,7 +118,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Motivo Legal
+                                Afastamento Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-adm" 
                                 value={form.servidores_afastamentos_legais} 
@@ -118,12 +130,48 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Grupo de Risco
+                                Afastamento Grupo de Risco
                             </Typography>
-                            <TextField id="grupo-risco-adm" 
+                            <TextField id="programa-adm"
                                 value={form.servidores_grupo_de_risco}
                                 name="servidores_grupo_de_risco"
                                 onChange={handleInputChange}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <FormControl>
+                            <Typography variant="subtitle2" gutterBottom>
+                                CEAB
+                            </Typography>
+                            <TextField id="ceab-adm"
+                                       value={form.servidores_ceab}
+                                       name="servidores_ceab"
+                                       onChange={handleInputChange}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <FormControl>
+                            <Typography variant="subtitle2" gutterBottom>
+                                Programa de Gestão/Teletrabalho
+                            </Typography>
+                            <TextField id="servidores-programa-gestao-adm"
+                                       value={form.servidores_programa_gestao}
+                                       name="servidores_programa_gestao"
+                                       onChange={handleInputChange}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <FormControl>
+                            <Typography variant="subtitle2" gutterBottom>
+                                Gestores
+                            </Typography>
+                            <TextField id="servidores-gestores-adm"
+                                       value={form.servidores_gestores}
+                                       name="servidores_gestores"
+                                       onChange={handleInputChange}
                             />
                         </FormControl>
                     </Grid>
@@ -138,7 +186,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Total
+                                Total de Servidores da unidade
                             </Typography>
                             <TextField id="total-perito" 
                                 value={form.pericia_medica_total}
@@ -150,7 +198,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Motivo Legal
+                                Afastamento Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-perito"
                                 value={form.pericia_medica_afastado_motivo_legal}
@@ -162,7 +210,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Grupo de Risco
+                                Afastamento Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-perito"
                                 value={form.pericia_grupo_de_risco}
@@ -182,7 +230,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Total
+                                Total de Servidores da unidade
                             </Typography>
                             <TextField id="total-social"
                                 value={form.assistentes_total}
@@ -194,7 +242,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Motivo Legal
+                                Afastamento Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-social"
                                 value={form.assistentes_afastado_motivo_legal}
@@ -206,7 +254,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Grupo de Risco
+                                Afastamento Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-social"
                                 value={form.assistentes_grupo_de_risco}
@@ -226,7 +274,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Total
+                                Total de estagiários da unidade
                             </Typography>
                             <TextField id="total-estagiario"
                                 value={form.estagiarios_total}
@@ -238,7 +286,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Motivo Legal
+                                Afastamento Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-estagiario"
                                 value={form.estagiarios_afastado_motivo_legal}
@@ -250,7 +298,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Grupo de Risco
+                                Afastamento Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-estagiario"
                                 value={form.estagiarios_grupo_de_risco}
@@ -270,7 +318,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Total
+                                Total de temporários da unidade
                             </Typography>
                             <TextField id="total-temporario"
                                 value={form.temporarios_total}
@@ -282,7 +330,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Motivo Legal
+                                Afastamento Motivo Legal
                             </Typography>
                             <TextField id="motivo-legal-temporario"
                                 value={form.temporarios_afastado_motivo_legal}
@@ -294,7 +342,7 @@ export default function Pessoal(data) {
                     <Grid item xs={12} sm={2}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Afast. Grupo de Risco
+                                Afastamento Grupo de Risco
                             </Typography>
                             <TextField id="grupo-risco-temporario"
                                 value={form.temporarios_grupo_de_risco}

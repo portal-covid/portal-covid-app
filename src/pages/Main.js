@@ -111,7 +111,27 @@ export default function Main() {
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><HomeIcon /></ListItemIcon>
-                        <ListItemText primary="Home" />
+                        <ListItemText primary="Validação de dados de Pessoal e Infraestrutura" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/"
+                    onClick={home}
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemText primary="Validação de EPI/EPC" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/"
+                    onClick={home}
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemText primary="Validação de Contratos Essenciais" />
                     </ListItem>
                 </Link>
 

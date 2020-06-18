@@ -10,6 +10,11 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import FormLabel from "@material-ui/core/FormLabel/FormLabel";
+import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
+import Radio from "@material-ui/core/Radio/Radio";
   
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -58,7 +63,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
+                                Total de Servidores da unidade
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['servidores_total']}
@@ -71,7 +76,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
+								Afastamento Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['servidores_afastamentos_legais']}
@@ -84,7 +89,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
+								Afastamento Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['servidores_grupo_de_risco']}
@@ -92,6 +97,51 @@ export default function Info() {
 						</CardContent>
 					</Card>
 				</Grid>
+
+                <Grid item xs={2}>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+                                CEAB
+                            </Typography>
+                            <Typography component="p" variant="h4">
+                                {dados['servidores_ceab']}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                <Grid item xs={2}>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+                                Programa de Gestão/Teletrabalho
+                            </Typography>
+                            <Typography component="p" variant="h4">
+                                {dados['servidores_programa_gestao']}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                <Grid item xs={2}>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+                                Gestores
+                            </Typography>
+                            <Typography component="p" variant="h4">
+                                {dados['servidores_gestores']}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+
+
+
+
+
 
 				<Grid item xs={12} style={{marginTop: 30}}>
 					<Typography variant="h6">
@@ -102,7 +152,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
+                                Total de Servidores da unidade
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['pericia_medica_total']}
@@ -115,7 +165,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
+								Afastamento Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['pericia_medica_afastado_motivo_legal']}
@@ -128,7 +178,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
+								Afastamento Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['pericia_grupo_de_risco']}
@@ -146,7 +196,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
+                                Total de Servidores da unidade
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['assistentes_total']}
@@ -159,7 +209,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
+								Afastamento Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['assistentes_afastado_motivo_legal']}
@@ -172,7 +222,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
+								Afastamento Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['assistentes_grupo_de_risco']}
@@ -190,7 +240,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
+                                Total de Servidores da unidade
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['estagiarios_total']}
@@ -203,7 +253,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
+								Afastamento Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['estagiarios_afastado_motivo_legal']}
@@ -216,7 +266,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
+								Afastamento Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['estagiarios_grupo_de_risco']}
@@ -234,7 +284,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Total
+                                Total de Servidores da unidade
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['temporarios_total']}
@@ -247,7 +297,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Motivo Legal
+								Afastamento Motivo Legal
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['temporarios_afastado_motivo_legal']}
@@ -260,7 +310,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Afast. Grupo Risco
+								Afastamento Grupo Risco
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['temporarios_grupo_de_risco']}
@@ -273,11 +323,20 @@ export default function Info() {
 						Infraestrutura
 					</Typography>
 				</Grid>
+                <Grid item xs={12} style={{marginBottom: 30}}>
+                    <FormControl component="fieldset">
+                        <FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
+                        <RadioGroup aria-label="gender" name="area_compartilhada" value={value} onChange={handleInputChange}>
+                            <FormControlLabel value="1" control={<Radio />} label="Sim" />
+                            <FormControlLabel value="0" control={<Radio />} label="Não" />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
 				<Grid item xs={2}>
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Metragem Administrativo
+                                Metragem da sala de espera do Administrativo
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['metragem_administrativo']}
@@ -290,7 +349,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Metragem Perícia Médica
+                                Metragem da sala de espera da Perícia Médica
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['metragem_pericia_medica']}
@@ -303,7 +362,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Qtd. Guichês
+								Quantidade Guichês
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['qtd_guiches']}
@@ -316,7 +375,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Qtd. Salas Assis. Social
+								Quantidade Salas Assis. Social
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['qtd_salas_ass']}
@@ -329,7 +388,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Qtd. Salas Perícia
+								Quantidade Salas Perícia
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['salas_pericia']}
@@ -342,7 +401,7 @@ export default function Info() {
 					<Card className={classes.card}>
 						<CardContent>
 							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Qtd. Scanner
+								Quantidade Scanner
 							</Typography>
 							<Typography component="p" variant="h4">
 								{dados['qtd_scanner']}

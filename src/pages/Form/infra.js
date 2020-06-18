@@ -35,12 +35,6 @@ export default function Infra(data) {
         qtd_salas_ass: data['qtd_salas_ass'],
         salas_pericia: data['salas_pericia'],
         qtd_scanner: data['qtd_scanner'],
-        epis_mascara: data['epis_mascara'],
-        epis_luvas: data['epis_luvas'],
-        epis_alcool: data['epis_alcool'],
-        epis_barreira_de_protecao: data['epis_barreira_de_protecao'],
-        epis_capote: data['epis_capote'],
-        epis_protetor_facial: data['epis_protetor_facial'],
     }
 	const [form, setForm] = useState(formData);
     const [value, setValue] = useState();
@@ -109,7 +103,7 @@ export default function Infra(data) {
                     <Grid item xs={12} sm={4}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-								Metragem área de espera do Administrativo
+								Metragem da sala de espera do Administrativo
                             </Typography>
                             <TextField id="metragem_administrativo" 
                                 value={form.metragem_administrativo}
@@ -121,7 +115,7 @@ export default function Infra(data) {
                     <Grid item xs={12} sm={4}>
                         <FormControl>
                             <Typography variant="subtitle2" gutterBottom>
-                                Metragem área de espera da Perícia Médica
+                                Metragem da sala de espera da Perícia Médica
                             </Typography>
                             <TextField id="metragem_pericia_medica" 
                                 value={form.metragem_pericia_medica} 
@@ -166,55 +160,7 @@ export default function Infra(data) {
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={12} style={{marginTop: 30}}>
-                        <Switch
-                            checked={form.epis_mascara}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_mascara"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Máscara
-                        <br />
-                        <Switch
-                            checked={form.epis_luvas}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_luvas"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Luvas
-                        <br />
-                        <Switch
-                            checked={form.epis_alcool}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_alcool"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Álcool
-                        <br />
-                        <Switch
-                            checked={form.epis_barreira_de_protecao}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_barreira_de_protecao"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Barreira de proteção
-                        <br />
-                        <Switch
-                            checked={form.epis_capote}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_capote"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Capote
-                        <br />
-                        <Switch
-                            checked={form.epis_protetor_facial}
-                            onChange={handleInputChange}
-                            color="primary"
-                            name="epis_protetor_facial"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        /> Epi Protetor Facial
-                    </Grid>
+
                 </Grid>
 				<Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
                     <Grid item xs={12}>
