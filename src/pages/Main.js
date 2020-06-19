@@ -105,6 +105,11 @@ export default function Main() {
         history.push('/');
     }
 
+    const resumo = (event) => {
+        event.preventDefault();
+        history.push('/resumo');
+    }
+
     const drawer = (
         <div>
             <List>
@@ -135,6 +140,16 @@ export default function Main() {
                     <ListItem button key="Home">
                         <ListItemIcon><AssignmentIcon /></ListItemIcon>
                         <ListItemText primary="Validação de Contratos Essenciais" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/"
+                    onClick={resumo}
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+                        <ListItemText primary="Painel Resumo" />
                     </ListItem>
                 </Link>
 
