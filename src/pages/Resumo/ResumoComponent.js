@@ -44,8 +44,6 @@ function ResumoComponent(){
         api.post('relatorio', data, {
             headers: {"Authorization" : "Bearer " + token }
         }).then(response => {
-            
-            const mensagensErro = [];
 
             try{
 
@@ -58,7 +56,7 @@ function ResumoComponent(){
                 const resumo = ResumoFactory.dosDados(response.data.dados);
 
                 if(!resumo.contemAlgo){
-                    const erro = new Error("Nenhum dado retornado da consulta", 'error');
+                    const erro = new Error("Dados da consulta não retornou nenhum valor", 'error');
                     erro.mensagemParaUsuario = true;
                     throw erro;
                 }
@@ -85,7 +83,7 @@ function ResumoComponent(){
             if(e.response && e.response.data && e.response.data.message){
                 mensagem = e.response.data.message;
             }else{
-                mensagem = 'Erro ao retornar os dados!';
+                mensagem = 'Erro na conexão!';
             }
             alerta(mensagem, 'error');
             setErro(mensagem);
