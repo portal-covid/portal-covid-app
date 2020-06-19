@@ -11,6 +11,7 @@ import { useSnackbar } from 'notistack';
 import api from '../../services/api';
 import ImageLogin from '../../assets/portal.png';
 import LogoIMG from '../../assets/logo_INSS.svg';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -48,10 +49,12 @@ export default function Login() {
 	const classes = useStyles();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [loading, setLoading] = useState(false);
 	const history = useHistory();
 
 	async function handleLogin(event) {
 		event.preventDefault();
+		setLoading(true);
 
 		let data = {
 			email: email,
@@ -73,9 +76,11 @@ export default function Login() {
 						horizontal: 'center',
 					  },
 				});
+				setLoading(false);
 				history.push('/');
 			});
 		} catch(error) {
+			setLoading(false);
 			enqueueSnackbar('Email ou senha incorretos!', { 
 				variant: 'error',
 				anchorOrigin: {
@@ -128,11 +133,15 @@ export default function Login() {
 							fullWidth
 							variant="contained"
 							color="primary"
+							disabled={loading}
 							className={classes.submit}
 						>
 							Entrar
 						</Button>
 					</form>
+					{ loading && (
+						<CircularProgress />
+					)}
         		</div>
       		</Grid>
     	</Grid>
