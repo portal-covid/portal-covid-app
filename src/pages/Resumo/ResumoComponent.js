@@ -5,7 +5,7 @@ import api from '../../services/api';
 import { useSnackbar } from 'notistack';
 import Typography from '@material-ui/core/Typography';
 import PainelComponent from './PainelComponent';
-import ResumoFactory from './ResumoFactory';
+import ResumoFactory from './models/ResumoFactory';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
