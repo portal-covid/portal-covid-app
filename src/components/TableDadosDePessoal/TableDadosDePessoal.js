@@ -3,7 +3,6 @@ import MUIDataTable from "mui-datatables";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
 
-
 const columns = ["Categoria", "Total", "Grupo de Risco", "Afastamento Legal","CEAB","Programa de Gestão","Gestores", "Retorno"];
 
 const options = {
@@ -71,11 +70,13 @@ export default function TableDadosDePessoal(props) {
             </Typography>
         </Grid>
 
-        <MUIDataTable
-            title={"Quantitativo de funcionários por categoria"}
-            data={data}
-            columns={columns}
-            options={options}
-        />
+        <Grid item xs={12}>
+            <MUIDataTable
+                title={"Quantitativo de funcionários por categoria"}
+                data={data}
+                columns={columns}
+                options={options}
+            />
+        </Grid>
     </React.Fragment>
 }

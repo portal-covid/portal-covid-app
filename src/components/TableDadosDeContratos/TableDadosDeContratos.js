@@ -46,11 +46,13 @@ export default function TableDadosDeEPIEPC(props) {
             </Typography>
         </Grid>
 
-        <MUIDataTable
-            title={"Dados de Contratos Essenciais"}
-            data={data}
-            columns={columns}
-            options={options}
-        />
+        <Grid item xs={12}>
+            <MUIDataTable
+                title={"Dados de Contratos Essenciais"}
+                data={data}
+                columns={columns}
+                options={options}
+            />
+        </Grid>
     </React.Fragment>
 }
