@@ -7,7 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import { sizing } from '@material-ui/system';
+import { useState } from 'react';
 
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -40,6 +40,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 import {useSnackbar} from 'notistack';
+
+
+
+import CapacidadeAtendimento from './CapacidadeAtendimento'
+
 
 
 const StyledBreadcrumb = withStyles((theme) => ({
@@ -391,7 +396,7 @@ export default function EnhancedTable() {
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
     const [page] = React.useState(0);
-
+    const [dados, setDados] = useState(location.state.detail);
 
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -436,6 +441,8 @@ export default function EnhancedTable() {
 
     return (
         <React.Fragment>
+
+            <CapacidadeAtendimento classes={classes} dados={dados}></CapacidadeAtendimento>
 
             <Grid container component="main" className={classes.root}>
                 <CssBaseline/>
@@ -555,55 +562,55 @@ export default function EnhancedTable() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={4}>
 
-                                <Card className={classes.root} style={cardStyle}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Administrativo
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
+                                    <Card className={classes.root} style={cardStyle}>
+                                        <CardContent>
+                                            <Typography variant="h6" className={classes.title}>
+                                                Administrativo
+                                            </Typography>
+                                            <div className={classes.demo}>
+                                                <List>
 
 
-                                                <ListItem>
-                                                    <ListItemText primary="Tamanho da sala de espera:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="não"/>
-                                                    </ListItemSecondaryAction>
+                                                    <ListItem>
+                                                        <ListItemText primary="Tamanho da sala de espera:"/>
+                                                        <ListItemSecondaryAction>
+                                                            <ListItemText primary="não"/>
+                                                        </ListItemSecondaryAction>
 
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
+                                                    </ListItem>
+                                                    <ListItem>
+                                                        <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
+                                                        <ListItemSecondaryAction>
+                                                            <ListItemText primary="30"/>
+                                                        </ListItemSecondaryAction>
 
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de pessoal disponível:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
+                                                    </ListItem>
+                                                    <ListItem>
+                                                        <ListItemText primary="Capacidade de pessoal disponível:"/>
+                                                        <ListItemSecondaryAction>
+                                                            <ListItemText primary="20.6"/>
+                                                        </ListItemSecondaryAction>
 
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
+                                                    </ListItem>
+                                                    <ListItem>
+                                                        <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
+                                                        <ListItemSecondaryAction>
+                                                            <ListItemText primary="20.6"/>
+                                                        </ListItemSecondaryAction>
 
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento diário:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
+                                                    </ListItem>
+                                                    <ListItem>
+                                                        <ListItemText primary="Oferta de atendimento diário:"/>
+                                                        <ListItemSecondaryAction>
+                                                            <ListItemText primary="20.6"/>
+                                                        </ListItemSecondaryAction>
 
-                                                </ListItem>
+                                                    </ListItem>
 
-                                            </List>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                                </List>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
 
                             </Grid>
 

@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		height: '100vh',
+        flexGrow: 1,
 	},
 	image: {
 		backgroundImage: `url(${ImageLogin})`,
@@ -26,10 +26,9 @@ const useStyles = makeStyles((theme) => ({
 		backgroundPosition: 'center',
 	},
 	paper: {
-		margin: theme.spacing(8, 4),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
 	},
 	avatar: {
 		margin: theme.spacing(1),

@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Pessoal from './pessoal';
+//import Pessoal from './pessoal';
 import Infra from './infra';
 import Equipamentos from './equipamentos';
 
@@ -79,7 +79,7 @@ export default function Home() {
 				</Tabs>
 			</AppBar>
 			<TabPanel value={value} index={0}>
-				<Pessoal {...props} />
+				{/*<Pessoal {...props} />*/}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Infra {...props} />
