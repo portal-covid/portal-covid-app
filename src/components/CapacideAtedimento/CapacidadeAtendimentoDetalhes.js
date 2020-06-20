@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from "@material-ui/core/Card/Card";
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Typography from "@material-ui/core/Typography/Typography";
@@ -6,30 +6,20 @@ import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/ListItemSecondaryAction";
-import { makeStyles } from '@material-ui/core/styles';
 import { Divider } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(1),
-    },
-}));
 
-const cardStyle ={
-        minWidth: 275,
-        minHeight: '20vw'
-    };
+
 
 
 export default function CapacidadeAtendimentoDetalhes(props){
-    const classes = useStyles();
-    console.log(props)
+
+
         return <React.Fragment>
 
-            <Card className={cardStyle} >
+            <Card className={props.classes.cardStyleCapacidade} >
                 <CardContent>
-                    <Typography variant="h5" color="primary" className={classes.title} >
+                    <Typography variant="h5" color="primary" className={props.classes.title} >
                         {props.categoria}
                     </Typography>
                     <Divider />

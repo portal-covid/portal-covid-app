@@ -17,34 +17,20 @@ import Paper from '@material-ui/core/Paper';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
-
 import {emphasize, withStyles} from '@material-ui/core/styles';
-
-
-import {Link, useHistory} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import HomeIcon from '@material-ui/icons/Home';
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-
-
-import {useSnackbar} from 'notistack';
 import {  useLocation } from 'react-router-dom';
-
-import CapacidadeAtendimento from './CapacidadeAtendimento'
-
-
+import CapacidadeAtendimento from '../../components/CapacideAtedimento/CapacidadeAtendimento'
+import Infraestrutura from '../../components/Infraestrutura/Infraestrutura'
 
 
 const StyledBreadcrumb = withStyles((theme) => ({
@@ -67,10 +53,6 @@ function createData(name, calories, fat, carbs, protein) {
     return {name, calories, fat, carbs, protein};
 }
 
-
-var cardStyle = {
-    minHeight: '13vw'
-}
 
 
 const rows = [
@@ -272,6 +254,7 @@ const useToolbarStyles = makeStyles((theme) => ({
     title: {
         flex: '1 1 100%',
     },
+
 }));
 
 
@@ -363,7 +346,15 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(2),
         },
     },
-    listBg: {},
+    cardStyleInfra : {
+        minWidth: 275,
+        minHeight: '13vw'
+    },
+    cardStyleCapacidade:{
+        minWidth: 275,
+        minHeight: '14vw'
+
+    },
     paper: {
         width: '100%',
         marginBottom: theme.spacing(2),
@@ -459,14 +450,8 @@ export default function EnhancedTable() {
                     </Breadcrumbs>
                 </Grid>
 
-                <CapacidadeAtendimento classes={classes} {...dados}></CapacidadeAtendimento>
-
-
-
-
-
-
-
+                <CapacidadeAtendimento classes={classes} {...dados}/>
+                <Infraestrutura classes={classes} {...dados}/>
 
                 <Grid item xs={12}>
                     <div className={classes.root}>
@@ -527,119 +512,6 @@ export default function EnhancedTable() {
                             </TableContainer>
 
                         </Paper>
-
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography variant="subtitle1" gutterBottom>
-                        <h2>Infraestrutura</h2>
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={12} className={classes.listBg}>
-                    <div className={classes.root}>
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={4}>
-
-                                <Card className={classes.root}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Áreas de Espera
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-
-
-                                                <ListItem>
-                                                    <ListItemText primary="Área de espera compartilhada:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="não"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Metragem Perícia Médica:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Metragem Administrativo:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <Card className={classes.root}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Salas e Guichês
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-
-
-                                                <ListItem>
-                                                    <ListItemText primary="Consultórios:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="1"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Salas assistente social:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Guichês  administrativo:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent></Card>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <Card className={classes.root}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Equipamentos
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-                                                <ListItem>
-                                                    <ListItemText primary="Scanners INSS Digital:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="0"/>
-                                                    </ListItemSecondaryAction>
-                                                </ListItem>
-
-
-                                            </List>
-
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-
-
-                        </Grid>
 
                     </div>
                 </Grid>

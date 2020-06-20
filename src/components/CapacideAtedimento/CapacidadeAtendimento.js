@@ -1,17 +1,14 @@
-import React, {Component, useState} from 'react';
+import React from 'react';
 
 import CapacidadeAtendimentoDetalhes from './CapacidadeAtendimentoDetalhes'
 import FaixaDeAgendamentos from './FaixaDeAgendamentos'
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
-import Card from "@material-ui/core/Card/Card";
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import List from "@material-ui/core/List/List";
-import ListItem from "@material-ui/core/ListItem/ListItem";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/ListItemSecondaryAction";
+
 
 export default function CapacidadeAtendimento(props){
+
+
 
     const administrativo  = {
         categoria: 'Administrativo',
@@ -54,10 +51,10 @@ export default function CapacidadeAtendimento(props){
                    </Typography>
                </Grid>
 
-               <Grid item xs={12} className={props.classes.listBg}>
+               <Grid item xs={12}>
                    <div className={props.classes.root}>
 
-                    <FaixaDeAgendamentos  {...props}/>
+                    <FaixaDeAgendamentos classes={props.classes} {...props}/>
 
                    </div>
                </Grid>
@@ -68,18 +65,18 @@ export default function CapacidadeAtendimento(props){
                    </Typography>
                </Grid>
 
-               <Grid item xs={12} className={props.classes.listBg}>
+               <Grid item xs={12}>
                    <div className={props.classes.root}>
 
                        <Grid container spacing={1}>
                            <Grid item xs={12} md={4}>
-                             <CapacidadeAtendimentoDetalhes  {...administrativo}/>
+                             <CapacidadeAtendimentoDetalhes classes={props.classes} {...administrativo}/>
                            </Grid>
                            <Grid item xs={12} md={4}>
-                             <CapacidadeAtendimentoDetalhes {...assistente}/>
+                             <CapacidadeAtendimentoDetalhes classes={props.classes} {...assistente}/>
                            </Grid>
                            <Grid item xs={12} md={4}>
-                             <CapacidadeAtendimentoDetalhes {...pericia}/>
+                             <CapacidadeAtendimentoDetalhes classes={props.classes} {...pericia}/>
                            </Grid>
                        </Grid>
                    </div>
