@@ -24,7 +24,7 @@ const cardStyle ={
 
 export default function CapacidadeAtendimentoDetalhes(props){
     const classes = useStyles();
-
+    console.log(props)
         return <React.Fragment>
 
             <Card className={cardStyle} >
@@ -40,14 +40,14 @@ export default function CapacidadeAtendimentoDetalhes(props){
                             <ListItem>
                                 <ListItemText primary="Tamanho da sala de espera:"/>
                                 <ListItemSecondaryAction>
-                                    <ListItemText primary={props.salaEpera}/>
+                                    <ListItemText primary={props.areaEspera}/>
                                 </ListItemSecondaryAction>
 
                             </ListItem>
                             <ListItem>
                                 <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
                                 <ListItemSecondaryAction>
-                                    <ListItemText primary={props.capacidadeFaixaHorario}/>
+                                    <ListItemText primary={props.capAtendFaixaHAgendado}/>
                                 </ListItemSecondaryAction>
 
                             </ListItem>

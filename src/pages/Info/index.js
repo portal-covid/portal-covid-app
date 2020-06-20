@@ -40,10 +40,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 import {useSnackbar} from 'notistack';
-
-
+import {  useLocation } from 'react-router-dom';
 
 import CapacidadeAtendimento from './CapacidadeAtendimento'
+
 
 
 
@@ -396,6 +396,7 @@ export default function EnhancedTable() {
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
     const [page] = React.useState(0);
+    const location = useLocation();
     const [dados, setDados] = useState(location.state.detail);
 
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -439,16 +440,14 @@ export default function EnhancedTable() {
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
 
+
     return (
         <React.Fragment>
 
-            <CapacidadeAtendimento classes={classes} dados={dados}></CapacidadeAtendimento>
 
             <Grid container component="main" className={classes.root}>
                 <CssBaseline/>
                 <Grid item xs={12}>
-
-
                     <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
                         <StyledBreadcrumb
                             component="a"
@@ -457,276 +456,15 @@ export default function EnhancedTable() {
                             icon={<HomeIcon fontSize="small"/>}
                             onClick={handleClick}
                         />
-
                     </Breadcrumbs>
-
                 </Grid>
 
+                <CapacidadeAtendimento classes={classes} {...dados}></CapacidadeAtendimento>
 
 
-                <Grid item xs={12}>
-                    <Typography variant="subtitle1" gutterBottom>
-                        <h2>Capacidade de Atendimento  - Faixa de agendamentos</h2>
-                    </Typography>
-                </Grid>
-
-                <Grid item xs={12} className={classes.listBg}>
-                    <div className={classes.root}>
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={4}>
-
-                                <Card className={classes.root} style={cardStyle}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Pessoal
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
 
 
-                                                <ListItem>
-                                                    <ListItemText primary="Administrativo:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="não"/>
-                                                    </ListItemSecondaryAction>
 
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Assistente Social:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Perícia Médica:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                            </Grid>
-                            <Grid item xs={12} md={8}>
-                                <Card className={classes.root} style={cardStyle}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Atendimentos
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-
-
-                                                <ListItem>
-                                                    <ListItemText primary="Total de atendimentos da aps:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="1"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Total de segurados na aps por faixa de horário:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent></Card>
-                            </Grid>
-
-                        </Grid>
-
-                    </div>
-                </Grid>
-
-
-                <Grid item xs={12}>
-                    <Typography variant="subtitle1" gutterBottom>
-                        <h2>Capacidade de Atendimento  - Detalhes</h2>
-                    </Typography>
-                </Grid>
-
-
-                <Grid item xs={12} className={classes.listBg}>
-                    <div className={classes.root}>
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={4}>
-
-                                    <Card className={classes.root} style={cardStyle}>
-                                        <CardContent>
-                                            <Typography variant="h6" className={classes.title}>
-                                                Administrativo
-                                            </Typography>
-                                            <div className={classes.demo}>
-                                                <List>
-
-
-                                                    <ListItem>
-                                                        <ListItemText primary="Tamanho da sala de espera:"/>
-                                                        <ListItemSecondaryAction>
-                                                            <ListItemText primary="não"/>
-                                                        </ListItemSecondaryAction>
-
-                                                    </ListItem>
-                                                    <ListItem>
-                                                        <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
-                                                        <ListItemSecondaryAction>
-                                                            <ListItemText primary="30"/>
-                                                        </ListItemSecondaryAction>
-
-                                                    </ListItem>
-                                                    <ListItem>
-                                                        <ListItemText primary="Capacidade de pessoal disponível:"/>
-                                                        <ListItemSecondaryAction>
-                                                            <ListItemText primary="20.6"/>
-                                                        </ListItemSecondaryAction>
-
-                                                    </ListItem>
-                                                    <ListItem>
-                                                        <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
-                                                        <ListItemSecondaryAction>
-                                                            <ListItemText primary="20.6"/>
-                                                        </ListItemSecondaryAction>
-
-                                                    </ListItem>
-                                                    <ListItem>
-                                                        <ListItemText primary="Oferta de atendimento diário:"/>
-                                                        <ListItemSecondaryAction>
-                                                            <ListItemText primary="20.6"/>
-                                                        </ListItemSecondaryAction>
-
-                                                    </ListItem>
-
-                                                </List>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-
-                            </Grid>
-
-                            <Grid item xs={12} md={4}>
-
-                                <Card className={classes.root} style={cardStyle}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Assistente Social
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-
-
-                                                <ListItem>
-                                                    <ListItemText primary="Tamanho da sala de espera:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="não"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de pessoal disponível:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento diário:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                            </Grid>
-
-                            <Grid item xs={12} md={4}>
-
-                                <Card className={classes.root} style={cardStyle}>
-                                    <CardContent>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Perícia médica
-                                        </Typography>
-                                        <div className={classes.demo}>
-                                            <List>
-
-
-                                                <ListItem>
-                                                    <ListItemText primary="Tamanho da sala de espera:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="não"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="30"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Capacidade de pessoal disponível:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-                                                <ListItem>
-                                                    <ListItemText primary="Oferta de atendimento diário:"/>
-                                                    <ListItemSecondaryAction>
-                                                        <ListItemText primary="20.6"/>
-                                                    </ListItemSecondaryAction>
-
-                                                </ListItem>
-
-                                            </List>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                            </Grid>
-
-
-                        </Grid>
-
-                    </div>
-                </Grid>
 
 
 
