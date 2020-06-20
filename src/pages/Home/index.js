@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	button: {
 		marginTop: 10,
-	}
+	},
 }));
 
 export default function Home() {
@@ -46,33 +46,14 @@ export default function Home() {
 	const [unidade, setUnidade] = useState('');
 	const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
 	const token = Auth.getToken();
+	const [open, setOpen] = useState(true);
 
+	const handleClose = () => {
+		setOpen(false);
+	};
 	
 	useEffect(() => {
-		/*
-		setUnidades([
-			{
-				ol: "21004090",
-				nome: 'Agência da Previdência Social Pinheiros'
-			},
-			{
-				ol: "11022030",
-				nome: 'Agência da Previdência Social Ibirité'
-			},
-			{
-				ol: "11022040",
-				nome: 'Agência da Previdência Social Pedro Leopoldo'
-			},
-			{
-				ol: "11022050",
-				nome: 'Agência da Previdência Social Betim'
-			},
-			{
-				ol: "11022060",
-				nome: 'Agência da Previdência Social Vespasiano'
-			}
-		]);
-		*/
+		
 	}, [setUnidades]);
 	
 	const handleChange = (event) => {
@@ -92,6 +73,8 @@ export default function Home() {
 				headers: {"Authorization" : "Bearer " + token }
 			}).then(response => {
                 if(response.data.dados.length) {
+					localStorage.setItem('olAtual', unidade);
+                    localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
                     history.push('/info', { detail: response.data.dados[0]});
                 } else {
                     enqueueSnackbar('Não foi encontrado dados para esta unidade!', { 

@@ -66,6 +66,7 @@ export default function Login() {
 				localStorage.setItem('email', response.data.dados.mail);
 				localStorage.setItem('nome', response.data.dados.nome);
 				localStorage.setItem('cpf', response.data.dados.cpf);
+				localStorage.setItem('isChefia', response.data.dados.isChefia);
 				localStorage.setItem('ols', JSON.stringify(response.data.dados.decendentes));
 
 				enqueueSnackbar('Bem-vindo ao Portal de COVID-19!', {
@@ -76,7 +77,7 @@ export default function Login() {
 					  },
 				});
 				setLoading(false);
-				history.push('/');
+				history.push('/unidade');
 			});
 		} catch(error) {
 			setLoading(false);
