@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,8 +16,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom';
 import MainRoutes from './MainRoutes';
@@ -26,6 +27,15 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import CloseIcon from '@material-ui/icons/Close';
 import Auth from '../shared/auth';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import api from '../services/api';
+import { useSnackbar } from 'notistack';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import HomeIcon from '@material-ui/icons/Home';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 const drawerWidth = 240;
 
@@ -64,22 +74,63 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         marginLeft: 10,
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block'
+        },
     },
     link: {
         color: '#fff',
-        textDecoration: 'none'
+        textDecoration: 'none',
     },
-    iconButton: {
+    formControl: {
         marginLeft: 'auto',
+        minWidth: 120,
+        width: 150,
+        [theme.breakpoints.up('sm')]: {
+            width: 300,
+        },
+        [theme.breakpoints.up('md')]: {
+            width: 500,
+        },
+    },
+    select: {
+        color: '#fff',
+        '&:before': {
+            borderColor: '#fff',
+        },
+        '&:after': {
+            borderColor: '#fff',
+        }
+    },
+    icon: {
+        fill: '#fff',
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
+    itemMenu: {
+        color: '#0d5fb6',
+        marginLeft: 10,
     }
   }));
 
 export default function Main() {
+    const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
     const theme = useTheme();
     const history = useHistory();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [unidade, setUnidade] = useState('');
+    const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
+    const token = Auth.getToken();
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setUnidade(Auth.getOlAtual());
+	}, [setUnidades]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -93,6 +144,47 @@ export default function Main() {
         setMobileOpen(!mobileOpen)
     }
 
+    async function handleChange(event) {
+        setUnidade(event.target.value);
+        setLoading(true);
+        
+        let data = {
+			"unidades" : [event.target.value],
+			"tipoRelatorio": "RecursosUnidades"
+		};
+
+		try {
+            await api.post('relatorio', data, { 
+				headers: {"Authorization" : "Bearer " + token }
+			}).then(response => {
+                if(response.data.dados.length) {
+                    localStorage.setItem('olAtual', event.target.value);
+                    localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
+                    history.push('/info', { detail: response.data.dados[0]});
+                    window.location.reload(false);
+                } else {
+                    setLoading(false);
+                    enqueueSnackbar('Não foi encontrado dados para esta unidade!', { 
+                        variant: 'info',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }
+                    });
+                }
+            });
+        } catch(error) {
+            setLoading(false);
+            enqueueSnackbar('Erro ao retornar os dados!', { 
+                variant: 'error',
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                }
+            });
+        }
+	};
+
     const logout = (event) => {
         event.preventDefault();
         handleClose();
@@ -100,56 +192,85 @@ export default function Main() {
         history.push('/');
     }
 
-    const home = (event) => {
-        event.preventDefault();
-        history.push('/');
-    }
-
-    const resumo = (event) => {
-        event.preventDefault();
-        history.push('/resumo');
-    }
-
     const drawer = (
         <div>
             <List>
+                <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
+                    Menu
+                </Typography>
                 <Link
-                    to="/"
-                    onClick={home}
+                    to="/info"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                        <ListItemText primary="Principal" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/resumo"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><AssessmentIcon /></ListItemIcon>
+                        <ListItemText primary="Painel Resumo" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/simulador"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><FindInPageIcon /></ListItemIcon>
+                        <ListItemText primary="Simulador" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/capacidade"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><LibraryAddCheckIcon /></ListItemIcon>
+                        <ListItemText primary="Capacidade Operacional" />
+                    </ListItem>
+                </Link>
+
+
+                <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
+                    Validação
+                </Typography>
+                <Link
+                    to="/pessoal"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><PeopleAltIcon /></ListItemIcon>
-                        <ListItemText primary="Validação de dados de Pessoal e Infraestrutura" />
+                        <ListItemText primary="Pessoal" />
                     </ListItem>
                 </Link>
 
                 <Link
-                    to="/"
-                    onClick={home}
+                    to="/infra"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="Home">
+                        <ListItemIcon><AccountBalanceIcon /></ListItemIcon>
+                        <ListItemText primary="Infraestrutura" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/epi"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><LibraryAddIcon /></ListItemIcon>
-                        <ListItemText primary="Validação de EPI/EPC" />
+                        <ListItemText primary="EPI/EPC" />
                     </ListItem>
                 </Link>
 
                 <Link
-                    to="/"
-                    onClick={home}
+                    to="/contratos"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><AssignmentIcon /></ListItemIcon>
-                        <ListItemText primary="Validação de Contratos Essenciais" />
-                    </ListItem>
-                </Link>
-
-                <Link
-                    to="/"
-                    onClick={resumo}
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
-                        <ListItemIcon><AssignmentIcon /></ListItemIcon>
-                        <ListItemText primary="Painel Resumo" />
+                        <ListItemText primary="Contratos Essenciais" />
                     </ListItem>
                 </Link>
 
@@ -189,6 +310,27 @@ export default function Main() {
                             Portal COVID-19
                         </Link>
                     </Typography>
+
+                    <FormControl className={classes.formControl}>
+                        <Select
+                            className={classes.select}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={unidade}
+                            onChange={handleChange}
+                            inputProps={{
+                                classes: {
+                                    icon: classes.icon,
+                                },
+                            }}
+                        >
+                            {unidades.map((unidade) => (
+                                <MenuItem key={unidade.ol} value={unidade.ol}>
+                                {unidade.ol} - {unidade.nome}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
 
                     <IconButton
                         aria-controls="simple-menu"
@@ -253,8 +395,10 @@ export default function Main() {
                 <main>
                     <MainRoutes />
                 </main>
-
             </div>
+            <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     );
 }
