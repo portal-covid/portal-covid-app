@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-        flexGrow: 1,
+        height: '100vh',
 	},
 	image: {
 		backgroundImage: `url(${ImageLogin})`,
