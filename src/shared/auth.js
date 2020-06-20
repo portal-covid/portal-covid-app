@@ -10,6 +10,9 @@ class Auth {
         localStorage.removeItem('nome');
         localStorage.removeItem('cpf');
         localStorage.removeItem('ols');
+        localStorage.removeItem('isChefia');
+        localStorage.removeItem('olAtual');
+        localStorage.removeItem('detalhes');
     }
 
     getToken = () => {
@@ -31,6 +34,18 @@ class Auth {
 
     getOls = () => {
         return localStorage.getItem('ols');
+    }
+
+    getIsChefia = () => {
+        return localStorage.getItem('isChefia');
+    }
+
+    getOlAtual = () => {
+        return localStorage.getItem('olAtual');
+    }
+
+    getDetalhes = () => {
+        return localStorage.getItem('detalhes');
     }
 }
 
