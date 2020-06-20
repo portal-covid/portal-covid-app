@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import { useState } from 'react';
 import {emphasize, withStyles} from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import {  useLocation } from 'react-router-dom';
-
+import Auth from '../../shared/auth';
 import CapacidadeAtendimento from '../../components/CapacideAtedimento/CapacidadeAtendimento'
 import Infraestrutura from '../../components/Infraestrutura/Infraestrutura'
 import TableDadosDePessoal from '../../components/TableDadosDePessoal/TableDadosDePessoal'
@@ -32,6 +32,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
             boxShadow: theme.shadows[1],
             backgroundColor: emphasize(theme.palette.grey[300], 0.12),
         },
+        width: '100%'
     },
 }))(Chip);
 
@@ -85,12 +86,20 @@ function handleClick(event) {
 
 }
 
-
-
 export default function EnhancedTable() {
     const classes = useStyles();
     const location = useLocation();
-    const [dados, setDados] = useState(location.state.detail);
+    let data = {};
+    if (JSON.parse(Auth.getDetalhes())) {
+        data = JSON.parse(Auth.getDetalhes());
+    } else {
+        data = location.state.detail;
+    }
+    const [dados, setDados] = useState(data);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <React.Fragment>
