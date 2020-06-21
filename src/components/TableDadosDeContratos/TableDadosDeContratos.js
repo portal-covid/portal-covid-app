@@ -2,16 +2,19 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
+import TextLabels from '../../theme/textLabels';
 
 
 const columns = ["Categoria", "SIM", "NÃO","NÃO SE APLICA"];
 
 const options = {
     filterType: 'checkbox',
+    textLabels : TextLabels
+
 };
 
 const montaResposta = function (item) {
-console.log(item)
+
     if(item.toLowerCase() === 'sim'){
 
         return ['X','','']
@@ -41,8 +44,8 @@ export default function TableDadosDeEPIEPC(props) {
     return  <React.Fragment>
 
         <Grid item xs={12}>
-            <Typography variant="subtitle1" gutterBottom>
-                <h2>Contratos Essenciais</h2>
+            <Typography  variant="h5" color="primary">
+                Contratos Essenciais
             </Typography>
         </Grid>
 

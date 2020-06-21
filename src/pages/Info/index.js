@@ -18,6 +18,7 @@ import TableDadosDeContratos from '../../components/TableDadosDeContratos/TableD
 import Divider from '@material-ui/core/Divider';
 import Typography from "@material-ui/core/Typography/Typography";
 import Paper from '@material-ui/core/Paper';
+import {FontStyle as fontWeightBold} from "@material-ui/core/styles/createTypography";
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -45,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     },
     cardStyleInfra : {
         minWidth: 275,
-        minHeight: '13vw'
+        minHeight: '16vw'
     },
     cardStyleCapacidade:{
         minWidth: 275,
-        minHeight: '14vw'
+        minHeight: '16vw'
 
     },
     paper: {
@@ -112,8 +113,8 @@ export default function EnhancedTable() {
                         <Grid item xs={12} md={4}>
                             <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
                                 <StyledBreadcrumb
-                                    color="textPrimary"
-                                    aria-current="principal"
+                                    color="primary"
+                                    aria-current="page"
                                     component="a"
                                     href="#"
                                     label="Principal"
@@ -127,15 +128,14 @@ export default function EnhancedTable() {
                  </Grid>
                 <Grid item xs={12}>
 
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3}
+                          alignItems="center"
+                          justify="center">
 
-                        <Grid item xs={12}
-                              alignItems="center"
-                              justify="center"
-                        >
+                        <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                <Typography>
-                                    <h2>{dados.unidade} - {dados.unidade_nome}</h2>
+                                <Typography variant="h5"  color="primary" >
+                                    {dados.unidade} - {dados.unidade_nome}
                                 </Typography>
                             </Paper>
                         </Grid>

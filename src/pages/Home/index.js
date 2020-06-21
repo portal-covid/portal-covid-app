@@ -46,11 +46,11 @@ export default function Home() {
 	const [unidade, setUnidade] = useState('');
 	const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
 	const token = Auth.getToken();
-	const [open, setOpen] = useState(true);
+	//const [open, setOpen] = useState(true);
 
-	const handleClose = () => {
-		setOpen(false);
-	};
+	//const handleClose = () => {
+//		setOpen(false);
+//	};
 	
 	useEffect(() => {
 		

@@ -23,6 +23,15 @@ export default function AreaDeEspera(props){
                     <List>
 
                         <ListItem>
+                            <ListItemText primary="Área compartilhada:"/>
+                            <ListItemSecondaryAction>
+                                <ListItemText primary={props.infraestrutura.area_compartilhada}/>
+                            </ListItemSecondaryAction>
+
+                        </ListItem>
+
+
+                        <ListItem>
                             <ListItemText primary="Metragem Administrativo:"/>
                             <ListItemSecondaryAction>
                                 <ListItemText primary={props.infraestrutura.metragem_administrativo}/>

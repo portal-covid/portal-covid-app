@@ -2,12 +2,16 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
+import TextLabels from '../../theme/textLabels';
+
 
 const columns = ["Categoria", "Total", "Grupo de Risco", "Afastamento Legal","CEAB","Programa de Gestão","Gestores", "Retorno"];
 
 const options = {
     filterType: 'checkbox',
+    textLabels : TextLabels
 };
+
 
 export default function TableDadosDePessoal(props) {
 
@@ -65,8 +69,8 @@ export default function TableDadosDePessoal(props) {
     return  <React.Fragment>
 
         <Grid item xs={12}>
-            <Typography variant="subtitle1" gutterBottom>
-                <h2>Dados de Pessoal</h2>
+            <Typography variant="h5" color="primary">
+                Dados de Pessoal
             </Typography>
         </Grid>
 

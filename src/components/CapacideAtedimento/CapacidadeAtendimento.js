@@ -46,8 +46,8 @@ export default function CapacidadeAtendimento(props){
 
 
                <Grid item xs={12}>
-                   <Typography variant="subtitle1" gutterBottom>
-                       <h2>Capacidade de Atendimento  - Faixa de agendamentos</h2>
+                   <Typography variant="h5" color='primary'>
+                       Capacidade de Atendimento  - Faixa de agendamentos
                    </Typography>
                </Grid>
 
@@ -60,8 +60,8 @@ export default function CapacidadeAtendimento(props){
                </Grid>
 
                <Grid item xs={12}>
-                   <Typography variant="subtitle1" gutterBottom>
-                       <h2>Capacidade de Atendimento  - Detalhes</h2>
+                   <Typography  variant="h5" color='primary'>
+                       Capacidade de Atendimento  - Detalhes
                    </Typography>
                </Grid>
 

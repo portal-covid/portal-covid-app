@@ -2,12 +2,14 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
+import TextLabels from '../../theme/textLabels';
 
 
 const columns = ["Categoria", "TIPO", "SIM", "NÃO","NÃO SE APLICA"];
 
 const options = {
     filterType: 'checkbox',
+    textLabels : TextLabels
 };
 
 const montaResposta = function (item) {
@@ -46,8 +48,8 @@ export default function TableDadosDeEPIEPC(props) {
     return  <React.Fragment>
 
         <Grid item xs={12}>
-            <Typography variant="subtitle1" gutterBottom>
-                <h2>EPI/EPC</h2>
+            <Typography  variant="h5" color="primary">
+                EPI/EPC
             </Typography>
         </Grid>
 

@@ -16,12 +16,26 @@ import Auth from '../../shared/auth';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SaveIcon from '@material-ui/icons/Save';
+import Box from '@material-ui/core/Box';
+import Paper from "@material-ui/core/Paper/Paper";
+
+
+import Divider from '@material-ui/core/Divider';
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Input from "@material-ui/core/Input/Input";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    width: '100%',
-    marginTop: 30
+      display: 'flex',
+      flexWrap: 'wrap',
+      '& > *': {
+          margin: theme.spacing(1),
+      },
+      margin: {
+          margin: theme.spacing(1),
+      },
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -123,107 +137,180 @@ export default function Infra() {
 
     return (
         <React.Fragment>
+
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
-                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade. É possível clicar em alterar dados, para validarmos a situação real das unidades de atendimento.</p>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade. Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
-                <Grid container className={classes.root} spacing={1}>
+
+
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Infraestrutura
-                        </Typography>
+                        <Paper elevation={3} >
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Infraestrutura
+                                    </Typography>
+                                    <Divider />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
+                                        <RadioGroup  row aria-label="gender"
+                                                    name="area_compartilhada"
+                                                    value={form.area_compartilhada}
+                                                    onChange={handleInputChange}>
+                                            <FormControlLabel value="1" control={<Radio />} label="Sim" />
+                                            <FormControlLabel value="0" control={<Radio />} label="Não" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Grid>
+
+
+                            </Grid>
+                        </Paper>
                     </Grid>
-                    <Grid item xs={12} style={{marginBottom: 30}}>
-						<FormControl component="fieldset">
-							<FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
-                            <RadioGroup aria-label="gender" 
-                                name="area_compartilhada" 
-                                value={form.area_compartilhada} 
-                                onChange={handleInputChange}>
-								<FormControlLabel value="1" control={<Radio />} label="Sim" />
-								<FormControlLabel value="0" control={<Radio />} label="Não" />
-							</RadioGroup>
-						</FormControl>
+
+                    <Grid item xs={12} spacing={2}>
+                        <Paper elevation={3} >
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6" color="primary" >
+                                        Metragens em (M<sup>2</sup>)
+                                        <Box display="flex" justifyContent="center">
+                                            <Alert severity="info">Para os casos de area compartilhada, basta informar a área administrativa!</Alert>
+
+                                        </Box>
+                                        <Divider />
+
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="metragem_administrativo"> Sala de espera do Administrativo</InputLabel>
+
+                                        <Input id="metragem_administrativo"
+                                               value={form.metragem_administrativo}
+                                               name="metragem_administrativo"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a metragem da sala de espera da área administrativa"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={5}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="metragem_administrativo"> Sala de espera da Perícia Médica</InputLabel>
+                                        <Input id="metragem_pericia_medica"
+                                               value={form.metragem_pericia_medica}
+                                               name="metragem_pericia_medica"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a metragem da sala de espera da área de perícia médica"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                            </Grid>
+                        </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-								Metragem da sala de espera do Administrativo
-                            </Typography>
-                            <TextField id="metragem_administrativo" 
-                                value={form.metragem_administrativo}
-                                name="metragem_administrativo"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
+
+                    <Grid item xs={12} spacing={2}>
+                        <Paper elevation={3} >
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6" color="primary" >
+                                        Salas, consultórios e guichês
+                                        <Divider />
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="qtd_salas_ass"> Quantidade de salas de assistente social</InputLabel>
+                                        <Input id="qtd_salas_ass"
+                                               value={form.qtd_salas_ass}
+                                               name="qtd_salas_ass"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a quantidade de salas de atendimento para assistente social"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} md={3}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="salas_pericia">Quantidade de consultórios</InputLabel>
+                                        <Input id="salas_pericia"
+                                               value={form.salas_pericia}
+                                               name="salas_pericia"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a quantidade de consultórios médicos"
+                                        />
+                                    </FormControl>
+
+                                </Grid>
+                                <Grid item xs={12} md={3}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="salas_pericia">Quantidade de guichês</InputLabel>
+                                        <Input id="qtd_guiches"
+                                               value={form.qtd_guiches}
+                                               name="qtd_guiches"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a quantidade de guichês para atendimento"
+                                        />
+                                    </FormControl>
+
+                                </Grid>
+
+
+                            </Grid>
+                        </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Metragem da sala de espera da Perícia Médica
-                            </Typography>
-                            <TextField id="metragem_pericia_medica" 
-                                value={form.metragem_pericia_medica} 
-                                name="metragem_pericia_medica"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
+
+                    <Grid item xs={12} spacing={2}>
+                        <Paper elevation={3} >
+                            <Grid container className={classes.root}>
+
+                            <Grid item xs={12}>
+                                <Typography variant="h6" color="primary" >
+                                    Equipamentos
+                                    <Divider />
+                                </Typography>
+                            </Grid>
+
+                            <Grid item xs={12} md={12}>
+                                <FormControl>
+                                    <InputLabel htmlFor="salas_pericia"> Quantidade de scanners</InputLabel>
+                                    <Input id="qtd_scanner"
+                                           value={form.qtd_scanner}
+                                           name="qtd_scanner"
+                                           onChange={handleInputChange}
+                                           aria-describedby="Informe a quantidade de scanners para INSS Digital em funcionamento na APS"
+                                    />
+                                </FormControl>
+
+                            </Grid>
+                            </Grid>
+                        </Paper>
                     </Grid>
-					<Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-								Quantidade de salas de assistente social
-                            </Typography>
-                            <TextField id="qtd_salas_ass" 
-                                value={form.qtd_salas_ass}
-                                name="qtd_salas_ass"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Quantidade de consultórios
-                            </Typography>
-                            <TextField id="salas_pericia" 
-                                value={form.salas_pericia}
-                                name="salas_pericia"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-					<Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-								Quantidade de guichês
-                            </Typography>
-                            <TextField id="qtd_guiches" 
-                                value={form.qtd_guiches}
-                                name="qtd_guiches"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-								Quantidade de scanners
-                            </Typography>
-                            <TextField id="qtd_scanner" 
-                                value={form.qtd_scanner}
-                                name="qtd_scanner"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
+
                 </Grid>
-				<Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
+
+                <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
                     <Grid item xs={12}>
-                        <Button type="submit" size="large" variant="contained" color="primary">
-                            Salvar
-                        </Button>
+
+                        <Box display="flex" justifyContent="flex-end">
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                className={classes.button}
+                                startIcon={<SaveIcon />}
+                            >
+                                salvar
+                            </Button>
+                        </Box>
+
+
                     </Grid>
                 </Grid>
                 <Backdrop className={classes.backdrop} open={loading}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -304,7 +304,7 @@ export default function Main() {
                         <MenuIcon />
                     </IconButton>
                     
-                    <img src={LogoIMG} width="50px"/>
+                    <img aria-hidden="true" alt="Logotipo do INSS" src={LogoIMG} width="50px"/>
                     <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                         <Link to="/" className={classes.link}>
                             Portal COVID-19

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
@@ -12,18 +11,34 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import SaveIcon from '@material-ui/icons/Save';
+import Box from '@material-ui/core/Box';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        width: '100%',
-        marginTop: 30
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+        margin: {
+            margin: theme.spacing(1),
+        },
+
     },
+
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
 }));
+
 
 export default function Pessoal() {
     const classes = useStyles();
@@ -56,7 +71,7 @@ export default function Pessoal() {
         temporarios_total: data['pessoal']['temporarios']['total'],
         temporarios_afastado_motivo_legal: data['pessoal']['temporarios']['afastado_motivo_legal'],
         temporarios_grupo_de_risco: data['pessoal']['temporarios']['grupo_de_risco'],
-    }
+    };
     const [form, setForm] = useState(formData);
     const token = Auth.getToken();
 
@@ -130,270 +145,325 @@ export default function Pessoal() {
 
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
-                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de pessoal da sua unidade. É possível clicar em alterar dados, para validarmos a situação real das unidades de atendimento.</p>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de pessoal da sua unidade.
+                    Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
             </Alert>
-
+            <br/>
             <form onSubmit={handleSubmit} className={classes.root}>
-                <Grid container className={classes.root} spacing={1}>
+
+
+                <Grid container >
                     <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Administrativo
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Total de Servidores da unidade
-                            </Typography>
-                            <TextField id="total-adm" 
-                                value={form.servidores_total}
-                                name="servidores_total"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Motivo Legal
-                            </Typography>
-                            <TextField id="motivo-legal-adm" 
-                                value={form.servidores_afastamentos_legais} 
-                                name="servidores_afastamentos_legais"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Grupo de Risco
-                            </Typography>
-                            <TextField id="programa-adm"
-                                value={form.servidores_grupo_de_risco}
-                                name="servidores_grupo_de_risco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                CEAB
-                            </Typography>
-                            <TextField id="ceab-adm"
-                                value={form.servidores_ceab}
-                                name="servidores_ceab"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Programa de Gestão/Teletrabalho
-                            </Typography>
-                            <TextField id="servidores-programa-gestao-adm"
-                                value={form.servidores_programa_gestao}
-                                name="servidores_programa_gestao"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Gestores
-                            </Typography>
-                            <TextField id="servidores-gestores-adm"
-                                value={form.servidores_gestores}
-                                name="servidores_gestores"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
+                        <Paper elevation={3} >
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Administrativo
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Total de Servidores da unidade</InputLabel>
+                                        <Input id="total-adm"
+                                               value={form.servidores_total}
+                                               name="servidores_total"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores da unidade"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
+                                        <Input id="motivo-legal-adm"
+                                               value={form.servidores_afastamentos_legais}
+                                               name="servidores_afastamentos_legais"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores em afastamentos por pertencerem ao grupo de risco do COVID"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
+                                        <Input id="programa-adm"
+                                               value={form.servidores_grupo_de_risco}
+                                               name="servidores_grupo_de_risco"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores em afastamentos por motivo legal (licenças, tratamentos e etc)"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+
+                                <Grid item xs={5}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> CEAB</InputLabel>
+                                        <Input d="ceab-adm"
+                                               value={form.servidores_ceab}
+                                               name="servidores_ceab"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores participantes da CEAB"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Programa de Gestão/Teletrabalho</InputLabel>
+                                        <Input id="servidores-programa-gestao-adm"
+                                               value={form.servidores_programa_gestao}
+                                               name="servidores_programa_gestao"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores participantes do Programa de Gestão/Teletrabalho"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm">Gestores</InputLabel>
+                                        <Input id="servidores-gestores-adm"
+                                               value={form.servidores_gestores}
+                                               name="servidores_gestores"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Total de Servidores gestores da unidade"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                            </Grid>
+                        </Paper>
                     </Grid>
                 </Grid>
-                
-                <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Peritos
-                        </Typography>
+                        <Paper elevation={3}>
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Peritos
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Total de  Médicos Peritos da unidade</InputLabel>
+                                        <Input  id="total-perito"
+                                                value={form.pericia_medica_total}
+                                                name="pericia_medica_total"
+                                                onChange={handleInputChange}
+                                                aria-describedby="Total de Servidores Peritos na unidade"
+                                        />
+                                    </FormControl>
+
+
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
+                                        <Input  id="grupo-risco-perito"
+                                                value={form.pericia_grupo_de_risco}
+                                                name="pericia_grupo_de_risco"
+                                                onChange={handleInputChange}
+                                                aria-describedby="Total de Servidores Peritos em afastamentos por pertencerem ao grupo de risco do COVID"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
+                                        <Input  id="motivo-legal-perito"
+                                                value={form.pericia_medica_afastado_motivo_legal}
+                                                name="pericia_medica_afastado_motivo_legal"
+                                                onChange={handleInputChange}
+                                                aria-describedby="Total de Servidores Peritos em afastamentos por motivo legal (licenças, tratamentos e etc)"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                            </Grid>
+                        </Paper>
+
+                    </Grid></Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Paper elevation={3}>
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Assistentes Sociais
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Total de Assistentes Sociais da unidade</InputLabel>
+                                        <Input  id="total-social"
+                                                value={form.assistentes_total}
+                                                name="assistentes_total"
+                                                onChange={handleInputChange}
+                                                aria-describedby="Total de Servidores Assistentes Sociais na unidade"
+                                        />
+                                    </FormControl>
+
+
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
+                                        <Input   id="grupo-risco-social"
+                                                 value={form.assistentes_grupo_de_risco}
+                                                 name="assistentes_grupo_de_risco"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de assistentes sociais em afastamentos por pertencerem ao grupo de risco do COVID"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
+                                        <Input   id="motivo-legal-social"
+                                                 value={form.assistentes_afastado_motivo_legal}
+                                                 name="assistentes_afastado_motivo_legal"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de assistentes sociais em afastamentos por motivo legal (licenças, tratamentos e etc)"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                            </Grid>
+                        </Paper>
+
+                    </Grid></Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Paper elevation={3}>
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Estagiários
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Total de Estagiários na unidade</InputLabel>
+                                        <Input   id="total-estagiario"
+                                                 value={form.estagiarios_total}
+                                                 name="estagiarios_total"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Estagiários na unidade"
+                                        />
+                                    </FormControl>
+
+
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
+                                        <Input   id="grupo-risco-estagiario"
+                                                 value={form.estagiarios_grupo_de_risco}
+                                                 name="estagiarios_grupo_de_risco"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Estagiários em afastamentos por pertencerem ao grupo de risco do COVID"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
+                                        <Input   id="motivo-legal-estagiario"
+                                                 value={form.estagiarios_afastado_motivo_legal}
+                                                 name="estagiarios_afastado_motivo_legal"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Estagiários em afastamentos por motivo legal (licenças, tratamentos e etc)"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                            </Grid>
+                        </Paper>
+
                     </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Total de Servidores da unidade
-                            </Typography>
-                            <TextField id="total-perito" 
-                                value={form.pericia_medica_total}
-                                name="pericia_medica_total"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Motivo Legal
-                            </Typography>
-                            <TextField id="motivo-legal-perito"
-                                value={form.pericia_medica_afastado_motivo_legal}
-                                name="pericia_medica_afastado_motivo_legal"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Grupo de Risco
-                            </Typography>
-                            <TextField id="grupo-risco-perito"
-                                value={form.pericia_grupo_de_risco}
-                                name="pericia_grupo_de_risco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
+                </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Paper elevation={3}>
+                            <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Temporários
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Total de Temporários na unidade</InputLabel>
+                                        <Input   id="total-temporario"
+                                                 value={form.temporarios_total}
+                                                 name="temporarios_total"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Temporários na unidade"
+                                        />
+                                    </FormControl>
+
+
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
+                                        <Input   id="grupo-risco-temporario"
+                                                 value={form.temporarios_grupo_de_risco}
+                                                 name="temporarios_grupo_de_risco"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Temporários em afastamentos por pertencerem ao grupo de risco do COVID"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
+                                        <Input   id="motivo-legal-temporario"
+                                                 value={form.temporarios_afastado_motivo_legal}
+                                                 name="temporarios_afastado_motivo_legal"
+                                                 onChange={handleInputChange}
+                                                aria-describedby="Total de Temporários em afastamentos por motivo legal (licenças, tratamentos e etc)"
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                            </Grid>
+                        </Paper>
+
                     </Grid>
                 </Grid>
 
-                <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
-                    <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Assistente Social
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Total de Servidores da unidade
-                            </Typography>
-                            <TextField id="total-social"
-                                value={form.assistentes_total}
-                                name="assistentes_total"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Motivo Legal
-                            </Typography>
-                            <TextField id="motivo-legal-social"
-                                value={form.assistentes_afastado_motivo_legal}
-                                name="assistentes_afastado_motivo_legal"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Grupo de Risco
-                            </Typography>
-                            <TextField id="grupo-risco-social"
-                                value={form.assistentes_grupo_de_risco}
-                                name="assistentes_grupo_de_risco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                </Grid>
+
 
                 <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
                     <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Estagiários
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Total de estagiários da unidade
-                            </Typography>
-                            <TextField id="total-estagiario"
-                                value={form.estagiarios_total}
-                                name="estagiarios_total"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Motivo Legal
-                            </Typography>
-                            <TextField id="motivo-legal-estagiario"
-                                value={form.estagiarios_afastado_motivo_legal}
-                                name="estagiarios_afastado_motivo_legal"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Grupo de Risco
-                            </Typography>
-                            <TextField id="grupo-risco-estagiario"
-                                value={form.estagiarios_grupo_de_risco}
-                                name="estagiarios_grupo_de_risco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                </Grid>
 
-                <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
-                    <Grid item xs={12}>
-                        <Typography variant="h6">
-                            Temporários
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Total de temporários da unidade
-                            </Typography>
-                            <TextField id="total-temporario"
-                                value={form.temporarios_total}
-                                name="temporarios_total"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Motivo Legal
-                            </Typography>
-                            <TextField id="motivo-legal-temporario"
-                                value={form.temporarios_afastado_motivo_legal}
-                                name="temporarios_afastado_motivo_legal"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <FormControl>
-                            <Typography variant="subtitle2" gutterBottom>
-                                Afastamento Grupo de Risco
-                            </Typography>
-                            <TextField id="grupo-risco-temporario"
-                                value={form.temporarios_grupo_de_risco}
-                                name="temporarios_grupo_de_risco"
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
-                </Grid>
-                <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
-                    <Grid item xs={12}>
-                        <Button type="submit" size="large" variant="contained" color="primary">
-                            Salvar
-                        </Button>
+                        <Box display="flex" justifyContent="flex-end" m={1} p={1}>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                className={classes.button}
+                                startIcon={<SaveIcon />}
+                            >
+                                salvar
+                            </Button>
+                        </Box>
+
+
                     </Grid>
                 </Grid>
                 <Backdrop className={classes.backdrop} open={loading}>
