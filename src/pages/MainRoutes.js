@@ -8,6 +8,7 @@ import Infra from './Infra';
 import Epi from './Epi';
 import Contratos from './Contratos';
 import Resumo from './Resumo';
+import Simulador from './Simulador';
 
 const MainRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
             <PrivateRoute exact path='/epi' component={Epi} />
             <PrivateRoute exact path='/contratos' component={Contratos} />
             <PrivateRoute exact path='/resumo' component={Resumo} />
+            <PrivateRoute exact path='/simulador' component={Simulador} />
             <Redirect from='*' to='/' />
         </Switch>
     );
