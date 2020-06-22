@@ -115,6 +115,7 @@ export default function Simulador() {
 		espacoCompartilhado: dadosUnidade.capacidade_de_atendimento[0].metragem_pericia_medica ? "0" : "1",
 	});
 	const [pergunta, setPergunta] = useState(dados.espacoCompartilhado);
+	const [calculo, setCalculo] = useState(Calculo.calcularCapacidade(data))
 	
 	const handleChange = (event) => {
 		setPergunta(event.target.value);
@@ -128,26 +129,8 @@ export default function Simulador() {
 			...dados,
 			[event.target.name]: event.target.value
 		});
-	}
-
-	const handleSimular = (event) => {
-		event.preventDefault();
-		const retorno = Calculo.calcularCapacidade(dados);
-		setDadosUnidade(prevState => ({
-			capacidade_de_atendimento: {
-				...prevState.capacidade_de_atendimento,
-				administrativo: retorno.administrativo,
-				assistente: retorno.assistente,
-				peritos: retorno.peritos,
-				administrativo_vagas_dia: retorno.administrativo_vagas_dia,
-				assistentes_vagas_dia: retorno.assistentes_vagas_dia,
-				pericia_vagas_dia: retorno.pericia_vagas_dia,
-				pericia_vagas_hora_maximo: retorno.pericia_vagas_hora_maximo,
-				assistentes_vagas_hora: retorno.assistentes_vagas_hora,
-				administrativo_vagas_hora: retorno.administrativo_vagas_hora,
-			}
-			})
-		);
+		const calculo = Calculo.calcularCapacidade(dados);
+		setCalculo(calculo);
 	}
 
 	return (
@@ -155,7 +138,7 @@ export default function Simulador() {
 			<Grid container className={classes.root} spacing={1}>
 				<CssBaseline/>
 				<Grid item xs={12}>
-				<Grid container spacing={1}>
+					<Grid container spacing={1}>
 						<Grid item xs={12} md={4}>
 							<Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
 								<StyledBreadcrumb
@@ -165,7 +148,6 @@ export default function Simulador() {
 									href="#"
 									label="Simular"
 									icon={<HomeIcon fontSize="small"/>}
-									onClick={handleSimular}
 								/>
 							</Breadcrumbs>
 						</Grid>
@@ -357,7 +339,7 @@ export default function Simulador() {
 					</Card>
 				</Grid>
 
-				<CapacidadeAtendimento classes={classes} {...dadosUnidade}/>
+				<CapacidadeAtendimento classes={classes} {...{capacidade_de_atendimento: calculo}}/>
 			</Grid>
 
 		</React.Fragment>
