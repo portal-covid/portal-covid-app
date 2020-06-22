@@ -36,7 +36,8 @@ class Auth {
         return localStorage.getItem('ols');
     }
 
-    getIsChefia = () => {
+    isChefia = () => {
+
         return localStorage.getItem('isChefia');
     }
 
