@@ -56,7 +56,7 @@ function ResumoComponent(){
                 const resumo = ResumoFactory.dosDados(response.data.dados);
 
                 if(!resumo.contemAlgo){
-                    const erro = new Error("Dados da consulta não retornou nenhum valor", 'error');
+                    const erro = new Error("Dados da consulta não retornou nenhum valor");
                     erro.mensagemParaUsuario = true;
                     throw erro;
                 }
