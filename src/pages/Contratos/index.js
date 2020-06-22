@@ -61,12 +61,12 @@ export default function Epi() {
     }
 
     const formData = {
-        limpeza_conservacao: data['contratos.limpeza_conservacao'],
-        vigilancia_ostensiva: data['contratos.vigilancia_ostensiva'],
-        vigilancia_eletronica: data['contratos.vigilancia_eletronica'],
-        manutencao_predial : data['contratos.manutencao_predial'],
-        manutencao_ar_condicionado : data['contratos.manutencao_ar_condicionado'],
-        manutencao_elevadores : data['contratos.elevadores'],
+        limpeza_conservacao: data['contratos']['limpeza_conservacao'],
+        vigilancia_ostensiva: data['contratos']['vigilancia']['ostensiva'],
+        vigilancia_eletronica: data['contratos']['vigilancia']['eletronica'],
+        manutencao_predial : data['contratos']['manutencao']['predial'],
+        manutencao_ar_condicionado : data['contratos']['manutencao']['ar_condicionado'],
+        manutencao_elevadores : data['contratos']['manutencao']['elevadores'],
 
     }
     const [form, setForm] = useState(formData);
@@ -168,8 +168,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Limpeza e conservação"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="limpeza_conservacao"
+                                                             value={form.limpeza_conservacao}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -185,8 +185,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Limpeza e conservação"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="vigilancia_ostensiva"
+                                                             value={form.vigilancia_ostensiva}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -203,8 +203,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Limpeza e conservação"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="vigilancia_eletronica"
+                                                             value={form.vigilancia_eletronica}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -218,8 +218,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Manutenção predial"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="manutencao_predial"
+                                                             value={form.manutencao_predial}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -233,8 +233,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Manutenção ar condicionado"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="manutencao_ar_condicionado"
+                                                             value={form.manutencao_ar_condicionado}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -248,8 +248,8 @@ export default function Epi() {
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row
                                                              aria-label="Manutenção de elevadores"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="manutencao_elevadores"
+                                                             value={form.manutencao_elevadores}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />

@@ -61,16 +61,16 @@ export default function Epi() {
     }
 
      const formData = {
-         epis_mascara: data['epi.mascara'],
-         epis_luvas: data['epi.luvas'],
-         epis_alcool: data['epi.alcool'],
-         epis_gorro: data['epi.gorro'],
-         epis_capote: data['epi.capote'],
-         epis_protetor_facial: data['epis.protetor_facial'],
+         epis_mascara: data['epi']['mascaras'],
+         epis_luvas: data['epi']['luvas'],
+         epis_alcool: data['epi']['alcool'],
+         epis_gorro: data['epi']['gorro'],
+         epis_capote: data['epi']['capote'],
+         epis_protetor_facial: data['epi']['protetor_facial'],
 
-         epcs_barreira_de_protecao: data['epc.barreira_de_protecao'],
-         epcs_marcacao_solo_interna_externa: data['epc.marcacao_solo_interna_externa'],
-         epcs_inutilizacao_assentos: data['epc.inutilizacao_assentos'],
+         epcs_barreira_de_protecao: data['epc']['barreira_de_protecao'],
+         epcs_marcacao_solo_interna_externa: data['epc']['marcacao_solo_interna_externa'],
+         epcs_inutilizacao_assentos: data['epc']['inutilizacao_assentos'],
 
      }
     const [form, setForm] = useState(formData);
@@ -86,7 +86,7 @@ export default function Epi() {
 
         let data = {
             "unidades" : [unidade],
-                "tipoRelatorio": "RecursosUnidades"
+            "tipoRelatorio": "RecursosUnidades"
         };
 
         try {
@@ -172,8 +172,8 @@ export default function Epi() {
                                         <ListItemSecondaryAction>
                                             <RadioGroup  row
                                                          aria-label="Alcool"
-                                                         name="area_compartilhada"
-                                                         value='1'
+                                                         name="epis_alcool"
+                                                         value={form.epis_alcool}
                                                          onChange={handleInputChange}>
                                                 <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                 <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -186,8 +186,8 @@ export default function Epi() {
                                             <ListItemText primary="Capote:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="gender"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="epis_capote"
+                                                             value={form.epis_capote}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -200,8 +200,8 @@ export default function Epi() {
                                             <ListItemText primary="Gorro:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Gorro"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="epis_gorro"
+                                                             value={form.epis_gorro}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -215,8 +215,8 @@ export default function Epi() {
                                             <ListItemText primary="Luvas:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Luvas"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="epis_luvas"
+                                                             value={form.epis_luvas}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -229,8 +229,8 @@ export default function Epi() {
                                             <ListItemText primary="Máscara:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Máscara"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="epis_mascara"
+                                                             value={form.epis_mascara}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -243,8 +243,8 @@ export default function Epi() {
                                             <ListItemText primary="Protetor Facial:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Protetor Facial"
-                                                             name="area_compartilhada"
-                                                             value='1'
+                                                             name="epis_protetor_facial"
+                                                             value={form.epis_protetor_facial}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -284,8 +284,8 @@ export default function Epi() {
                                             <ListItemText primary="Barreira de proteção:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Barreira de proteção"
-                                                             name=""
-                                                             value='1'
+                                                             name="epcs_barreira_de_protecao"
+                                                             value={form.epcs_barreira_de_protecao}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -298,8 +298,8 @@ export default function Epi() {
                                             <ListItemText primary="Marcação de solo interna e externa:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Marcação de solo interna e externa"
-                                                             name=""
-                                                             value='1'
+                                                             name="epcs_marcacao_solo_interna_externa"
+                                                             value={form.epcs_marcacao_solo_interna_externa}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
@@ -312,8 +312,8 @@ export default function Epi() {
                                             <ListItemText primary="Inutilização de assentos:"/>
                                             <ListItemSecondaryAction>
                                                 <RadioGroup  row aria-label="Inutilização de assentos"
-                                                             name=""
-                                                             value='1'
+                                                             name="epcs_inutilizacao_assentos"
+                                                             value={form.epcs_inutilizacao_assentos}
                                                              onChange={handleInputChange}>
                                                     <FormControlLabel value="sim" control={<Radio />} label="Sim" />
                                                     <FormControlLabel value="nao" control={<Radio />} label="Não" />
