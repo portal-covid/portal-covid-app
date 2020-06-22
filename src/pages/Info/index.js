@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import { useState } from 'react';
 import {emphasize, withStyles} from '@material-ui/core/styles';
@@ -18,7 +18,6 @@ import TableDadosDeContratos from '../../components/TableDadosDeContratos/TableD
 import Divider from '@material-ui/core/Divider';
 import Typography from "@material-ui/core/Typography/Typography";
 import Paper from '@material-ui/core/Paper';
-import {FontStyle as fontWeightBold} from "@material-ui/core/styles/createTypography";
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -98,13 +97,10 @@ export default function EnhancedTable() {
     }
     const [dados, setDados] = useState(data);
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     return (
         <React.Fragment>
-
+            <CssBaseline />
 
             <Grid container component="main" className={classes.root}>
                 <CssBaseline/>

@@ -6,6 +6,7 @@ import { useSnackbar } from 'notistack';
 import Typography from '@material-ui/core/Typography';
 import PainelComponent from './PainelComponent';
 import ResumoFactory from './models/ResumoFactory';
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -94,6 +95,7 @@ function ResumoComponent(){
 
     return (
         <React.Fragment>
+            <CssBaseline />
             <Typography component="h2" variant="h4" color="textPrimary" className={classes.title}>
                 Painel Resumo - INSS BRASIL
             </Typography>

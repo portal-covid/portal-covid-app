@@ -8,7 +8,9 @@ import PrivateRoute from './PrivateRoute';
 import { SnackbarProvider } from 'notistack';
 
 function App() {
-  return ( 
+
+    return (
+
     <div>
       <SnackbarProvider maxSnack={3}>
         <Switch>

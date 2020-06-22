@@ -17,6 +17,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 
 
 
@@ -142,13 +143,13 @@ export default function Pessoal() {
 
     return (
         <React.Fragment>
-
+            <CssBaseline />
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
                 <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de pessoal da sua unidade.
                     Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
             </Alert>
-            <br/>
+
             <form onSubmit={handleSubmit} className={classes.root}>
 
 
@@ -161,7 +162,7 @@ export default function Pessoal() {
                                         Administrativo
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={5}>
 
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Total de Servidores da unidade</InputLabel>
@@ -173,7 +174,7 @@ export default function Pessoal() {
                                         />
                                     </FormControl>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
                                         <Input id="motivo-legal-adm"
@@ -185,7 +186,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
                                         <Input id="programa-adm"
@@ -198,7 +199,7 @@ export default function Pessoal() {
                                 </Grid>
 
 
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={5}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> CEAB</InputLabel>
                                         <Input d="ceab-adm"
@@ -211,7 +212,7 @@ export default function Pessoal() {
                                 </Grid>
 
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Programa de Gestão/Teletrabalho</InputLabel>
                                         <Input id="servidores-programa-gestao-adm"
@@ -223,7 +224,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm">Gestores</InputLabel>
                                         <Input id="servidores-gestores-adm"
@@ -238,7 +239,7 @@ export default function Pessoal() {
                         </Paper>
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3}>
                             <Grid container className={classes.root}>
@@ -247,7 +248,7 @@ export default function Pessoal() {
                                         Peritos
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item  xs={12} md={5}>
 
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Total de  Médicos Peritos da unidade</InputLabel>
@@ -261,7 +262,7 @@ export default function Pessoal() {
 
 
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
                                         <Input  id="grupo-risco-perito"
@@ -273,7 +274,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
                                         <Input  id="motivo-legal-perito"
@@ -288,8 +289,9 @@ export default function Pessoal() {
                             </Grid>
                         </Paper>
 
-                    </Grid></Grid>
-                <Grid container spacing={2}>
+                    </Grid>
+                </Grid>
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3}>
                             <Grid container className={classes.root}>
@@ -298,7 +300,7 @@ export default function Pessoal() {
                                         Assistentes Sociais
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={5}>
 
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Total de Assistentes Sociais da unidade</InputLabel>
@@ -312,7 +314,7 @@ export default function Pessoal() {
 
 
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
                                         <Input   id="grupo-risco-social"
@@ -324,7 +326,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
                                         <Input   id="motivo-legal-social"
@@ -340,7 +342,7 @@ export default function Pessoal() {
                         </Paper>
 
                     </Grid></Grid>
-                <Grid container spacing={2}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3}>
                             <Grid container className={classes.root}>
@@ -349,7 +351,7 @@ export default function Pessoal() {
                                         Estagiários
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={3}>
 
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Total de Estagiários na unidade</InputLabel>
@@ -363,7 +365,7 @@ export default function Pessoal() {
 
 
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
                                         <Input   id="grupo-risco-estagiario"
@@ -375,7 +377,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
                                         <Input   id="motivo-legal-estagiario"
@@ -392,7 +394,7 @@ export default function Pessoal() {
 
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3}>
                             <Grid container className={classes.root}>
@@ -401,7 +403,7 @@ export default function Pessoal() {
                                         Temporários
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={3}>
 
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Total de Temporários na unidade</InputLabel>
@@ -415,7 +417,7 @@ export default function Pessoal() {
 
 
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Grupo de Risco</InputLabel>
                                         <Input   id="grupo-risco-temporario"
@@ -427,7 +429,7 @@ export default function Pessoal() {
                                     </FormControl>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={3}>
                                     <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="total-adm"> Afastamento Motivo Legal</InputLabel>
                                         <Input   id="motivo-legal-temporario"

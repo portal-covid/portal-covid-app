@@ -1,51 +1,57 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import { useSnackbar } from 'notistack';
-import { useHistory, useLocation } from 'react-router-dom';
 import Auth from '../../shared/auth';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
-import Paper from "@material-ui/core/Paper/Paper";
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+
+
+
+
 
 
 import Divider from '@material-ui/core/Divider';
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Input from "@material-ui/core/Input/Input";
+
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      '& > *': {
-          margin: theme.spacing(1),
-      },
-      margin: {
-          margin: theme.spacing(1),
-      },
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-},
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+        margin: {
+            margin: theme.spacing(1),
+        },
+
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export default function Infra() {
-	const classes = useStyles();
-	const { enqueueSnackbar } = useSnackbar();
+    const classes = useStyles();
+    const { enqueueSnackbar } = useSnackbar();
     const history = useHistory();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
@@ -56,36 +62,41 @@ export default function Infra() {
         data = location.state.detail;
     }
 
-    let area_compartilhada = data['infraestrutura']['area_compartilhada'] ? '1': '0';
     const formData = {
-        area_compartilhada: area_compartilhada,
+        area_compartilhada: data['infraestrutura']['area_compartilhada'] ? '1': '0',
         metragem_administrativo: data['infraestrutura']['metragem_administrativo'],
         metragem_pericia_medica: data['infraestrutura']['metragem_pericia_medica'],
         qtd_guiches: data['infraestrutura']['qtd_guiches'],
         qtd_salas_ass: data['infraestrutura']['qtd_salas_ass'],
         salas_pericia: data['infraestrutura']['salas_pericia'],
         qtd_scanner: data['infraestrutura']['qtd_scanner'],
-    }
-	const [form, setForm] = useState(formData);
+    };
+
+    const [form, setForm] = useState(formData);
     const token = Auth.getToken();
 
-	const handleInputChange = (event) => {
-		setForm({...form,
-		[event.target.name]: event.target.value
-		});
-    }
-    
+    const handleInputChange = (event) => {
+        setForm({...form,
+            [event.target.name]: event.target.value
+        });
+
+
+
+    };
+
+
+
     async function getRelatorio(unidade) {
 
         let data = {
-			"unidades" : [unidade],
-			"tipoRelatorio": "RecursosUnidades"
+            "unidades" : [unidade],
+            "tipoRelatorio": "RecursosUnidades"
         };
-        
+
         try {
-            await api.post('relatorio', data, { 
-				headers: {"Authorization" : "Bearer " + token }
-			}).then(response => {
+            await api.post('relatorio', data, {
+                headers: {"Authorization" : "Bearer " + token }
+            }).then(response => {
                 if(response.data.dados.length) {
                     localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
                     setLoading(false);
@@ -105,16 +116,17 @@ export default function Infra() {
 
         let resp = {
             _id: data['_id'],
-			tipoOperacao: "AtualizarDadosDeInfraestrutura",
+            tipoOperacao: "AtualizarDadosDeInfraestrutura",
         };
         resp['dados'] = form;
         resp['dados'].area_compartilhada = (resp['dados'].area_compartilhada) ? true : false;
+        resp['dados'].metragem_pericia_medica = (resp['dados'].area_compartilhada) ? 0 : resp['dados'].metragem_pericia_medica;
 
         try {
-            await api.post('unidades', resp, { 
-				headers: {"Authorization" : "Bearer " + token }
-			}).then(response => {
-                enqueueSnackbar('Dados salvos com sucesso!', { 
+            await api.post('unidades', resp, {
+                headers: {"Authorization" : "Bearer " + token }
+            }).then(response => {
+                enqueueSnackbar('Dados salvos com sucesso!', {
                     variant: 'success',
                     anchorOrigin: {
                         vertical: 'top',
@@ -125,7 +137,7 @@ export default function Infra() {
             });
         } catch(error) {
             setLoading(false);
-            enqueueSnackbar('Erro ao salvar os dados!', { 
+            enqueueSnackbar('Erro ao salvar os dados!', {
                 variant: 'error',
                 anchorOrigin: {
                     vertical: 'top',
@@ -133,19 +145,18 @@ export default function Infra() {
                 },
             });
         }
-	}
+    }
 
     return (
         <React.Fragment>
-
+            <CssBaseline />
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
                 <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade. Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
 
-
-                <Grid container spacing={2}>
+                <Grid container >
                     <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
@@ -158,38 +169,37 @@ export default function Infra() {
                                 <Grid item xs={12}>
                                     <FormControl component="fieldset">
                                         <FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
-                                        <RadioGroup  row aria-label="gender"
-                                                    name="area_compartilhada"
-                                                    value={form.area_compartilhada}
-                                                    onChange={handleInputChange}>
+                                        <RadioGroup  row aria-label="Área de espera compartilhada entre perícia médica e administrativo"
+                                                     name="area_compartilhada"
+                                                     value={form.area_compartilhada}
+                                                     onChange={handleInputChange }>
                                             <FormControlLabel value="1" control={<Radio />} label="Sim" />
                                             <FormControlLabel value="0" control={<Radio />} label="Não" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
-
-
                             </Grid>
                         </Paper>
                     </Grid>
+                </Grid>
 
-                    <Grid item xs={12} spacing={2}>
+                <Grid container >
+                    <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
                                 <Grid item xs={12}>
-                                    <Typography variant="h6" color="primary" >
+                                    <Typography variant="h5" color='primary'>
                                         Metragens em (M<sup>2</sup>)
-                                        <Box display="flex" justifyContent="center">
-                                            <Alert severity="info">Para os casos de area compartilhada, basta informar a área administrativa!</Alert>
-
-                                        </Box>
-                                        <Divider />
-
                                     </Typography>
+                                    <Box display="flex" justifyContent="center">
+                                        <Alert severity="info">Para os casos de area compartilhada, basta informar a área administrativa!</Alert>
+
+                                    </Box>
                                 </Grid>
-                                <Grid item xs={5}>
-                                    <FormControl>
-                                        <InputLabel htmlFor="metragem_administrativo"> Sala de espera do Administrativo</InputLabel>
+                                <Grid item xs={12} md={5}>
+
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel  htmlFor="metragem_administrativo"> Sala de espera do Administrativo</InputLabel>
 
                                         <Input id="metragem_administrativo"
                                                value={form.metragem_administrativo}
@@ -198,34 +208,44 @@ export default function Infra() {
                                                aria-describedby="Informe a metragem da sala de espera da área administrativa"
                                         />
                                     </FormControl>
+
                                 </Grid>
-                                <Grid item xs={5}>
-                                    <FormControl>
+                                <Grid item xs={12} md={6}>
+
+                                    <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="metragem_administrativo"> Sala de espera da Perícia Médica</InputLabel>
                                         <Input id="metragem_pericia_medica"
                                                value={form.metragem_pericia_medica}
                                                name="metragem_pericia_medica"
                                                onChange={handleInputChange}
+                                               disabled = {form.area_compartilhada === '1'}
                                                aria-describedby="Informe a metragem da sala de espera da área de perícia médica"
                                         />
                                     </FormControl>
+
                                 </Grid>
+
+
 
                             </Grid>
                         </Paper>
                     </Grid>
+                </Grid>
 
-                    <Grid item xs={12} spacing={2}>
+
+
+                <Grid container >
+                    <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
                                 <Grid item xs={12}>
-                                    <Typography variant="h6" color="primary" >
+                                    <Typography variant="h5" color='primary'>
                                         Salas, consultórios e guichês
-                                        <Divider />
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <FormControl>
+
+                                    <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="qtd_salas_ass"> Quantidade de salas de assistente social</InputLabel>
                                         <Input id="qtd_salas_ass"
                                                value={form.qtd_salas_ass}
@@ -234,9 +254,11 @@ export default function Infra() {
                                                aria-describedby="Informe a quantidade de salas de atendimento para assistente social"
                                         />
                                     </FormControl>
+
                                 </Grid>
-                                <Grid item xs={12} md={3}>
-                                    <FormControl>
+                                <Grid item xs={12} md={4}>
+
+                                    <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="salas_pericia">Quantidade de consultórios</InputLabel>
                                         <Input id="salas_pericia"
                                                value={form.salas_pericia}
@@ -247,8 +269,10 @@ export default function Infra() {
                                     </FormControl>
 
                                 </Grid>
+
                                 <Grid item xs={12} md={3}>
-                                    <FormControl>
+
+                                    <FormControl fullWidth className={classes.margin}>
                                         <InputLabel htmlFor="salas_pericia">Quantidade de guichês</InputLabel>
                                         <Input id="qtd_guiches"
                                                value={form.qtd_guiches}
@@ -261,38 +285,40 @@ export default function Infra() {
                                 </Grid>
 
 
+
                             </Grid>
                         </Paper>
                     </Grid>
-
-                    <Grid item xs={12} spacing={2}>
+                </Grid>
+                <Grid container >
+                    <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" color='primary'>
+                                        Equipamentos
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
 
-                            <Grid item xs={12}>
-                                <Typography variant="h6" color="primary" >
-                                    Equipamentos
-                                    <Divider />
-                                </Typography>
-                            </Grid>
+                                    <FormControl fullWidth className={classes.margin}>
+                                        <InputLabel htmlFor="salas_pericia"> Quantidade de scanners</InputLabel>
+                                        <Input id="qtd_scanner"
+                                               value={form.qtd_scanner}
+                                               name="qtd_scanner"
+                                               onChange={handleInputChange}
+                                               aria-describedby="Informe a quantidade de scanners para INSS Digital em funcionamento na APS"
+                                        />
+                                    </FormControl>
 
-                            <Grid item xs={12} md={12}>
-                                <FormControl>
-                                    <InputLabel htmlFor="salas_pericia"> Quantidade de scanners</InputLabel>
-                                    <Input id="qtd_scanner"
-                                           value={form.qtd_scanner}
-                                           name="qtd_scanner"
-                                           onChange={handleInputChange}
-                                           aria-describedby="Informe a quantidade de scanners para INSS Digital em funcionamento na APS"
-                                    />
-                                </FormControl>
 
-                            </Grid>
+                                </Grid>
+
                             </Grid>
                         </Paper>
                     </Grid>
-
                 </Grid>
+
 
                 <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
                     <Grid item xs={12}>
@@ -316,7 +342,7 @@ export default function Infra() {
                 <Backdrop className={classes.backdrop} open={loading}>
                     <CircularProgress color="inherit" />
                 </Backdrop>
-			</form>
+            </form>
         </React.Fragment>
     );
 }

@@ -3,7 +3,7 @@ class ResumoFactory{
 
     static dosDados(dados){
 
-        const resumo = new Resumo;
+        const resumo = new Resumo();
 
         if(!Array.isArray(dados.TotalAgencias) || !dados.TotalAgencias.length){
             resumo.alertas.push("Total de agências retornou um valor inesperado");

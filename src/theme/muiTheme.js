@@ -66,7 +66,7 @@ const theme = createMuiTheme({
             main: '#FFFFFF',
             dark: '#36A191',
             contrastText: '#fff',
-        },
+        }
     },
     overrides: {
         MUIDataTableHeadCell: {

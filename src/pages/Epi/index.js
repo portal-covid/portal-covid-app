@@ -1,34 +1,27 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import { useSnackbar } from 'notistack';
-import { useHistory, useLocation } from 'react-router-dom';
 import Auth from '../../shared/auth';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
 import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
-import Paper from "@material-ui/core/Paper/Paper";
-
-
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Divider from '@material-ui/core/Divider';
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Input from "@material-ui/core/Input/Input";
-import ListItem from "@material-ui/core/ListItem/ListItem";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/ListItemSecondaryAction";
-import List from "@material-ui/core/List/List";
-
+import FormLabel from "@material-ui/core/FormLabel/FormLabel";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         margin: {
             margin: theme.spacing(1),
         },
+
     },
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
@@ -75,6 +69,7 @@ export default function Epi() {
      }
     const [form, setForm] = useState(formData);
     const token = Auth.getToken();
+
 
     const handleInputChange = (event) => {
         setForm({...form,
@@ -143,6 +138,8 @@ export default function Epi() {
 
     return (
         <React.Fragment>
+            <CssBaseline />
+
 
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
@@ -150,8 +147,7 @@ export default function Epi() {
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
 
-
-                <Grid container spacing={2}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
@@ -161,113 +157,139 @@ export default function Epi() {
                                     </Typography>
                                     <Divider />
                                 </Grid>
-                                <Grid item xs={12}>
+
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Álcool</FormLabel>
+                                                <RadioGroup
+                                                    name="epis_alcool"
+                                                    value={form.epis_alcool}
+                                                    onChange={handleInputChange}
+                                                    aria-label="EPI ALCOOL"  row>
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica" inputprops={{ 'aria-label': 'não se aplica' }} control={<Radio />} label="Não se aplica" />
+                                                </RadioGroup>
+                                            </FormControl>
 
 
-                                    <List>
-
-
-                                    <ListItem>
-                                        <ListItemText primary="Álcool:"/>
-                                        <ListItemSecondaryAction>
-                                            <RadioGroup  row
-                                                         aria-label="Alcool"
-                                                         name="epis_alcool"
-                                                         value={form.epis_alcool}
-                                                         onChange={handleInputChange}>
-                                                <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
-                                            </RadioGroup>
-                                        </ListItemSecondaryAction>
-
-                                    </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Capote:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="gender"
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={1}>
+                                </Grid>
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Capote</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Capote"
                                                              name="epis_capote"
                                                              value={form.epis_capote}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }}control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Gorro:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="Gorro"
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Gorro</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Gorro"
                                                              name="epis_gorro"
                                                              value={form.epis_gorro}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }}control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-
-                                        <ListItem>
-                                            <ListItemText primary="Luvas:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="Luvas"
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={1}>
+                                </Grid>
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Luvas</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Luvas"
                                                              name="epis_luvas"
                                                              value={form.epis_luvas}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }}control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Máscara:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="Máscara"
+
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Máscara</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Máscara"
                                                              name="epis_mascara"
                                                              value={form.epis_mascara}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }} control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Protetor Facial:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="Protetor Facial"
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={1}>
+                                </Grid>
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Protetor Facial</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Protetor Facial"
                                                              name="epis_protetor_facial"
                                                              value={form.epis_protetor_facial}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }}control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-
-                                    </List>
-
-
-
+                                        </CardContent>
+                                    </Card>
                                 </Grid>
-
 
                             </Grid>
                         </Paper>
                     </Grid>
-
-
                 </Grid>
-                <Grid container spacing={2}>
+
+
+
+
+                <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={3} >
                             <Grid container className={classes.root}>
@@ -277,62 +299,74 @@ export default function Epi() {
                                     </Typography>
                                     <Divider />
                                 </Grid>
-                                <Grid item xs={12}>
 
-                                    <List>
-                                        <ListItem>
-                                            <ListItemText primary="Barreira de proteção:"/>
-                                            <ListItemSecondaryAction>
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Barreira de proteção</FormLabel>
                                                 <RadioGroup  row aria-label="Barreira de proteção"
                                                              name="epcs_barreira_de_protecao"
                                                              value={form.epcs_barreira_de_protecao}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'Não' }}  control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica" inputprops={{ 'aria-label': 'Não se aplica' }} control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Marcação de solo interna e externa:"/>
-                                            <ListItemSecondaryAction>
+
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={1}>
+                                </Grid>
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Marcação de solo interna e externa</FormLabel>
                                                 <RadioGroup  row aria-label="Marcação de solo interna e externa"
                                                              name="epcs_marcacao_solo_interna_externa"
                                                              value={form.epcs_marcacao_solo_interna_externa}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'Não' }}  control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica" inputprops={{ 'aria-label': 'Não se aplica' }} control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemText primary="Inutilização de assentos:"/>
-                                            <ListItemSecondaryAction>
-                                                <RadioGroup  row aria-label="Inutilização de assentos"
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+
+                                <Grid item xs={12} md={5}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
+
+                                            <FormControl component="fieldset">
+                                                <FormLabel component="legend">Inutilização de assentos</FormLabel>
+                                                <RadioGroup  row aria-label="EPC inutilizacao de assentos"
                                                              name="epcs_inutilizacao_assentos"
                                                              value={form.epcs_inutilizacao_assentos}
                                                              onChange={handleInputChange}>
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                                    <FormControlLabel value="nao se aplica" control={<Radio />} label="Não se aplica" />
+                                                    <FormControlLabel value="sim" inputprops={{ 'aria-label': 'SIM' }} control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="nao" inputprops={{ 'aria-label': 'NAO' }} control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="nao se aplica"  inputprops={{ 'aria-label': 'não se aplica' }}control={<Radio />} label="Não se aplica" />
                                                 </RadioGroup>
-                                            </ListItemSecondaryAction>
+                                            </FormControl>
 
-                                        </ListItem>
-                                    </List>
-
+                                        </CardContent>
+                                    </Card>
                                 </Grid>
 
 
                             </Grid>
                         </Paper>
                     </Grid>
-
-
                 </Grid>
+
 
                 <Grid container className={classes.root} spacing={1} style={{marginTop: 30}}>
                     <Grid item xs={12}>

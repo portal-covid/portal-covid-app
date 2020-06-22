@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import Auth from '../../shared/auth';
 import { useSnackbar } from 'notistack';
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+
   
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -99,6 +101,7 @@ export default function Home() {
 
     return (
 		<React.Fragment>
+            <CssBaseline />
 			<Container className={classes.root} maxWidth="sm">
 				<Typography component="h2" variant="h4" align="center" color="textPrimary" className={classes.title}>
 					Bem-vindo ao Portal COVID-19
