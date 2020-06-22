@@ -207,7 +207,7 @@ export default function Main() {
                     </ListItem>
                 </Link>
 
-                <Link
+              {/*  <Link
                     to="/resumo"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
@@ -232,7 +232,7 @@ export default function Main() {
                         <ListItemIcon><LibraryAddCheckIcon /></ListItemIcon>
                         <ListItemText primary="Capacidade Operacional" />
                     </ListItem>
-                </Link>
+                </Link>*/}
 
 
                 <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>

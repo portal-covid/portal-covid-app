@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -110,6 +110,7 @@ export default function Infra() {
         }
     }
 
+
     async function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
@@ -119,8 +120,10 @@ export default function Infra() {
             tipoOperacao: "AtualizarDadosDeInfraestrutura",
         };
         resp['dados'] = form;
-        resp['dados'].area_compartilhada = (resp['dados'].area_compartilhada) ? true : false;
-        resp['dados'].metragem_pericia_medica = (resp['dados'].area_compartilhada) ? 0 : resp['dados'].metragem_pericia_medica;
+
+        resp['dados'].area_compartilhada = resp['dados'].area_compartilhada === '1' ? true : false;
+
+        alert( resp['dados'].area_compartilhada);
 
         try {
             await api.post('unidades', resp, {
