@@ -16,7 +16,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import ListItemText from '@material-ui/core/ListItemText';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom';
 import MainRoutes from './MainRoutes';
@@ -31,6 +33,7 @@ import api from '../services/api';
 import { useSnackbar } from 'notistack';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 

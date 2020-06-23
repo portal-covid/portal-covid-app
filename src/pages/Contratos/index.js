@@ -111,18 +111,38 @@ export default function Contratos() {
             await api.post('unidades', resp, {
                 headers: {"Authorization" : "Bearer " + token }
             }).then(response => {
-                enqueueSnackbar('Dados salvos com sucesso!', {
-                    variant: 'success',
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'center',
-                    },
-                });
-                getRelatorio(data['_id']);
+                if(response.data.ok){
+                    enqueueSnackbar('Dados salvos com sucesso!', {
+                        variant: 'success',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        },
+                    });
+                    getRelatorio(data['_id']);
+                }else{
+
+                    setLoading(false);
+                    enqueueSnackbar('Erro ao salvar os dados! - ' + response.data.message, {
+                        variant: 'error',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        },
+                    });
+
+                }
             });
         } catch(error) {
+
             setLoading(false);
-            enqueueSnackbar('Erro ao salvar os dados!', {
+            let mensagem = error.toString();
+
+            if(mensagem === "Error: Request failed with status code 401"){
+                mensagem = 'Sessão expirada - Refazer login'
+            }
+
+            enqueueSnackbar('Erro ao salvar os dados!  ' + mensagem, {
                 variant: 'error',
                 anchorOrigin: {
                     vertical: 'top',
