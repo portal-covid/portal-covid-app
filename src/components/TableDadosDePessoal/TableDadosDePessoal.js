@@ -9,7 +9,8 @@ const columns = ["Categoria", "Total", "Grupo de Risco", "Afastamento Legal","CE
 
 const options = {
     filterType: 'checkbox',
-    textLabels : TextLabels
+    textLabels : TextLabels,
+    customToolbarSelect: () => {}
 };
 
 

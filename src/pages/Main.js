@@ -209,14 +209,14 @@ export default function Main() {
                     </ListItem>
                 </Link>
 
-              {/*  <Link
+                <Link
                     to="/resumo"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="Home">
                         <ListItemIcon><AssessmentIcon /></ListItemIcon>
                         <ListItemText primary="Painel Resumo" />
                     </ListItem>
-                </Link>*/}
+                </Link>
 
                 <Link
                     to="/simulador"

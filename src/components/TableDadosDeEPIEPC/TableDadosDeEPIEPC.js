@@ -9,7 +9,8 @@ const columns = ["Categoria", "TIPO", "SIM", "NÃO","NÃO SE APLICA"];
 
 const options = {
     filterType: 'checkbox',
-    textLabels : TextLabels
+    textLabels : TextLabels,
+    customToolbarSelect: () => {}
 };
 
 const montaResposta = function (item) {
