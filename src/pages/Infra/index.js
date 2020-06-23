@@ -123,8 +123,6 @@ export default function Infra() {
 
         resp['dados'].area_compartilhada = resp['dados'].area_compartilhada === '1' ? true : false;
 
-        alert( resp['dados'].area_compartilhada);
-
         try {
             await api.post('unidades', resp, {
                 headers: {"Authorization" : "Bearer " + token }
