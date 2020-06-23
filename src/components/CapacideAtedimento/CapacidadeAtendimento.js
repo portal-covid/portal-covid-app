@@ -51,15 +51,14 @@ export default function CapacidadeAtendimento(props){
                    </Typography>
                </Grid>
 
-               <Grid item xs={12}>
-                   <div className={props.classes.root}>
+               <Grid item xs={12} >
 
                     <FaixaDeAgendamentos classes={props.classes} {...props}/>
 
-                   </div>
+
                </Grid>
 
-               <Grid item xs={12}>
+               <Grid item xs={12} >
                    <Typography  variant="h5" color='primary'>
                        Capacidade de Atendimento  - Detalhes
                    </Typography>

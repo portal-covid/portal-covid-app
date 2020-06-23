@@ -13,8 +13,8 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/L
 export default function FaixaDeAgendamentos(props) {
 
     return <React.Fragment>
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+        <Grid container spacing={1} >
+            <Grid item xs={12} md={5} >
                 <Card className={props.classes.cardStyleCapacidade}>
                     <CardContent>
                         <Typography variant="h5" color="primary" className={props.classes.title} >
@@ -52,7 +52,7 @@ export default function FaixaDeAgendamentos(props) {
                 </Card>
 
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={7}>
                 <Card className={props.classes.cardStyleCapacidade}>
                     <CardContent>
                         <Typography variant="h5" color="primary" className={props.classes.title} >
