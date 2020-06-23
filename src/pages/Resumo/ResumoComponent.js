@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import PainelComponent from './PainelComponent';
 import ResumoFactory from './models/ResumoFactory';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import Grid from "@material-ui/core/Grid/Grid";
+import Divider from "@material-ui/core/Divider/Divider";
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -96,10 +98,18 @@ function ResumoComponent(){
     return (
         <React.Fragment>
             <CssBaseline />
-            <Typography component="h2" variant="h4" color="textPrimary" className={classes.title}>
-                Painel Resumo - INSS BRASIL
-            </Typography>
-            { 
+            <Grid item xs={12}>
+                <Typography variant="h5" color='primary'>
+                    Painel Resumo - INSS BRASIL
+                </Typography>
+                <Divider/>
+            </Grid>
+            <br/>
+
+            <Grid container>
+
+
+            {
             erro ? (
                 <div>Erro:{erro}</div>
             ) : !dados ? (
@@ -107,6 +117,7 @@ function ResumoComponent(){
             ) : (
                 <PainelComponent dados={dados}></PainelComponent>
             )}
+            </Grid>
         </React.Fragment>
     );
 }

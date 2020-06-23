@@ -34,8 +34,9 @@ export default function TableDadosDePessoal(props) {
         props.pessoal.assistentes.total,
         props.pessoal.assistentes.grupo_de_risco,
         props.pessoal.assistentes.afastado_motivo_legal,
+        0,0,0,
         props.pessoal.assistentes.retorno,
-        0,0,0
+
     ];
 
     const pericia = [
@@ -43,8 +44,9 @@ export default function TableDadosDePessoal(props) {
         props.pessoal.pericia_medica.total,
         props.pessoal.pericia_medica.grupo_de_risco,
         props.pessoal.pericia_medica.afastado_motivo_legal,
+        0,0,0,
         props.pessoal.pericia_medica.retorno,
-        0,0,0
+
     ];
 
     const estagiarios = [
@@ -52,17 +54,19 @@ export default function TableDadosDePessoal(props) {
         props.pessoal.estagiarios.total,
         props.pessoal.estagiarios.grupo_de_risco,
         props.pessoal.estagiarios.afastado_motivo_legal,
+        0,0,0,
         props.pessoal.estagiarios.retorno,
-        0,0,0
+
     ];
 
     const temporarios = [
         "Temporários",
-        props.pessoal.estagiarios.total,
-        props.pessoal.estagiarios.grupo_de_risco,
-        props.pessoal.estagiarios.afastado_motivo_legal,
-        props.pessoal.estagiarios.retorno,
-        0,0,0
+        props.pessoal.temporarios.total,
+        props.pessoal.temporarios.grupo_de_risco,
+        props.pessoal.temporarios.afastado_motivo_legal,
+        0,0,0,
+        props.pessoal.temporarios.retorno,
+
     ];
 
     const data = [  admnistrativo,assistente,pericia,estagiarios,temporarios];
@@ -73,7 +77,9 @@ export default function TableDadosDePessoal(props) {
             <Typography variant="h5" color="primary">
                 Dados de Pessoal
             </Typography>
+            <br/>
         </Grid>
+
 
         <Grid item xs={12}>
             <MUIDataTable
