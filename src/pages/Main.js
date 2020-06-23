@@ -127,6 +127,7 @@ export default function Main() {
     const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
     const token = Auth.getToken();
     const [loading, setLoading] = useState(false);
+    const isChefia = Auth.isChefia() === "false" ? false : true;
 
     useEffect(() => {
         setUnidade(Auth.getOlAtual());
@@ -235,50 +236,48 @@ export default function Main() {
                     </ListItem>
                 </Link>*/}
 
-                {Auth.isChefia() &&
+                { isChefia && (
+                <React.Fragment>
+                    <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
+                        Validação
+                    </Typography>
+                    <Link
+                        to="/pessoal"
+                        style={{ textDecoration: 'none', color: '#757575' }}>
+                        <ListItem button key="Home">
+                            <ListItemIcon><PeopleAltIcon /></ListItemIcon>
+                            <ListItemText primary="Pessoal" />
+                        </ListItem>
+                    </Link>
 
-                <>
-                <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
-                    Validação
-                </Typography>
-                <Link
-                    to="/pessoal"
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
-                        <ListItemIcon><PeopleAltIcon /></ListItemIcon>
-                        <ListItemText primary="Pessoal" />
-                    </ListItem>
-                </Link>
+                    <Link
+                        to="/infra"
+                        style={{ textDecoration: 'none', color: '#757575' }}>
+                        <ListItem button key="Home">
+                            <ListItemIcon><AccountBalanceIcon /></ListItemIcon>
+                            <ListItemText primary="Infraestrutura" />
+                        </ListItem>
+                    </Link>
 
-                <Link
-                    to="/infra"
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
-                        <ListItemIcon><AccountBalanceIcon /></ListItemIcon>
-                        <ListItemText primary="Infraestrutura" />
-                    </ListItem>
-                </Link>
+                    <Link
+                        to="/epi"
+                        style={{ textDecoration: 'none', color: '#757575' }}>
+                        <ListItem button key="Home">
+                            <ListItemIcon><LibraryAddIcon /></ListItemIcon>
+                            <ListItemText primary="EPI/EPC" />
+                        </ListItem>
+                    </Link>
 
-                <Link
-                    to="/epi"
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
-                        <ListItemIcon><LibraryAddIcon /></ListItemIcon>
-                        <ListItemText primary="EPI/EPC" />
-                    </ListItem>
-                </Link>
-
-                <Link
-                    to="/contratos"
-                    style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
-                        <ListItemIcon><AssignmentIcon /></ListItemIcon>
-                        <ListItemText primary="Contratos Essenciais" />
-                    </ListItem>
-                </Link>
-                </>
-
-                }
+                    <Link
+                        to="/contratos"
+                        style={{ textDecoration: 'none', color: '#757575' }}>
+                        <ListItem button key="Home">
+                            <ListItemIcon><AssignmentIcon /></ListItemIcon>
+                            <ListItemText primary="Contratos Essenciais" />
+                        </ListItem>
+                    </Link>
+                </React.Fragment>
+                )}
 
 
                 <List>

@@ -154,192 +154,187 @@ export default function Simulador() {
 
 					</Grid>
 				</Grid>
-				<Grid item xs={12}>
-					<Typography variant="h6">
-						Simulador
-					</Typography>
-				</Grid>
-				<Grid item xs={4}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
-								Área de espera é compartilhada entre a Perícia Médica e o Administrativo?
-							</Typography>
-							<RadioGroup
-								value={pergunta}
-								onChange={handleChange}
-								aria-label="Área de espera é compartilhada entre a Perícia Médica e o Administrativo?"
-								name="espaco_compartilhado">
-								<FormControlLabel value="1" control={<Radio />} label="Sim" />
-								<FormControlLabel value="0" control={<Radio />} label="Não" />
-							</RadioGroup>
-						</CardContent>
-					</Card>
-				</Grid>
 
-				<Grid item xs={4}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
-								Metragem da área de espera (em m²)
-							</Typography>
-							<FormControl>
-								{
-									pergunta == 1
 
-										? <React.Fragment>
-											<Typography variant="subtitle2" gutterBottom>
-												Sala Espera
-										</Typography>
-											<TextField
-												id="metragem_administrativo"
-												value={dados.metragem_administrativo}
-												name="metragem_administrativo"
-												type="number"
-												onChange={handleInputChange}
-											/>
-										</React.Fragment>
-										: <React.Fragment>
-											<Typography variant="subtitle2" gutterBottom>
-												Administrativo
-										</Typography>
-											<TextField
-												id="metragem_administrativo"
-												value={dados.metragem_administrativo}
-												name="metragem_administrativo"
-												type="number"
-												onChange={handleInputChange}
-											/>
-											<Typography variant="subtitle2" gutterBottom>
-												Perícia Médica
-										</Typography>
-											<TextField
-												id="metragem_pericia_medica"
-												value={dados.metragem_pericia_medica}
-												name="metragem_pericia_medica"
-												type="number"
-												onChange={handleInputChange}
-											/>
-										</React.Fragment>
-								}
-							</FormControl>
-						</CardContent>
-					</Card>
-				</Grid>
+                <Grid item xs={12} md={3} >
 
-				<Grid item xs={12} style={{ marginTop: 30 }}>
-					<Typography variant="h6">
-						Informe a quantidade de Servidores
-					</Typography>
-				</Grid>
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Administrativo
-							</Typography>
-							<TextField
-								id="servidores_retorno"
-								value={dados.servidores_retorno}
-								name="servidores_retorno"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5" color='primary'>
+                            Simulador
+                        </Typography>
+                    </Grid>
+					<br/>
+					<Grid item xs={12}>
+                        <Card className={classes.card}>
+                            <CardContent>
+                                <Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+                                    Área de espera é compartilhada entre a Perícia Médica e o Administrativo?
+                                </Typography>
+                                <RadioGroup row
+                                            value={pergunta}
+                                            onChange={handleChange}
+                                            aria-label="Área de espera é compartilhada entre a Perícia Médica e o Administrativo?"
+                                            name="espaco_compartilhado">
+                                    <FormControlLabel value="1" control={<Radio />} label="Sim" />
+                                    <FormControlLabel value="0" control={<Radio />} label="Não" />
+                                </RadioGroup>
+                            </CardContent>
+                        </Card>
 
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Peritos
-							</Typography>
-							<TextField
-								id="pericia_medica_retorno"
-								value={dados.pericia_medica_retorno}
-								name="pericia_medica_retorno"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+					</Grid>
+					<br/>
 
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Assistentes Sociais
-							</Typography>
-							<TextField
-								id="assistentes_retorno"
-								value={dados.assistentes_retorno}
-								name="assistentes_retorno"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+                    <Grid item xs={12}>
+                        <Card className={classes.card}>
+                            <CardContent>
+                                <Typography component="h4" variant="subtitle2" color="primary" gutterBottom>
+                                    Metragem da área de espera (em m²)
+                                </Typography>
+                                <FormControl>
+                                    {
+                                        pergunta == 1
 
-				<Grid item xs={12} style={{ marginTop: 30 }}>
-					<Typography variant="h6">
-						Quantitativo
-					</Typography>
-				</Grid>
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Número de guichês
-							</Typography>
-							<TextField
-								id="qtd_guiches"
-								value={dados.qtd_guiches}
-								name="qtd_guiches"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+                                            ? <React.Fragment>
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                    Sala Espera
+                                                </Typography>
+                                                <TextField fullWidth
+                                                    id="metragem_administrativo"
+                                                    value={dados.metragem_administrativo}
+                                                    name="metragem_administrativo"
+                                                    type="number"
+                                                    onChange={handleInputChange}
+                                                />
+                                            </React.Fragment>
+                                            : <React.Fragment>
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                    Administrativo
+                                                </Typography>
+                                                <TextField fullWidth
+                                                    id="metragem_administrativo"
+                                                    value={dados.metragem_administrativo}
+                                                    name="metragem_administrativo"
+                                                    type="number"
+                                                    onChange={handleInputChange}
+                                                />
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                    Perícia Médica
+                                                </Typography>
+                                                <TextField fullWidth
+                                                    id="metragem_pericia_medica"
+                                                    value={dados.metragem_pericia_medica}
+                                                    name="metragem_pericia_medica"
+                                                    type="number"
+                                                    onChange={handleInputChange}
+                                                />
+                                            </React.Fragment>
+                                    }
+                                </FormControl>
+                            </CardContent>
+                        </Card>
 
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Número de Salas Perícia
-							</Typography>
-							<TextField
-								id="salas_pericia"
-								value={dados.salas_pericia}
-								name="salas_pericia"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+                    </Grid>
 
-				<Grid item xs={3}>
-					<Card className={classes.card}>
-						<CardContent>
-							<Typography variant="subtitle2" gutterBottom>
-								Número de Salas Assistentes Sociais
-							</Typography>
-							<TextField
-								id="qtd_salas_ass"
-								value={dados.qtd_salas_ass}
-								name="qtd_salas_ass"
-								type="number"
-								onChange={handleInputChange}
-							/>
-						</CardContent>
-					</Card>
-				</Grid>
+					<br/>
+                    <Grid item xs={12}>
 
-				<CapacidadeAtendimento classes={classes} {...{capacidade_de_atendimento: calculo}}/>
+
+                        <Card className={classes.card}>
+
+                            <CardContent>
+                                <Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+                                    Informe a quantidade de Servidores
+                                </Typography>
+                                <Typography variant="subtitle2" gutterBottom>
+                                    Administrativo
+                                </Typography>
+                                <TextField fullWidth
+                                           id="servidores_retorno"
+                                           value={dados.servidores_retorno}
+                                           name="servidores_retorno"
+                                           type="number"
+                                           onChange={handleInputChange}
+                                />
+                                <Typography variant="subtitle2" gutterBottom>
+                                Peritos
+                            </Typography>
+                            <TextField fullWidth
+                                       id="pericia_medica_retorno"
+                                       value={dados.pericia_medica_retorno}
+                                       name="pericia_medica_retorno"
+                                       type="number"
+                                       onChange={handleInputChange}
+                            />
+                                <Typography variant="subtitle2" gutterBottom>
+                                    Assistentes Sociais
+                                </Typography>
+                                <TextField fullWidth
+                                    id="assistentes_retorno"
+                                    value={dados.assistentes_retorno}
+                                    name="assistentes_retorno"
+                                    type="number"
+                                    onChange={handleInputChange}
+                                />
+                            </CardContent>
+                        </Card>
+
+					</Grid>
+
+                    <br/>
+                    <Grid item xs={12}>
+
+
+                        <Card className={classes.card}>
+                            <CardContent>
+                                <Typography component="h2" variant="subtitle2" color="primary" gutterBottom>
+                                    Quantitativo de salas, consultórios e guichês
+                                </Typography>
+                                <Typography variant="subtitle2" gutterBottom>
+                                    Número de guichês
+                                </Typography>
+                                <TextField fullWidth
+                                    id="qtd_guiches"
+                                    value={dados.qtd_guiches}
+                                    name="qtd_guiches"
+                                    type="number"
+                                    onChange={handleInputChange}
+                                />
+
+                                <Typography variant="subtitle2" gutterBottom>
+                                    Número de Salas Perícia
+                                </Typography>
+                                <TextField fullWidth
+                                    id="salas_pericia"
+                                    value={dados.salas_pericia}
+                                    name="salas_pericia"
+                                    type="number"
+                                    onChange={handleInputChange}
+                                />
+                                <Typography variant="subtitle2" gutterBottom>
+                                    Número de Salas Assistentes Sociais
+                                </Typography>
+                                <TextField fullWidth
+                                    id="qtd_salas_ass"
+                                    value={dados.qtd_salas_ass}
+                                    name="qtd_salas_ass"
+                                    type="number"
+                                    onChange={handleInputChange}
+                                />
+
+                            </CardContent>
+                        </Card>
+					</Grid>
+
+
+
+					</Grid>
+                <Grid item xs={12} md={9}>
+                    <CapacidadeAtendimento classes={classes} {...{capacidade_de_atendimento: calculo}}/>
+                </Grid>
+
+
+
+
 			</Grid>
 
 		</React.Fragment>
