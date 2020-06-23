@@ -63,7 +63,6 @@ export default function Infra() {
     }
 
     const formData = {
-        area_compartilhada: data['infraestrutura']['area_compartilhada'] ? '1': '0',
         metragem_administrativo: data['infraestrutura']['metragem_administrativo'],
         metragem_pericia_medica: data['infraestrutura']['metragem_pericia_medica'],
         qtd_guiches: data['infraestrutura']['qtd_guiches'],
@@ -72,6 +71,7 @@ export default function Infra() {
         qtd_scanner: data['infraestrutura']['qtd_scanner'],
     };
 
+    const [formSelect, setFormSelect] = useState({ area_compartilhada: data['infraestrutura']['area_compartilhada'] ? '1': '0'});
     const [form, setForm] = useState(formData);
     const token = Auth.getToken();
 
@@ -79,6 +79,22 @@ export default function Infra() {
         setForm({...form,
             [event.target.name]: event.target.value
         });
+
+
+
+    };
+
+
+    const handleInputChangeSelect = (event) => {
+        setFormSelect({...formSelect,
+            area_compartilhada: event.target.value
+        });
+
+        if(event.target.value){
+            setForm({...form,
+                metragem_pericia_medica: 0
+            });
+        }
 
 
 
@@ -121,26 +137,48 @@ export default function Infra() {
         };
         resp['dados'] = form;
 
-        resp['dados'].area_compartilhada = resp['dados'].area_compartilhada === '1' ? true : false;
-
-        alert( resp['dados'].area_compartilhada);
+        resp['dados'].area_compartilhada = formSelect.area_compartilhada == '1' ? true : false;
 
         try {
+
             await api.post('unidades', resp, {
                 headers: {"Authorization" : "Bearer " + token }
             }).then(response => {
-                enqueueSnackbar('Dados salvos com sucesso!', {
-                    variant: 'success',
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'center',
-                    },
-                });
-                getRelatorio(data['_id']);
-            });
+
+
+                if(response.data.ok){
+                    enqueueSnackbar('Dados salvos com sucesso!', {
+                        variant: 'success',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        },
+                    });
+                    getRelatorio(data['_id']);
+                }else{
+
+                    setLoading(false);
+                    enqueueSnackbar('Erro ao salvar os dados! - ' + response.data.message, {
+                        variant: 'error',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'center',
+                        },
+                    });
+
+                }
+
+            })
         } catch(error) {
+
             setLoading(false);
-            enqueueSnackbar('Erro ao salvar os dados!', {
+            let mensagem = error.toString();
+
+            if(mensagem === "Error: Request failed with status code 401"){
+                mensagem = 'Sessão expirada - Refazer login'
+            }
+
+            enqueueSnackbar('Erro ao salvar os dados!  ' + mensagem, {
                 variant: 'error',
                 anchorOrigin: {
                     vertical: 'top',
@@ -174,8 +212,8 @@ export default function Infra() {
                                         <FormLabel component="legend">Área de espera compartilhada entre perícia médica e administrativo?</FormLabel>
                                         <RadioGroup  row aria-label="Área de espera compartilhada entre perícia médica e administrativo"
                                                      name="area_compartilhada"
-                                                     value={form.area_compartilhada}
-                                                     onChange={handleInputChange }>
+                                                     value={formSelect.area_compartilhada}
+                                                     onChange={handleInputChangeSelect }>
                                             <FormControlLabel value="1" control={<Radio />} label="Sim" />
                                             <FormControlLabel value="0" control={<Radio />} label="Não" />
                                         </RadioGroup>
@@ -221,7 +259,7 @@ export default function Infra() {
                                                value={form.metragem_pericia_medica}
                                                name="metragem_pericia_medica"
                                                onChange={handleInputChange}
-                                               disabled = {form.area_compartilhada === '1'}
+                                               disabled = {formSelect.area_compartilhada == '1'}
                                                aria-describedby="Informe a metragem da sala de espera da área de perícia médica"
                                         />
                                     </FormControl>
