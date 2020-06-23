@@ -81,14 +81,14 @@ export default function Login() {
             senha: password
         }
 
-        //response.data.dados.isChefia
+
         try {
             await api.post('auth', data).then(response => {
                 localStorage.setItem('token', response.data.dados.token);
                 localStorage.setItem('email', response.data.dados.mail);
                 localStorage.setItem('nome', response.data.dados.nome);
                 localStorage.setItem('cpf', response.data.dados.cpf);
-                localStorage.setItem('isChefia', true);
+                localStorage.setItem('isChefia', response.data.dados.isChefia);
                 localStorage.setItem('ols', JSON.stringify(response.data.dados.decendentes));
 
                 enqueueSnackbar('Bem-vindo ao Portal de COVID-19!', {
