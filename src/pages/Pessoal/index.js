@@ -286,6 +286,7 @@ export default function Pessoal() {
                                                 value={form.pericia_medica_total}
                                                 name="pericia_medica_total"
                                                 onChange={handleInputChange}
+                                                disabled='disabled'
                                                 aria-describedby="Total de Servidores Peritos na unidade"
                                         />
                                     </FormControl>
@@ -299,6 +300,7 @@ export default function Pessoal() {
                                                 value={form.pericia_grupo_de_risco}
                                                 name="pericia_grupo_de_risco"
                                                 onChange={handleInputChange}
+                                                disabled='disabled'
                                                 aria-describedby="Total de Servidores Peritos em afastamentos por pertencerem ao grupo de risco do COVID"
                                         />
                                     </FormControl>
@@ -311,6 +313,7 @@ export default function Pessoal() {
                                                 value={form.pericia_medica_afastado_motivo_legal}
                                                 name="pericia_medica_afastado_motivo_legal"
                                                 onChange={handleInputChange}
+                                                disabled='disabled'
                                                 aria-describedby="Total de Servidores Peritos em afastamentos por motivo legal (licenças, tratamentos e etc)"
                                         />
                                     </FormControl>

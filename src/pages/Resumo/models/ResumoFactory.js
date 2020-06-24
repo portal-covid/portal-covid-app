@@ -50,6 +50,17 @@ class ResumoFactory{
             resumo.servidoresPorTipoLicenca = dados.TotalServidoresPorTipoLicencaLegal[0];
         }
 
+        if(!Array.isArray(dados.TotalSituacaoApsPorGerencia) || !dados.TotalSituacaoApsPorGerencia.length){
+            resumo.alertas.push("Total Situacao Aps Por Gerencia retornou um valor inesperado");
+        }else{
+            resumo.situacaoApsPorGerencia = dados.TotalSituacaoApsPorGerencia;
+        }
+
+
+
+
+
+
         return resumo;
     }
 

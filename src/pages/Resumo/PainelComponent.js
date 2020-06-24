@@ -11,6 +11,7 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 
 
 import TableDadosDePessoal from "../../components/TableDadosDePessoal/TableDadosDePessoal";
+import TableDadosDeSituacaoAps from "../../components/TableDadosDeSituacaoAps/TableDadosDeSituacaoAps";
 
 
 
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 function PainelComponent({dados}){
-console.log(dados)
 
     const dadosDePessoal = {
         pessoal : {
@@ -142,6 +142,9 @@ console.log(dados)
 
 
             <TableDadosDePessoal {...dadosDePessoal}/>
+            <TableDadosDeSituacaoAps {...dados}/>
+
+
 
 
 

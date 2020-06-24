@@ -6,6 +6,7 @@ class Resumo {
     servidoresPorTipo = null;
     servidoresPorGrupoRisco = null;
     servidoresPorTipoLicenca = null;
+    situacaoApsPorGerencia=null;
 
     alertas = [];
 
@@ -14,8 +15,9 @@ class Resumo {
             this.agenciasAbertas || 
             this.agenciasFechadas || 
             this.servidoresPorTipo || 
-            this.servidoresPorGrupoRisco || 
-            this.servidoresPorTipoLicenca);
+            this.servidoresPorGrupoRisco ||
+            this.servidoresPorTipoLicenca ||
+            this.situacaoApsPorGerencia);
     }
 
     get mensagemAlerta(){
