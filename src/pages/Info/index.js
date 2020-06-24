@@ -25,17 +25,9 @@ const StyledBreadcrumb = withStyles((theme) => ({
         height: theme.spacing(3),
         color: theme.palette.grey[800],
         fontWeight: theme.typography.fontWeightRegular,
-        '&:hover, &:focus': {
-            backgroundColor: theme.palette.grey[300],
-        },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-        },
         width: '100%'
     },
 }))(Chip);
-
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -111,8 +103,7 @@ export default function EnhancedTable() {
                                 <StyledBreadcrumb
                                     color="primary"
                                     aria-current="page"
-                                    component="a"
-                                    href="#"
+                                    component="p"
                                     label="Principal"
                                     icon={<HomeIcon fontSize="small"/>}
                                     onClick={handleClick}

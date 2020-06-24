@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,6 +18,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+
+import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
+
+import Chip from '@material-ui/core/Chip';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+const StyledBreadcrumb = withStyles((theme) => ({
+    root: {
+        backgroundColor: theme.palette.grey[100],
+        height: theme.spacing(3),
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightRegular,
+        width: '100%'
+    },
+}))(Chip);
 
 
 
@@ -174,6 +190,25 @@ export default function Pessoal() {
     return (
         <React.Fragment>
             <CssBaseline />
+
+            <Grid item xs={12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={4}>
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
+                            <StyledBreadcrumb
+                                color="primary"
+                                aria-current="page"
+                                component="p"
+                                label="Pessoal"
+                                icon={<PeopleAltIcon fontSize="small"/>}
+                            />
+                        </Breadcrumbs>
+                    </Grid>
+
+                </Grid>
+                <br/>
+            </Grid>
+
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
                 <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de pessoal da sua unidade.

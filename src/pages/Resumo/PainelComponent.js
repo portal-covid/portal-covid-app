@@ -12,27 +12,6 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 
 import TableDadosDePessoal from "../../components/TableDadosDePessoal/TableDadosDePessoal";
 import TableDadosDeSituacaoAps from "../../components/TableDadosDeSituacaoAps/TableDadosDeSituacaoAps";
-import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Chip from "@material-ui/core/Chip/Chip";
-import AssessmentIcon from '@material-ui/icons/Assessment';
-
-const StyledBreadcrumb = withStyles((theme) => ({
-    root: {
-        backgroundColor: theme.palette.grey[100],
-        height: theme.spacing(3),
-        color: theme.palette.grey[800],
-        fontWeight: theme.typography.fontWeightRegular,
-        '&:hover, &:focus': {
-            backgroundColor: theme.palette.grey[300],
-        },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-        },
-        width: '100%'
-    },
-}))(Chip);
 
 
 const useStyles = makeStyles((theme) => ({
@@ -103,23 +82,7 @@ function PainelComponent({dados}){
     return (
         <React.Fragment>
 
-            <Grid item xs={12}>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} md={4}>
-                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
-                            <StyledBreadcrumb
-                                color="primary"
-                                aria-current="page"
-                                component="a"
-                                href="#"
-                                label="Painel Brasil"
-                                icon={<AssessmentIcon fontSize="small"/>}
-                            />
-                        </Breadcrumbs>
-                    </Grid>
 
-                </Grid>
-            </Grid>
 
             <Grid className={classes.root} item xs={12} md={12} >
                 <Typography variant="h5" color='primary'>

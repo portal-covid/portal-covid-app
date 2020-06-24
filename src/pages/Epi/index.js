@@ -22,6 +22,23 @@ import Divider from '@material-ui/core/Divider';
 import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+
+import Breadcrumbs from "@material-ui/core/Breadcrumbs/Breadcrumbs";
+import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Chip from '@material-ui/core/Chip';
+import { withStyles} from '@material-ui/core/styles';
+const StyledBreadcrumb = withStyles((theme) => ({
+    root: {
+        backgroundColor: theme.palette.grey[100],
+        height: theme.spacing(3),
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightRegular,
+        width: '100%'
+    },
+}))(Chip);
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -158,6 +175,25 @@ export default function Epi() {
     return (
         <React.Fragment>
             <CssBaseline />
+
+            <Grid item xs={12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={4}>
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
+                            <StyledBreadcrumb
+                                color="primary"
+                                aria-current="page"
+                                component="p"
+                                label="EPI/EPC"
+                                icon={<LibraryAddIcon fontSize="small"/>}
+                            />
+                        </Breadcrumbs>
+                    </Grid>
+
+                </Grid>
+                <br/>
+            </Grid>
+
 
 
             <Alert severity="info">

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import {emphasize, withStyles} from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Chip from '@material-ui/core/Chip';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
@@ -21,19 +19,14 @@ import Auth from '../../shared/auth';
 import CapacidadeAtendimento from '../../components/CapacideAtedimento/CapacidadeAtendimento'
 import Calculo from './Calculo';
 
+import Chip from '@material-ui/core/Chip';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.grey[100],
         height: theme.spacing(3),
         color: theme.palette.grey[800],
         fontWeight: theme.typography.fontWeightRegular,
-        '&:hover, &:focus': {
-            backgroundColor: theme.palette.grey[300],
-        },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-        },
         width: '100%'
     },
 }))(Chip);
@@ -143,9 +136,8 @@ export default function Simulador() {
 								<StyledBreadcrumb
 									color="primary"
 									aria-current="page"
-									component="a"
-									href="#"
-									label="Simular"
+									component="p"
+									label="Simulador"
 									icon={<FindInPageIcon fontSize="small"/>}
 								/>
 							</Breadcrumbs>

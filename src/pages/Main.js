@@ -213,7 +213,7 @@ export default function Main() {
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="2">
                         <ListItemIcon><AssessmentIcon /></ListItemIcon>
-                        <ListItemText primary="Painel Brasil" />
+                        <ListItemText primary="Painel - INSS Brasil" />
                     </ListItem>
                 </Link>
 
@@ -235,7 +235,7 @@ export default function Main() {
                     </ListItem>
                 </Link>*/}
 
-                { isChefia && (
+                { !isChefia && (
                 <React.Fragment>
                     <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
                         Validação
