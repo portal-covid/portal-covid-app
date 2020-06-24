@@ -204,8 +204,8 @@ export default function Epi() {
                                     <Card className={classes.root} variant="outlined">
                                         <CardContent>
                                             <FormControl component="fieldset">
-                                                <FormLabel component="legend">Capote</FormLabel>
-                                                <RadioGroup  row aria-label="EPI Capote"
+                                                <FormLabel component="legend">Capote(avental)</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Capote(avental)"
                                                              name="epis_capote"
                                                              value={form.epis_capote}
                                                              onChange={handleInputChange}>

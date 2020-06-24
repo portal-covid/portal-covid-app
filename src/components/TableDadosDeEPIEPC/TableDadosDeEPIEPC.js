@@ -36,7 +36,7 @@ export default function TableDadosDeEPIEPC(props) {
 
     const data = [
         ["Álcool" , 'EPI'].concat(montaResposta(props.epi.alcool)),
-        ["Capote" , 'EPI'].concat(montaResposta(props.epi.capote)),
+        ["Capote(avental)" , 'EPI'].concat(montaResposta(props.epi.capote)),
         ["Luvas" , 'EPI'].concat(montaResposta(props.epi.luvas)),
         ["Máscara" , 'EPI'].concat(montaResposta(props.epi.mascaras)),
         ["Protetor Facial" , 'EPI'].concat(montaResposta(props.epi.protetor_facial)),
