@@ -16,7 +16,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import ListItemText from '@material-ui/core/ListItemText';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -203,7 +202,7 @@ export default function Main() {
                 <Link
                     to="/info"
                     style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
+                    <ListItem button key="1">
                         <ListItemIcon><HomeIcon /></ListItemIcon>
                         <ListItemText primary="Principal" />
                     </ListItem>
@@ -212,16 +211,16 @@ export default function Main() {
                 <Link
                     to="/resumo"
                     style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
+                    <ListItem button key="2">
                         <ListItemIcon><AssessmentIcon /></ListItemIcon>
-                        <ListItemText primary="Painel Resumo" />
+                        <ListItemText primary="Painel Brasil" />
                     </ListItem>
                 </Link>
 
                 <Link
                     to="/simulador"
                     style={{ textDecoration: 'none', color: '#757575' }}>
-                    <ListItem button key="Home">
+                    <ListItem button key="3">
                         <ListItemIcon><FindInPageIcon /></ListItemIcon>
                         <ListItemText primary="Simulador" />
                     </ListItem>
@@ -244,7 +243,7 @@ export default function Main() {
                     <Link
                         to="/pessoal"
                         style={{ textDecoration: 'none', color: '#757575' }}>
-                        <ListItem button key="Home">
+                        <ListItem button key="4">
                             <ListItemIcon><PeopleAltIcon /></ListItemIcon>
                             <ListItemText primary="Pessoal" />
                         </ListItem>
@@ -253,7 +252,7 @@ export default function Main() {
                     <Link
                         to="/infra"
                         style={{ textDecoration: 'none', color: '#757575' }}>
-                        <ListItem button key="Home">
+                        <ListItem button key="5">
                             <ListItemIcon><AccountBalanceIcon /></ListItemIcon>
                             <ListItemText primary="Infraestrutura" />
                         </ListItem>
@@ -262,7 +261,7 @@ export default function Main() {
                     <Link
                         to="/epi"
                         style={{ textDecoration: 'none', color: '#757575' }}>
-                        <ListItem button key="Home">
+                        <ListItem button key="6">
                             <ListItemIcon><LibraryAddIcon /></ListItemIcon>
                             <ListItemText primary="EPI/EPC" />
                         </ListItem>
@@ -271,7 +270,7 @@ export default function Main() {
                     <Link
                         to="/contratos"
                         style={{ textDecoration: 'none', color: '#757575' }}>
-                        <ListItem button key="Home">
+                        <ListItem button key="7">
                             <ListItemIcon><AssignmentIcon /></ListItemIcon>
                             <ListItemText primary="Contratos Essenciais" />
                         </ListItem>
@@ -285,7 +284,7 @@ export default function Main() {
                         to="#"
                         onClick={logout}
                         style={{ textDecoration: 'none', color: '#757575' }}>
-                        <ListItem button key="Sair">
+                        <ListItem button key="8">
                             <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                             <ListItemText primary="Sair" />
                         </ListItem>

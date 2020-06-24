@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {emphasize, withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import HomeIcon from '@material-ui/icons/Home';
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Grid from '@material-ui/core/Grid';
@@ -17,7 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useSnackbar } from 'notistack';
-
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import Auth from '../../shared/auth';
 import CapacidadeAtendimento from '../../components/CapacideAtedimento/CapacidadeAtendimento'
 import Calculo from './Calculo';
@@ -147,7 +146,7 @@ export default function Simulador() {
 									component="a"
 									href="#"
 									label="Simular"
-									icon={<HomeIcon fontSize="small"/>}
+									icon={<FindInPageIcon fontSize="small"/>}
 								/>
 							</Breadcrumbs>
 						</Grid>

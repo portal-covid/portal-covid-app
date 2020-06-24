@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 import TextLabels from '../../theme/textLabels';
 
 
-const columns = ["Nome", "Sigla","Código da Gerência", "Abre","Não Abre", '% Agências Fechadas'];
+const columns = ["Código da Gerência", "Nome", "Sigla", "Abre","Não Abre", '% Agências Fechadas'];
 
 const options = {
     filterType: 'checkbox',
@@ -14,22 +14,6 @@ const options = {
 
 };
 
-const montaResposta = function (item) {
-
-    if(item.toLowerCase() === 'sim'){
-
-        return ['X','','']
-    }else if(item.toLowerCase() === 'nao'){
-
-        return ['','X','']
-    }else if(item.toLowerCase() === 'nao se aplica'){
-
-        return ['','','X']
-    }else{
-        return ['-','-','-']
-    }
-
-};
 
 export default function TableDadosDeSituacaoAps(props) {
 
@@ -41,9 +25,9 @@ export default function TableDadosDeSituacaoAps(props) {
 
         let percentual = (parseInt(elemento.situacao.fechadas)/soma )  * 100;
 
-        data.push([elemento.nome,
+        data.push([ elemento.gerencia,
+                    elemento.nome,
                     elemento.sigla,
-                    elemento.gerencia,
                     elemento.situacao.abertas,
                     elemento.situacao.fechadas,
                     percentual.toFixed(2)
