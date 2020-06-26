@@ -20,7 +20,6 @@ export default function SelectUnidades({onChange}) {
     return (
         <>
             <Autocomplete
-                id="asynchronous-demo"
                 options={options}
                 getOptionLabel={(option) =>  option.ol + ' - ' + option.nome}
                 style={{ width: "100%" }}
