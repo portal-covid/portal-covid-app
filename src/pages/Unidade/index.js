@@ -4,16 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import Auth from '../../shared/auth';
 import { useSnackbar } from 'notistack';
 import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Asynchronous from '../../components/SelectUnidades'
+import SelectUnidades from '../../components/SelectUnidades'
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -51,7 +48,6 @@ export default function Unidade() {
 	const classes = useStyles();
 	const history = useHistory();
 	const [unidade, setUnidade] = useState('');
-	const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
 	const token = Auth.getToken();
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -117,24 +113,7 @@ export default function Unidade() {
 					Portal do INSS para divulgar dados e informações relacionados ao Coronavírus (COVID-19) na Instituição. Para informações mais detalhadas, selecione a unidade abaixo e clique em pesquisar.
 				</Typography>
 				<FormControl variant="outlined" className={classes.formControl}>
-
-					<Asynchronous/>
-					{/*
-					<InputLabel id="demo-simple-select-label">Unidade</InputLabel>
-					<Select*/}
-						{/*className={classes.select}*/}
-						{/*labelId="demo-simple-select-label"*/}
-						{/*id="demo-simple-select"*/}
-						{/*value={unidade}*/}
-						{/*onChange={handleChange}*/}
-						{/*label="Unidade"*/}
-					{/*>*/}
-						{/*{unidades.map((unidade) => (*/}
-							{/*<MenuItem key={unidade.ol} value={unidade.ol}>*/}
-							{/*{unidade.ol} - {unidade.nome}*/}
-							{/*</MenuItem>*/}
-						{/*))}*/}
-					{/*</Select>*/}
+					<SelectUnidades onChange={handleChange}/>
 				</FormControl>
                 { error && (
                     <Alert severity="error">Selecione uma unidade!</Alert>

@@ -1,22 +1,26 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
-import fetch from 'cross-fetch';
 import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Auth from "../../shared/auth";
+import parse from 'autosuggest-highlight/parse';
+import match from 'autosuggest-highlight/match';
 
-function sleep(delay = 0) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
-}
-
-export default function Asynchronous() {
+export default function SelectUnidades(props) {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
     const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
+
+    const [value, setValue] = React.useState(options[0]);
+    const [inputValue, setInputValue] = React.useState('');
+
+    React.useEffect(() => {
+
+        props.value = value
+
+    },[value]);
+
 
 
     React.useEffect(() => {
@@ -26,19 +30,9 @@ export default function Asynchronous() {
             return undefined;
         }
 
-        (async () => {
-            //const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-
-
-
-            if (active) {
-
-
-                setOptions(Object.keys(unidades).map((key) => unidades[key]));
-
-
-            }
-        })();
+        if (active) {
+                    setOptions(Object.keys(unidades).map((key) => unidades[key]));
+        }
 
         return () => {
             active = false;
@@ -52,9 +46,12 @@ export default function Asynchronous() {
     }, [open]);
 
     return (
-        <Autocomplete
+
+        <>
+
+            <Autocomplete
             id="asynchronous-demo"
-            style={{ width: 300 }}
+            style={{ width: "100%" }}
             open={open}
             onOpen={() => {
                 setOpen(true);
@@ -62,14 +59,38 @@ export default function Asynchronous() {
             onClose={() => {
                 setOpen(false);
             }}
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+            }}
+
             getOptionSelected={(option, value) => option.ol === value.ol}
             getOptionLabel={(option) =>  option.ol + ' - ' + option.nome}
             options={options}
             loading={loading}
+            renderOption={(option, { inputValue }) => {
+                const matches = match(option.ol + ' - '  + option.nome , inputValue);
+                const parts = parse(option.ol + ' - '  + option.nome, matches);
+
+                return (
+                    <div>
+                        {parts.map((part, index) => (
+                            <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 ,
+                                color: part.highlight ? '#FF0218' : '#000' }}>
+                {part.text}
+              </span>
+                        ))}
+                    </div>
+                );
+            }}
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    label="Asynchronous"
+                    label="Unidade"
                     variant="outlined"
                     InputProps={{
                         ...params.InputProps,
@@ -83,5 +104,6 @@ export default function Asynchronous() {
                 />
             )}
         />
+       </>
     );
 }
