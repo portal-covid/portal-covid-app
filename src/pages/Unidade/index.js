@@ -53,8 +53,9 @@ export default function Unidade() {
     const [loading, setLoading] = useState(false);
 	
 	const handleChange = (value) => {
-		debugger;
+
 		setUnidade(value);
+		
 	};
 
 	async function handleSubmit(event) {
