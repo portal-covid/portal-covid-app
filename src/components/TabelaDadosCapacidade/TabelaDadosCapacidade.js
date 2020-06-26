@@ -101,13 +101,6 @@ export default function TableDadosCapacidade(props) {
     return (
         <React.Fragment>
             <Grid item xs={12}>
-                <Typography variant="h5" color="primary">
-                    Capacidade de Atendimento
-                </Typography>
-                <br />
-            </Grid>
-
-            <Grid item xs={12}>
                 <MUIDataTable
                     title={"Capacidade de Atendimento - Detalhes"}
                     data={data}

@@ -13,6 +13,10 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 import TableDadosDePessoal from "../../components/TableDadosDePessoal/TableDadosDePessoal";
 import TableDadosDeSituacaoAps from "../../components/TableDadosDeSituacaoAps/TableDadosDeSituacaoAps";
 import TableDadosCapacidade from "../../components/TabelaDadosCapacidade/TabelaDadosCapacidade";
+import PainelDadosCapacidade from "../../components/TabelaDadosCapacidade/PainelDadosCapacidade";
+import PainelDadosInfra from "../../components/TabelaDadosCapacidade/PainelDadosInfra";
+import TableDadosInfra from "../../components/TabelaDadosCapacidade/TabelaDadosInfra";
+
 import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from "@material-ui/core/Chip/Chip";
@@ -178,11 +182,17 @@ function PainelComponent({dados}){
                 <br/>
             </Grid>
 
-            <TableDadosDePessoal {...dadosDePessoal}/>
+            <TableDadosDePessoal {...dadosDePessoal} />
+
+            <PainelDadosCapacidade {...dados.recursosUnidades} />
 
             <TableDadosCapacidade {...dados.recursosUnidades} />
 
-            <TableDadosDeSituacaoAps {...dados}/>
+            <PainelDadosInfra {...dados.recursosUnidades} />
+
+            <TableDadosInfra {...dados.recursosUnidades} />
+
+            <TableDadosDeSituacaoAps {...dados} />
 
         </React.Fragment>
     );
