@@ -7,8 +7,7 @@ import match from 'autosuggest-highlight/match';
 
 export default function SelectUnidades({onChange}) {
 
-    const unidades = JSON.parse(Auth.getOls());
-    const options = Object.keys(unidades).map((key) => unidades[key]);
+    const options = JSON.parse(Auth.getOls());
 
     const [value, setValue] = React.useState(options[0]);
 
@@ -36,9 +35,11 @@ export default function SelectUnidades({onChange}) {
                     return (
                         <div>
                             {parts.map((part, index) => {
-                                const fontWeight = part.highlight ? 700 : 400;
-                                const color = part.highlight ? '#FF0218' : '#000';
-                                return <span key={index} style={{fontWeight, color}}> {part.text} </span>;
+                                const style = {
+                                    fontWeight : part.highlight ? 700 : 400,
+                                    color : part.highlight ? '#FF0218' : '#000'
+                                };
+                                return <span key={index} style={style}>{part.text}</span>;
                             })}
                         </div>
                     );
