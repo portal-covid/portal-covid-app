@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Auth from "../../shared/auth";
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
