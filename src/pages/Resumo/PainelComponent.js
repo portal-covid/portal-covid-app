@@ -12,6 +12,7 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 
 import TableDadosDePessoal from "../../components/TableDadosDePessoal/TableDadosDePessoal";
 import TableDadosDeSituacaoAps from "../../components/TableDadosDeSituacaoAps/TableDadosDeSituacaoAps";
+import TableDadosCapacidade from "../../components/TabelaDadosCapacidade/TabelaDadosCapacidade";
 import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from "@material-ui/core/Chip/Chip";
@@ -177,13 +178,11 @@ function PainelComponent({dados}){
                 <br/>
             </Grid>
 
-
             <TableDadosDePessoal {...dadosDePessoal}/>
+
+            <TableDadosCapacidade {...dados.recursosUnidades} />
+
             <TableDadosDeSituacaoAps {...dados}/>
-
-
-
-
 
         </React.Fragment>
     );

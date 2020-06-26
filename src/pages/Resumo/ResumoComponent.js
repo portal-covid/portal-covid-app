@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {  useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Auth from '../../shared/auth';
 import api from '../../services/api';
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 function ResumoComponent(){
     
     const classes = useStyles();
-    const { enqueueSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();    
 
     function alerta(mensagem, variant){
         enqueueSnackbar(mensagem, {
@@ -36,9 +37,15 @@ function ResumoComponent(){
     const [erro, setErro] = useState(false);
 
     useEffect(() => {
-
+        const unidades = JSON.parse(Auth.getOls());
+        const lista = [];
+        
+        unidades.forEach(unidade => {
+            lista.push(unidade.ol);
+        });
+        
         const data = {
-            unidades : ["01001"],
+            unidades : lista,
             tipoRelatorio: "TotalUnidades"   
         };
 
@@ -47,7 +54,6 @@ function ResumoComponent(){
         api.post('relatorio', data, {
             headers: {"Authorization" : "Bearer " + token }
         }).then(response => {
-
             try{
 
                 if(!response.data.dados){

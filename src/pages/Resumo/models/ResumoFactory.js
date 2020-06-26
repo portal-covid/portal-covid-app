@@ -56,10 +56,11 @@ class ResumoFactory{
             resumo.situacaoApsPorGerencia = dados.TotalSituacaoApsPorGerencia;
         }
 
-
-
-
-
+        if(!Array.isArray(dados.TotalRecursosUnidades) || !dados.TotalRecursosUnidades.length){
+            resumo.alertas.push("Total Recursos Unidades retornou um valor inesperado");
+        }else{
+            resumo.recursosUnidades = dados.TotalRecursosUnidades;
+        }
 
         return resumo;
     }
