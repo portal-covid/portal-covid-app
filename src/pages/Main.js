@@ -213,7 +213,7 @@ export default function Main() {
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="2">
                         <ListItemIcon><AssessmentIcon /></ListItemIcon>
-                        <ListItemText primary="Painel - INSS Brasil" />
+                        <ListItemText primary="Painel" />
                     </ListItem>
                 </Link>
 

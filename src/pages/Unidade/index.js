@@ -13,7 +13,7 @@ import Auth from '../../shared/auth';
 import { useSnackbar } from 'notistack';
 import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
-  
+import Asynchronous from '../../components/SelectUnidades'
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -117,21 +117,24 @@ export default function Unidade() {
 					Portal do INSS para divulgar dados e informações relacionados ao Coronavírus (COVID-19) na Instituição. Para informações mais detalhadas, selecione a unidade abaixo e clique em pesquisar.
 				</Typography>
 				<FormControl variant="outlined" className={classes.formControl}>
+
+					<Asynchronous/>
+					{/*
 					<InputLabel id="demo-simple-select-label">Unidade</InputLabel>
-					<Select
-						className={classes.select}
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={unidade}
-						onChange={handleChange}
-						label="Unidade"
-					>
-						{unidades.map((unidade) => (
-							<MenuItem key={unidade.ol} value={unidade.ol}>
-							{unidade.ol} - {unidade.nome}
-							</MenuItem>
-						))}
-					</Select>
+					<Select*/}
+						{/*className={classes.select}*/}
+						{/*labelId="demo-simple-select-label"*/}
+						{/*id="demo-simple-select"*/}
+						{/*value={unidade}*/}
+						{/*onChange={handleChange}*/}
+						{/*label="Unidade"*/}
+					{/*>*/}
+						{/*{unidades.map((unidade) => (*/}
+							{/*<MenuItem key={unidade.ol} value={unidade.ol}>*/}
+							{/*{unidade.ol} - {unidade.nome}*/}
+							{/*</MenuItem>*/}
+						{/*))}*/}
+					{/*</Select>*/}
 				</FormControl>
                 { error && (
                     <Alert severity="error">Selecione uma unidade!</Alert>
