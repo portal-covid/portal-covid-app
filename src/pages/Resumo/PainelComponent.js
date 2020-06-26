@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid/Grid";
 
-import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded';

@@ -220,7 +220,8 @@ export default function Infra() {
             </Grid>
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
-                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade. Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade.
+                    Para alterações, informe novos valores desejados e clique em SALVAR</p>
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
 

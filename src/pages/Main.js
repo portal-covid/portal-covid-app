@@ -235,7 +235,7 @@ export default function Main() {
                     </ListItem>
                 </Link>*/}
 
-                { !isChefia && (
+                { isChefia && (
                 <React.Fragment>
                     <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
                         Validação

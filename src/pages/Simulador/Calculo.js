@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default class Calculo {
 
     static _preparar_dados(dados) {
