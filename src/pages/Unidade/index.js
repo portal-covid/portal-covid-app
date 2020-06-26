@@ -52,8 +52,9 @@ export default function Unidade() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 	
-	const handleChange = (event) => {
-		setUnidade(event.target.value);
+	const handleChange = (value) => {
+		debugger;
+		setUnidade(value);
 	};
 
 	async function handleSubmit(event) {

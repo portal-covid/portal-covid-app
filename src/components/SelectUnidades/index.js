@@ -6,7 +6,7 @@ import Auth from "../../shared/auth";
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
-export default function SelectUnidades(props) {
+export default function SelectUnidades({onChange}) {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -17,7 +17,7 @@ export default function SelectUnidades(props) {
 
     React.useEffect(() => {
 
-        props.value = value
+        onChange(value);
 
     },[value]);
 
