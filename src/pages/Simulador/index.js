@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import {emphasize, withStyles} from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Chip from '@material-ui/core/Chip';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
@@ -15,25 +13,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { useSnackbar } from 'notistack';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import Auth from '../../shared/auth';
 import CapacidadeAtendimento from '../../components/CapacideAtedimento/CapacidadeAtendimento'
 import Calculo from './Calculo';
 
+import Chip from '@material-ui/core/Chip';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import {Alert, AlertTitle} from "@material-ui/lab";
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.grey[100],
         height: theme.spacing(3),
         color: theme.palette.grey[800],
         fontWeight: theme.typography.fontWeightRegular,
-        '&:hover, &:focus': {
-            backgroundColor: theme.palette.grey[300],
-        },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-        },
         width: '100%'
     },
 }))(Chip);
@@ -46,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
         },
 	},
 	card: {
-		backgroundColor: theme.palette.background.paper,
+		backgroundColor: '#E7EEF9',
+
 	},
     cardStyleInfra : {
         minWidth: 275,
@@ -87,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Simulador() {
-	const { enqueueSnackbar } = useSnackbar()
 
 	const classes = useStyles();
     const location = useLocation();
@@ -143,16 +136,22 @@ export default function Simulador() {
 								<StyledBreadcrumb
 									color="primary"
 									aria-current="page"
-									component="a"
-									href="#"
-									label="Simular"
+									component="p"
+									label="Simulador"
 									icon={<FindInPageIcon fontSize="small"/>}
 								/>
 							</Breadcrumbs>
 						</Grid>
-
 					</Grid>
+
 				</Grid>
+
+                <Grid item xs={12} >
+                <Alert severity="info">
+                    <AlertTitle>Gestores</AlertTitle>
+                    <p>Para simular a capacidade de atendimento da sua unidade, basta preencher/alterar os dados dos quadros em destaque</p>
+                </Alert>
+                </Grid>
 
 
                 <Grid item xs={12} md={3} >
@@ -161,6 +160,7 @@ export default function Simulador() {
                         <Typography variant="h5" color='primary'>
                             Simulador
                         </Typography>
+
                     </Grid>
 					<br/>
 					<Grid item xs={12}>

@@ -107,7 +107,10 @@ export default function Home() {
 					Bem-vindo ao Portal COVID-19
 				</Typography>
 				<Typography variant="h6" align="center" color="textSecondary" paragraph>
-					Portal do INSS para divulgar dados e informações relacionados ao Coronavírus (COVID-19) na Instituição. Para informações mais detalhadas, selecione a unidade abaixo e clique em pesquisar.
+                    Portal para acompanhamento da reabertura das unidades de atendimento do INSS,
+					considerando as medidas de segurança frente ao novo coronavírus.
+					Para informações detalhadas de pessoal, infraestrutura e itens de proteção,
+					selecione a unidade abaixo e clique em pesquisar
 				</Typography>
 				<FormControl variant="outlined" className={classes.formControl}>
 					<InputLabel id="demo-simple-select-label">Unidade</InputLabel>

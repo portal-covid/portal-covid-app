@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid/Grid";
 
-import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded';
@@ -12,6 +12,7 @@ import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded'
 
 import TableDadosDePessoal from "../../components/TableDadosDePessoal/TableDadosDePessoal";
 import TableDadosDeSituacaoAps from "../../components/TableDadosDeSituacaoAps/TableDadosDeSituacaoAps";
+
 import TableDadosCapacidade from "../../components/TabelaDadosCapacidade/TabelaDadosCapacidade";
 import PainelDadosCapacidade from "../../components/TabelaDadosCapacidade/PainelDadosCapacidade";
 import PainelDadosInfra from "../../components/TabelaDadosCapacidade/PainelDadosInfra";
@@ -21,6 +22,8 @@ import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from "@material-ui/core/Chip/Chip";
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import withStyles from "@material-ui/core/styles/withStyles";
+import {emphasize} from "@material-ui/core";
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -38,6 +41,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
         width: '100%'
     },
 }))(Chip);
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -108,23 +112,7 @@ function PainelComponent({dados}){
     return (
         <React.Fragment>
 
-            <Grid item xs={12}>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} md={4}>
-                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
-                            <StyledBreadcrumb
-                                color="primary"
-                                aria-current="page"
-                                component="a"
-                                href="#"
-                                label="Painel Brasil"
-                                icon={<AssessmentIcon fontSize="small"/>}
-                            />
-                        </Breadcrumbs>
-                    </Grid>
 
-                </Grid>
-            </Grid>
 
             <Grid className={classes.root} item xs={12} md={12} >
                 <Typography variant="h5" color='primary'>

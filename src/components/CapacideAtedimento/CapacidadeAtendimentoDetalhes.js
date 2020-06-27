@@ -35,7 +35,7 @@ export default function CapacidadeAtendimentoDetalhes(props){
 
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary="Capacidade de atendimento por faixa de horário agendado:"/>
+                                <ListItemText primary="Capacidade de atendimento por hora:"/>
                                 <ListItemSecondaryAction>
                                     <ListItemText primary={props.capAtendFaixaHAgendado}/>
                                 </ListItemSecondaryAction>
@@ -49,7 +49,7 @@ export default function CapacidadeAtendimentoDetalhes(props){
 
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary="Oferta de atendimento por faixa de horário agendado:"/>
+                                <ListItemText primary="Oferta de atendimento por hora:"/>
                                 <ListItemSecondaryAction>
                                     <ListItemText primary={props.ofertaAtendimentoFaixaHorario}/>
                                 </ListItemSecondaryAction>

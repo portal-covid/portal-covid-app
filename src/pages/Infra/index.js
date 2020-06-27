@@ -22,12 +22,22 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 
-
-
-
-
-
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import Divider from '@material-ui/core/Divider';
+import Breadcrumbs from "@material-ui/core/Breadcrumbs/Breadcrumbs";
+import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Chip from '@material-ui/core/Chip';
+import { withStyles} from '@material-ui/core/styles';
+const StyledBreadcrumb = withStyles((theme) => ({
+    root: {
+        backgroundColor: theme.palette.grey[100],
+        height: theme.spacing(3),
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightRegular,
+        width: '100%'
+    },
+}))(Chip);
+
 
 
 
@@ -191,9 +201,27 @@ export default function Infra() {
     return (
         <React.Fragment>
             <CssBaseline />
+            <Grid item xs={12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={4}>
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
+                            <StyledBreadcrumb
+                                color="primary"
+                                aria-current="page"
+                                component="p"
+                                label="Infraestrutura"
+                                icon={<AccountBalanceIcon fontSize="small"/>}
+                            />
+                        </Breadcrumbs>
+                    </Grid>
+
+                </Grid>
+                <br/>
+            </Grid>
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
-                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade. Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação do número de infraestrutura da sua unidade.
+                    Para alterações, informe novos valores desejados e clique em SALVAR</p>
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
 

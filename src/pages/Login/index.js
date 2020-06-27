@@ -16,7 +16,7 @@ import LogoIMG from '../../assets/logo_INSS.svg';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-import ImageLogin from '../../assets/portal.png';
+import ImageLogin from '../../assets/portal.jpg';
 
 
 function Copyright() {
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'right',
     },
     paper: {
         margin: theme.spacing(8, 4),
@@ -117,8 +117,8 @@ export default function Login() {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Grid item xs={false} sm={4} md={8} className={classes.image} />
+            <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
 
                         <img aria-hidden="true" alt="Logotipo INSS" src={LogoIMG} width="120px" style={{marginBottom: 20}}/>

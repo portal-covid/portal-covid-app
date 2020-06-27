@@ -22,6 +22,23 @@ import Divider from '@material-ui/core/Divider';
 import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+
+import Breadcrumbs from "@material-ui/core/Breadcrumbs/Breadcrumbs";
+import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Chip from '@material-ui/core/Chip';
+import { withStyles} from '@material-ui/core/styles';
+const StyledBreadcrumb = withStyles((theme) => ({
+    root: {
+        backgroundColor: theme.palette.grey[100],
+        height: theme.spacing(3),
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightRegular,
+        width: '100%'
+    },
+}))(Chip);
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -159,10 +176,30 @@ export default function Epi() {
         <React.Fragment>
             <CssBaseline />
 
+            <Grid item xs={12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={4}>
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
+                            <StyledBreadcrumb
+                                color="primary"
+                                aria-current="page"
+                                component="p"
+                                label="EPI/EPC"
+                                icon={<LibraryAddIcon fontSize="small"/>}
+                            />
+                        </Breadcrumbs>
+                    </Grid>
+
+                </Grid>
+                <br/>
+            </Grid>
+
+
 
             <Alert severity="info">
                 <AlertTitle>Gestores</AlertTitle>
-                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação dos dados referentes aos EPIs e EPCs da sua unidade. Para alterações, informe os novos valor desejado e clique em SALVAR.</p>
+                <p>Prezado Gestor, esta aba é destinada a demonstrar a compilação dos dados referentes aos EPIs e EPCs da sua unidade.
+                    Para alterações, informe novos valores desejados e clique em SALVAR</p>
             </Alert>
             <form onSubmit={handleSubmit} className={classes.root}>
 
@@ -204,8 +241,8 @@ export default function Epi() {
                                     <Card className={classes.root} variant="outlined">
                                         <CardContent>
                                             <FormControl component="fieldset">
-                                                <FormLabel component="legend">Capote</FormLabel>
-                                                <RadioGroup  row aria-label="EPI Capote"
+                                                <FormLabel component="legend">Capote(avental)</FormLabel>
+                                                <RadioGroup  row aria-label="EPI Capote(avental)"
                                                              name="epis_capote"
                                                              value={form.epis_capote}
                                                              onChange={handleInputChange}>
