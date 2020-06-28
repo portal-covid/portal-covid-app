@@ -12,10 +12,12 @@ import Grid from "@material-ui/core/Grid/Grid";
 import Divider from "@material-ui/core/Divider/Divider";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import {emphasize, withStyles} from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 
 import Chip from "@material-ui/core/Chip/Chip";
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import Backdrop from "@material-ui/core/Backdrop/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -35,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResumoComponent(){
-    
+
+    const [loading, setLoading] = useState(false);
     const classes = useStyles();
     const { enqueueSnackbar } = useSnackbar();    
 
@@ -53,6 +56,7 @@ function ResumoComponent(){
     const [erro, setErro] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const unidades = JSON.parse(Auth.getOls());
         const lista = [];
         
@@ -73,7 +77,7 @@ function ResumoComponent(){
             try{
 
                 if(!response.data.dados){
-                    const error = new Error("Consulta não retornou dados!")
+                    const error = new Error("Consulta não retornou dados!");
                     error.mensagemParaUsuario = true;
                     throw error;
                 }
@@ -91,8 +95,9 @@ function ResumoComponent(){
                 }
                 
                 setDados(resumo);
-                    
+                setLoading(false);
             }catch(e){
+                setLoading(false);
                 if(erro.mensagemParaUsuario){
                     setErro(e.message);
                 }else{
@@ -102,7 +107,7 @@ function ResumoComponent(){
             }
 
         }).catch(e => {
-            
+            setLoading(false);
             let mensagem = '';
 
             if(e.response && e.response.data && e.response.data.message){
@@ -128,7 +133,7 @@ function ResumoComponent(){
                                 color="primary"
                                 aria-current="page"
                                 component="p"
-                                label="Painel - INSS Brasil"
+                                label="Painel"
                                 icon={<AssessmentIcon fontSize="small"/>}
                             />
                         </Breadcrumbs>
@@ -139,7 +144,7 @@ function ResumoComponent(){
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="h5" color='primary'>
-                    Painel -  INSS BRASIL
+                    Painel
                 </Typography>
                 <Divider/>
             </Grid>
@@ -152,7 +157,9 @@ function ResumoComponent(){
             erro ? (
                 <div>Erro:{erro}</div>
             ) : !dados ? (
-                <div>carregando...</div>
+                <Backdrop className={classes.backdrop} open={loading}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
             ) : (
                 <PainelComponent dados={dados}></PainelComponent>
             )}

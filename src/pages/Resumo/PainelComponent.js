@@ -172,11 +172,12 @@ function PainelComponent({dados}){
 
             <TableDadosDePessoal {...dadosDePessoal} />
 
+
             <PainelDadosCapacidade {...dados.recursosUnidades} />
 
-            <TableDadosCapacidade {...dados.recursosUnidades} />
+         <TableDadosCapacidade {...dados.recursosUnidades} />
 
-            <PainelDadosInfra {...dados.recursosUnidades} />
+          <PainelDadosInfra {...dados.recursosUnidades} />
 
             <TableDadosInfra {...dados.recursosUnidades} />
 

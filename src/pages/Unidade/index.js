@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
@@ -11,6 +10,10 @@ import { useSnackbar } from 'notistack';
 import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SelectUnidades from '../../components/SelectUnidades'
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import MensagemBoasVindas from '../../components/MensagemBoasVindas'
+import Grid from "@material-ui/core/Grid/Grid";
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -64,6 +67,7 @@ export default function Unidade() {
         
         if (!unidade) {
             setError(true);
+            setLoading(false);
             return false;
         }
 
@@ -76,13 +80,12 @@ export default function Unidade() {
             await api.post('relatorio', data, { 
 				headers: {"Authorization" : "Bearer " + token }
 			}).then(response => {
+                setLoading(false);
                 if(response.data.dados.length) {
                     localStorage.setItem('olAtual', unidade);
                     localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
-                    setLoading(false);
                     history.push('/info', { detail: response.data.dados[0]});
                 } else {
-                    setLoading(false);
                     enqueueSnackbar('Não foi encontrado dados para esta unidade!', { 
                         variant: 'info',
                         anchorOrigin: {
@@ -94,7 +97,8 @@ export default function Unidade() {
             });
         } catch(error) {
             setLoading(false);
-            enqueueSnackbar('Erro ao retornar os dados!', { 
+
+            enqueueSnackbar('Erro ao retornar os dados!', {
                 variant: 'error',
                 anchorOrigin: {
                     vertical: 'top',
@@ -102,42 +106,57 @@ export default function Unidade() {
                 }
             });
         }
-	}
+        setLoading(false);
+
+    }
 
     return (
 		<React.Fragment>
-			<Container className={classes.root} maxWidth="sm">
-				<Typography component="h2" variant="h4" align="center" color="textPrimary" className={classes.title}>
-					Bem-vindo ao Portal COVID-19
-				</Typography>
-				<Typography variant="h6" align="center" color="textSecondary" paragraph>
-                    Portal para acompanhamento da reabertura das unidades de atendimento do INSS,
-                    considerando as medidas de segurança frente ao novo coronavírus.
-                    Para informações detalhadas de pessoal, infraestrutura e itens de proteção,
-                    selecione a unidade abaixo e clique em pesquisar
-				</Typography>
-				<FormControl variant="outlined" className={classes.formControl}>
-					<SelectUnidades onChange={handleChange}/>
-				</FormControl>
-                { error && (
-                    <Alert severity="error">Selecione uma unidade!</Alert>
-                )}
-				<div className={classes.divButton}>
-					<Button 
-						size="large" 
-						variant="contained" 
-						color="primary" 
-						className={classes.button}
-						onClick={handleSubmit}>
-                        Pesquisar
-					</Button>
-				</div>
-                <div className={classes.loading}>
-                { loading && (
-                    <CircularProgress />
-                )}
-                </div>
-          	</Container>
+		<CssBaseline/>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+
+                <Grid>
+                    <Container>
+
+                        <MensagemBoasVindas />
+
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <SelectUnidades onChange={handleChange}/>
+                        </FormControl>
+                        { error && (
+                            <Alert severity="error">Selecione uma unidade!</Alert>
+                        )}
+                        <div className={classes.divButton}>
+                            <Button
+                                size="large"
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                onClick={handleSubmit}>
+                                Pesquisar
+                            </Button>
+                        </div>
+                        <div className={classes.loading}>
+                            { loading && (
+                                <CircularProgress />
+                            )}
+                        </div>
+
+
+                    </Container>
+                </Grid>
+
+            </Grid>
+
+
+
 		</React.Fragment>
     );
 }

@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import ScannerIcon from '@material-ui/icons/Scanner';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
+import AccessibilityNewOutlinedIcon from '@material-ui/icons/AccessibilityNewOutlined';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        minHeight: '10vw'
+        minHeight: '14vw'
     },
     typography:{
         color: theme.palette.info.contrastText
@@ -45,6 +47,7 @@ export default function PainelDadosCapacidade(props) {
     return (
         <React.Fragment>
             <Grid className={classes.root} item xs={12} md={12} >
+                <br/>
                 <Typography variant="h5" color='primary'>
                     Infraestrutura
                 </Typography>
@@ -55,10 +58,10 @@ export default function PainelDadosCapacidade(props) {
                     <Grid item xs={12} md={2}>
                         <Paper  style={{backgroundColor:"#48CBEB"}} className={classes.paper} variant="outlined"  elevation={9}>
 
-                            <Typography className={classes.typography} variant="h4">
+                            <Typography className={classes.typography} variant="h6">
                                 <OpenWithIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_metragem_administrativo} m²
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
@@ -68,12 +71,12 @@ export default function PainelDadosCapacidade(props) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Paper style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
+                        <Paper style={{backgroundColor:"#48CBEB"}} className={classes.paper} variant="outlined"  elevation={9}>
 
-                            <Typography className={classes.typography} variant="h4">
+                            <Typography className={classes.typography} variant="h6">
                                 <OpenWithIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_metragem_perito} m²
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
@@ -82,11 +85,11 @@ export default function PainelDadosCapacidade(props) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Paper  style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
-                            <Typography className={classes.typography} variant="h4">
+                        <Paper  style={{backgroundColor:"#C72487"}} className={classes.paper} variant="outlined"  elevation={9}>
+                            <Typography className={classes.typography} variant="h6">
                                 <AssignmentIndIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_guiches}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
@@ -95,12 +98,12 @@ export default function PainelDadosCapacidade(props) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Paper style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
+                        <Paper style={{backgroundColor:"#C72487"}} className={classes.paper} variant="outlined"  elevation={9}>
 
-                            <Typography className={classes.typography} variant="h4">
-                                <AssignmentIndIcon/>
+                            <Typography className={classes.typography} variant="h6">
+                                <AccessibilityNewOutlinedIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_salas_assistente}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
@@ -109,11 +112,11 @@ export default function PainelDadosCapacidade(props) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Paper  style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
-                            <Typography className={classes.typography} variant="h4">
-                                <AssignmentIndIcon/>
+                        <Paper  style={{backgroundColor:"#C72487"}} className={classes.paper} variant="outlined"  elevation={9}>
+                            <Typography className={classes.typography} variant="h6">
+                                <LocalHospitalOutlinedIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_salas_peritos}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
@@ -123,10 +126,10 @@ export default function PainelDadosCapacidade(props) {
                     </Grid>
                     <Grid item xs={12} md={2}>
                         <Paper  style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
-                            <Typography className={classes.typography} variant="h4">
+                            <Typography className={classes.typography} variant="h6">
                                 <ScannerIcon/>
                             </Typography>
-                            <Typography className={classes.typography} variant="h2">
+                            <Typography className={classes.typography} variant="h5">
                                 {dados.soma_scanners}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">

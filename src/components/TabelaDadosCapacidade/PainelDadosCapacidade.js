@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
-import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import StoreIcon from '@material-ui/icons/Store';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        minHeight: '10vw'
+        minHeight: '14vw',
     },
     typography:{
         color: theme.palette.info.contrastText
@@ -38,9 +39,11 @@ export default function PainelDadosCapacidade(props) {
 
     return (
         <React.Fragment>
+
             <Grid className={classes.root} item xs={12} md={12} >
+                <br/>
                 <Typography variant="h5" color='primary'>
-                    Capacidade de Atendimento
+                    Capacidade Operacional
                 </Typography>
                 <br/>
 
@@ -71,12 +74,12 @@ export default function PainelDadosCapacidade(props) {
                                 {dados.soma_atendimento}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
-                                Total de Atendimentos
+                                Atendimentos por hora
                             </Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <Paper  style={{backgroundColor:"#40E0D0"}} className={classes.paper} variant="outlined"  elevation={9}>
+                        <Paper  style={{backgroundColor:"#A26739"}} className={classes.paper} variant="outlined"  elevation={9}>
                             <Typography className={classes.typography} variant="h4">
                                 <QueryBuilderIcon/>
                             </Typography>
@@ -84,7 +87,7 @@ export default function PainelDadosCapacidade(props) {
                                 {dados.soma_faixa_horario}
                             </Typography>
                             <Typography className={classes.typography} variant="h6">
-                                Total de Segurados por faixa de horário
+                                Atendimentos diários
                             </Typography>
                         </Paper>
                     </Grid>

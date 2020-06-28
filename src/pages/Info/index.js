@@ -73,10 +73,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function handleClick(event) {
-    event.preventDefault();
-
-}
 
 export default function EnhancedTable() {
     const classes = useStyles();
@@ -106,7 +102,6 @@ export default function EnhancedTable() {
                                     component="p"
                                     label="Principal"
                                     icon={<HomeIcon fontSize="small"/>}
-                                    onClick={handleClick}
                                 />
                             </Breadcrumbs>
                         </Grid>

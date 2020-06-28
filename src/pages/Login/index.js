@@ -61,6 +61,11 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    loading: {
+        width: '100%',
+        textAlign: 'center',
+        marginTop: 20
+    }
 }));
 
 export default function Login() {
@@ -164,14 +169,20 @@ export default function Login() {
                         >
                             Entrar
                         </Button>
-                        { loading && (
-                            <CircularProgress />
-                        )}
+
+                        <div className={classes.loading}>
+                            { loading && (
+                                <CircularProgress />
+                            )}
+                        </div>
+
                         <Box mt={5}>
                             <Copyright />
                         </Box>
                     </form>
                 </div>
+
+
             </Grid>
         </Grid>
     );

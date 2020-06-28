@@ -26,7 +26,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import CloseIcon from '@material-ui/icons/Close';
 import Auth from '../shared/auth';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import api from '../services/api';
 import { useSnackbar } from 'notistack';
@@ -35,7 +34,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-
+import PageviewIcon from '@material-ui/icons/Pageview';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -144,12 +143,14 @@ export default function Main() {
         setMobileOpen(!mobileOpen)
     }
 
-    async function handleChange(event) {
-        setUnidade(event.target.value);
+
+
+    async function handleChange(value) {
+        setUnidade(value);
         setLoading(true);
         
         let data = {
-			"unidades" : [event.target.value],
+			"unidades" : [value],
 			"tipoRelatorio": "RecursosUnidades"
 		};
 
@@ -158,7 +159,7 @@ export default function Main() {
 				headers: {"Authorization" : "Bearer " + token }
 			}).then(response => {
                 if(response.data.dados.length) {
-                    localStorage.setItem('olAtual', event.target.value);
+                    localStorage.setItem('olAtual', value);
                     localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
                     history.push('/info', { detail: response.data.dados[0]});
                     window.location.reload(false);
@@ -175,7 +176,7 @@ export default function Main() {
             });
         } catch(error) {
             setLoading(false);
-            console.log(error);
+
             enqueueSnackbar('Erro ao retornar os dados!', { 
                 variant: 'error',
                 anchorOrigin: {
@@ -199,12 +200,22 @@ export default function Main() {
                 <Typography className={classes.itemMenu} variant="overline" color="inherit" noWrap>
                     Menu
                 </Typography>
+
                 <Link
                     to="/info"
                     style={{ textDecoration: 'none', color: '#757575' }}>
                     <ListItem button key="1">
                         <ListItemIcon><HomeIcon /></ListItemIcon>
                         <ListItemText primary="Principal" />
+                    </ListItem>
+                </Link>
+
+                <Link
+                    to="/"
+                    style={{ textDecoration: 'none', color: '#757575' }}>
+                    <ListItem button key="1">
+                        <ListItemIcon><PageviewIcon /></ListItemIcon>
+                        <ListItemText primary="Localizar APS" />
                     </ListItem>
                 </Link>
 
@@ -316,28 +327,11 @@ export default function Main() {
                         </Link>
                     </Typography>
 
-                    <FormControl className={classes.formControl}>
-                        <Select
-                            className={classes.select}
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={unidade}
-                            onChange={handleChange}
-                            inputProps={{
-                                classes: {
-                                    icon: classes.icon,
-                                },
-                            }}
-                        >
-                            {unidades.map((unidade) => (
-                                <MenuItem key={unidade.ol} value={unidade.ol}>
-                                {unidade.ol} - {unidade.nome}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                   {/* <FormControl className={classes.formControl}>
+                        <SelectUnidades onChange={handleChange}/>
+                    </FormControl>*/}
 
-                    <IconButton
+                   {/* <IconButton
                         aria-controls="simple-menu"
                         aria-haspopup="true"
                         onClick={handleClick}
@@ -345,7 +339,7 @@ export default function Main() {
                         className={classes.iconButton}
                     >
                         <AccountCircle />
-                    </IconButton>
+                    </IconButton>*/}
 
                     <Menu
                         id="simple-menu"

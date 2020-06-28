@@ -89,5 +89,6 @@ export default function TableDadosDePessoal(props) {
                 options={options}
             />
         </Grid>
+
     </React.Fragment>
 }

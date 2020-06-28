@@ -8,13 +8,14 @@ import Grid from "@material-ui/core/Grid/Grid";
 import TextLabels from '../../theme/textLabels';
 
 export default function TableDadosCapacidade(props) {
-    const columns = ["Unidade", "Tamanho Sala Espera", "Capacidade Atendimento", "Capacidade Pessoal", "Oferta de Atendimento", "Oferta de Atendimento Diário"];
+    const columns = ["Código","Unidade", "Tamanho Sala Espera", "Capacidade Atendimento", "Capacidade Pessoal", "Oferta de Atendimento", "Oferta de Atendimento Diário"];
 
     const dados = [];
     for (let unidade in props) {
         const objeto = props[unidade].capacidade_de_atendimento[0];
         dados[unidade] = [
             objeto.unidade,
+            objeto.unidade_nome.replace( 'AGÊNCIA DA PREVIDÊNCIA SOCIAL', 'APS ') ,
             parseInt(objeto.metragem_administrativo) + parseInt(objeto.metragem_pericia_medica),
             objeto.administrativo_vagas_hora + objeto.assistentes_vagas_hora + objeto.pericia_vagas_hora_maximo,
             objeto.servidores_retorno + objeto.assistente + objeto.peritos,
@@ -65,30 +66,33 @@ export default function TableDadosCapacidade(props) {
                 <>
                     <TableRow>
                         <TableCell />
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[0]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[1]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[2]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[3]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[4]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].administrativo[5]}</TableCell>
+                        <TableCell />
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[0]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[1]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[2]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[3]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[4]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].administrativo[5]}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell />
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[0]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[1]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[2]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[3]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[4]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].assistente[5]}</TableCell>
+                        <TableCell />
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[0]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[1]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[2]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[3]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[4]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].assistente[5]}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell />
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[0]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[1]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[2]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[3]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[4]}</TableCell>
-                        <TableCell>{dados[rowMeta.rowIndex][6].perito[5]}</TableCell>
+                        <TableCell />
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[0]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[1]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[2]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[3]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[4]}</TableCell>
+                        <TableCell>{dados[rowMeta.rowIndex][7].perito[5]}</TableCell>
                     </TableRow>
                 </>
             );
@@ -102,7 +106,7 @@ export default function TableDadosCapacidade(props) {
         <React.Fragment>
             <Grid item xs={12}>
                 <MUIDataTable
-                    title={"Capacidade de Atendimento - Detalhes"}
+                    title={"Capacidade Operacional - Detalhes"}
                     data={data}
                     columns={columns}
                     options={options}

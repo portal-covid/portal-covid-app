@@ -7,13 +7,13 @@ services:
       context: .
       dockerfile: Dockerfile
     external_links:
-      - portal-covid-backend:portal-covid-backend
+        - portal-covid-backend:portal-covid-backend
     ports:
       - 8080:80
+      - 44443:443
     networks:
-      - portal-covid-backend_portal-backend-network
+    - all_containers_databases_portal-databases-network
 
 networks:
-  portal-covid-backend_portal-backend-network:
+  all_containers_databases_portal-databases-network:
     external: true
-

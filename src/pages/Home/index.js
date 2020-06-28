@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import api from '../../services/api';
 import Auth from '../../shared/auth';
 import { useSnackbar } from 'notistack';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import SelectUnidades from '../../components/SelectUnidades'
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import Grid from "@material-ui/core/Grid/Grid";
+import MensagemBoasVindas from "../../components/MensagemBoasVindas";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs/Breadcrumbs";
+import NavigateNextIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import PageviewIcon from '@material-ui/icons/Pageview';
+import Chip from "@material-ui/core/Chip/Chip";
 
-  
+const StyledBreadcrumb = withStyles((theme) => ({
+    root: {
+        backgroundColor: theme.palette.grey[100],
+        height: theme.spacing(3),
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightRegular,
+        width: '100%'
+    },
+}))(Chip);
+
+ 
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -39,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
 	button: {
 		marginTop: 10,
 	},
+    loading: {
+        width: '100%',
+        textAlign: 'center',
+        marginTop: 20
+    }
 }));
 
 export default function Home() {
@@ -48,22 +68,23 @@ export default function Home() {
 	const [unidade, setUnidade] = useState('');
 	const [unidades, setUnidades] = useState(JSON.parse(Auth.getOls()));
 	const token = Auth.getToken();
-	//const [open, setOpen] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-	//const handleClose = () => {
-//		setOpen(false);
-//	};
-	
-	useEffect(() => {
-		
-	}, [setUnidades]);
-	
-	const handleChange = (event) => {
-		setUnidade(event.target.value);
-	};
 
-	async function handleSubmit(event) {
-		event.preventDefault();
+    const handleChange = (value) => {
+        setUnidade(value);
+
+    };
+
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        setLoading(true);
+
+        if (!unidade) {
+            setLoading(false);
+            return false;
+        }
 
 		let data = {
 			"unidades" : [unidade],
@@ -74,6 +95,7 @@ export default function Home() {
             await api.post('relatorio', data, { 
 				headers: {"Authorization" : "Bearer " + token }
 			}).then(response => {
+                setLoading(false);
                 if(response.data.dados.length) {
 					localStorage.setItem('olAtual', unidade);
                     localStorage.setItem('detalhes', JSON.stringify(response.data.dados[0]));
@@ -89,6 +111,7 @@ export default function Home() {
                 }
             });
         } catch(error) {
+            setLoading(false);
             enqueueSnackbar('Erro ao retornar os dados!', { 
                 variant: 'error',
                 anchorOrigin: {
@@ -102,44 +125,51 @@ export default function Home() {
     return (
 		<React.Fragment>
             <CssBaseline />
-			<Container className={classes.root} maxWidth="sm">
-				<Typography component="h2" variant="h4" align="center" color="textPrimary" className={classes.title}>
-					Bem-vindo ao Portal COVID-19
-				</Typography>
-				<Typography variant="h6" align="center" color="textSecondary" paragraph>
-                    Portal para acompanhamento da reabertura das unidades de atendimento do INSS,
-					considerando as medidas de segurança frente ao novo coronavírus.
-					Para informações detalhadas de pessoal, infraestrutura e itens de proteção,
-					selecione a unidade abaixo e clique em pesquisar
-				</Typography>
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel id="demo-simple-select-label">Unidade</InputLabel>
-					<Select
-						className={classes.select}
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={unidade}
-						onChange={handleChange}
-						label="Unidade"
-					>
-						{unidades.map((unidade) => (
-							<MenuItem key={unidade.ol} value={unidade.ol}>
-							{unidade.ol} - {unidade.nome}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-				<div className={classes.divButton}>
-					<Button 
-						size="large" 
-						variant="contained" 
-						color="primary" 
-						className={classes.button}
-						onClick={handleSubmit}>
-						Pesquisar
-					</Button>
-				</div>
-          	</Container>
+            <Grid item xs={12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={4}>
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>} aria-label="breadcrumb">
+                            <StyledBreadcrumb
+                                color="primary"
+                                aria-current="page"
+                                component="p"
+                                label="Localizar APS"
+                                icon={<PageviewIcon fontSize="small"/>}
+                            />
+                        </Breadcrumbs>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+
+                <Grid>
+                    <Container>
+
+                        <MensagemBoasVindas />
+
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <SelectUnidades onChange={handleChange}/>
+                        </FormControl>
+                        <div className={classes.divButton}>
+                            <Button
+                                size="large"
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                onClick={handleSubmit}>
+                                Pesquisar
+                            </Button>
+                        </div>
+                        <div className={classes.loading}>
+                            { loading && (
+                                <CircularProgress />
+                            )}
+                        </div>
+					</Container>
+				</Grid>
+
+
 		</React.Fragment>
     );
 }
