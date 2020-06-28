@@ -141,7 +141,6 @@ export default class Calculo {
             administrativo_vagas_dia: 0,
             administrativo_vagas_hora: 0
         }
-        console.log(dados);
 
         try{
             aps = Calculo._preparar_dados(dados);
@@ -163,7 +162,7 @@ export default class Calculo {
             }
 
         } catch (e) {
-            console.log(e)
+            throw new Error('Erro ao calcular')
         }
 
         return agregador;
